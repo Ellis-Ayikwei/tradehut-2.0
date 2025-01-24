@@ -17,7 +17,7 @@ const AboutUs = () => {
         {
             name: 'Ellis Armah Ayikwei',
             role: 'CEO & Founder',
-            image: '/src/assets/images/team/ellis.jpg',
+            image: '/assets/images/team/ellis.jpg',
             bio: 'With over 10 years in tech, Ellis leads TradeHut with a vision to revolutionize technology services in Ghana. His expertise in software development and business strategy drives our innovation.',
             expertise: ['Software Development', 'Business Strategy', 'Tech Innovation'],
             social: {

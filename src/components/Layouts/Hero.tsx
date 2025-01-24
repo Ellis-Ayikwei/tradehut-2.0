@@ -93,7 +93,7 @@ export default function Hero() {
                 <div className="mr-auto place-self-center lg:col-span-7 hero-content">
                     {/* Company Logo */}
                     <div className="mb-10">
-                        <img src="/src/assets/images/tradehut3.png" alt="TradeHut Logo" className="h-20 w-auto object-contain brightness-0 invert" />
+                        <img src="/assets/images/tradehut3.png" alt="TradeHut Logo" className="h-20 w-auto object-contain brightness-0 invert" />
                     </div>
 
                     {/* Alert Banner */}
@@ -161,7 +161,7 @@ export default function Hero() {
 
                 {/* Hero Image */}
                 <div className="hidden lg:mt-0 lg:col-span-5 lg:flex hero-content">
-                    <img src="/src/assets/images/arts/phone.png" alt="TradeHut Services" className="w-full h-auto object-contain drop-shadow-2xl animate-float" />
+                    <img src="/assets/images/arts/phone.png" alt="TradeHut Services" className="w-full h-auto object-contain drop-shadow-2xl animate-float" />
                 </div>
             </div>
 
