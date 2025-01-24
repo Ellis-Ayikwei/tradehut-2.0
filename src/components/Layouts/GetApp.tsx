@@ -84,16 +84,16 @@ const GetApp: React.FC<GetAppProps> = ({ isOpen, onClose }) => {
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.95, opacity: 0 }}
                         onClick={(e: React.MouseEvent) => e.stopPropagation()}
-                        className="bg-white rounded-2xl shadow-xl w-full max-w-2xl mx-4"
+                        className="relative bg-white rounded-2xl shadow-xl w-full max-w-2xl mx-4 h-full overflow-y-scroll overflow-x-hidden"
                     >
                         {/* Header */}
-                        <div className="bg-[#dc711a] p-6 text-white">
+                        <div className="bg-[#dc711a] p-6 text-white absolute w-full  mb-10">
                             <h2 className="text-2xl font-bold">Start Your Digital Project</h2>
                             <p className="text-white/80">Tell us about your website or app idea</p>
                         </div>
 
                         {/* Form */}
-                        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+                        <form onSubmit={handleSubmit} className=" p-6 space-y-6 mt-28">
                             {/* Contact Information */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>

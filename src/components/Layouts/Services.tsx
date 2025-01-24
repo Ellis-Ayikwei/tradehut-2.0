@@ -194,7 +194,7 @@ const Services: React.FC = () => {
     };
 
     return (
-        <section id="services" className="relative bg-gradient-to-b from-white to-gray-50 py-24 mx-10 border-2 border-gray-200 rounded-3xl">
+        <section id="services" className="relative bg-gradient-to-b from-white to-gray-50 py-24 mx-2 md:mx-10 mt-10 border-2 border-gray-200 rounded-3xl">
             {/* Subtle Background Pattern */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 <div className="absolute inset-0 bg-[url('/src/assets/images/pattern-light.svg')] opacity-[0.03]" />

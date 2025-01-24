@@ -56,7 +56,7 @@ const FAQ = () => {
     const filteredFAQs = activeCategory === 'all' ? faqData : faqData.filter((item) => item.category === activeCategory);
 
     return (
-        <section id="faq" className="py-20 bg-gray-50 mt-10 mx-10 border-2 border-gray-200 rounded-3xl">
+        <section id="faq" className="py-20 bg-gray-50 mt-10 mx-2 md:mx-10 border-2 border-gray-200 rounded-3xl">
             <div className="container mx-auto px-4 max-w-4xl">
                 {/* Header */}
                 <div className="text-center mb-12">

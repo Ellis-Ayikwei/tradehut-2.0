@@ -92,18 +92,18 @@ export default function Hero() {
             <div className="relative grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
                 <div className="mr-auto place-self-center lg:col-span-7 hero-content">
                     {/* Company Logo */}
-                    <div className="mb-10">
-                        <img src="/assets/images/tradehut3.png" alt="TradeHut Logo" className="h-20 w-auto object-contain brightness-0 invert" />
+                    <div className="mb-2 md:mb-10 ">
+                        <img src="/assets/images/tradehut3.png" alt="TradeHut Logo" className="h-16 w-48 md:h-20 md:w-auto object-contain brightness-0 invert" />
                     </div>
 
                     {/* Alert Banner */}
                     <div className="flex items-center gap-2 px-4 py-2 mb-2 text-sm bg-white/10 backdrop-blur-sm rounded-full w-fit">
-                        <span className="flex h-2 w-2">
+                        <span className="flex h-2 w-2 ">
                             <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-white opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
                         </span>
-                        <p className="text-white/90">
-                            <span className="font-semibold text-white">New:</span> Check out our latest products and services
+                        <p className="text-white/90 text-xs md:text-sm">
+                            <span className="font-semibold text-white">New:</span> Check out our latest products
                         </p>
                     </div>
 
@@ -119,10 +119,10 @@ export default function Hero() {
                     </p>
 
                     {/* CTA Button */}
-                    <div className="flex flex-wrap gap-4 mt-8">
+                    <div className="flex flex-nowrap md:flex-wrap gap-4 mt-8">
                         <button
                             onClick={() => setIsContactModalOpen(true)}
-                            className="btn btn-outline items-center px-8 py-2 text-lg font-semibold text-white bg-transparent backdrop-blur-sm rounded-full hover:bg-[#dc711a]/30 transition-all"
+                            className="btn btn-outline items-center px-4 md:px-8 py-2 text-sm md:text-base font-semibold text-white bg-transparent backdrop-blur-sm rounded-full hover:bg-[#dc711a]/30 transition-all"
                         >
                             Contact Us
                             <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -134,7 +134,10 @@ export default function Hero() {
                                 />
                             </svg>
                         </button>
-                        <a href="#store" className="inline-flex items-center px-8 py-0 text-lg font-semibold text-[#dc711a] bg-white rounded-full hover:bg-white/90 transition-all">
+                        <a
+                            href="#store"
+                            className="inline-flex items-center px-4 md:px-8 py-2 text-sm md:text-base font-semibold text-[#dc711a] bg-white rounded-full hover:bg-white/90 transition-all"
+                        >
                             <IconShoppingBag className="mr-2" /> Store
                             {/* <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />

@@ -68,7 +68,7 @@ const GetSupport: React.FC<GetSupportProps> = ({ isOpen, onClose }) => {
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.95, opacity: 0 }}
                         onClick={(e: React.MouseEvent) => e.stopPropagation()}
-                        className="bg-white rounded-2xl shadow-xl w-full max-w-2xl mx-4 overflow-hidden"
+                        className="bg-white rounded-2xl shadow-xl w-full max-w-2xl mx-4 h-full overflow-y-scroll overflow-x-hidden"
                     >
                         {/* Header */}
                         <div className="bg-[#dc711a] p-6 text-white">

@@ -118,7 +118,7 @@ const ViewPlans: React.FC<ViewPlansProps> = ({ isOpen, onClose }) => {
                         animate={{ scale: 1, opacity: 1 }}
                         exit={{ scale: 0.95, opacity: 0 }}
                         onClick={(e: React.MouseEvent) => e.stopPropagation()}
-                        className="bg-white rounded-2xl shadow-xl w-full max-w-6xl mx-4 p-6"
+                        className="bg-white rounded-2xl shadow-xl w-full max-w-6xl mx-4 p-6 h-full overflow-y-scroll overflow-x-hidden"
                     >
                         <div className="text-center mb-8">
                             <h2 className="text-3xl font-bold text-gray-900">Website Development Plans</h2>

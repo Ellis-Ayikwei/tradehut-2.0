@@ -70,10 +70,13 @@ const Footer: React.FC = () => {
     return (
         <footer className=" dark:bg-gray-900">
             <div className="mx-auto w-full max-w-screen-xl px-4 py-12">
-                <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+                <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
                     {/* Company Info */}
-                    <div className="lg:col-span-1">
-                        <h2 className="mb-6 text-lg font-semibold text-[#dc711a]">TradeHut Ghana</h2>
+                    <div className="col-span-2 lg:col-span-1">
+                        <div className="mb-0 md:mb-10 ">
+                            <img src="/assets/images/tradehut3.png" alt="TradeHut Logo" className="h-8 w-24 md:h-20 md:w-auto object-contain" />
+                        </div>
+                        <h2 className="mb-6 text-lg font-semibold text-[#dc711a] flex items-center gap-2">{/* TradeHut Ghana */}</h2>
                         <p className="text-gray-600 dark:text-gray-400 mb-4">Your trusted destination for electronic device repairs, sales, and IT solutions.</p>
                         <div className="space-y-2 text-gray-600 dark:text-gray-400">
                             <p className="flex items-start">

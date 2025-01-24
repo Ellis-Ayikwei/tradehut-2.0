@@ -88,7 +88,7 @@ const Products = () => {
     };
 
     return (
-        <section id="products" className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden mt-10 mx-10 border-2 border-gray-200 rounded-3xl">
+        <section id="products" className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden mt-10 mx-2 md:mx-10 border-2 border-gray-200 rounded-3xl">
             {/* Background Elements */}
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute inset-0 bg-[url('/src/assets/images/pattern-light.svg')] opacity-[0.03]" />
