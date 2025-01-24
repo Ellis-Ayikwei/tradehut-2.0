@@ -76,7 +76,7 @@ export default function Hero() {
     });
 
     return (
-        <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#dc711a] to-[#B95D13FF] mx-10 my-10">
+        <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#dc711a] to-[#B95D13FF] mx-2 my-0 md:mx-10 md:my-10">
             {/* Background Pattern */}
             <div className="absolute inset-0">
                 <div className="absolute inset-0 bg-[url('/src/assets/images/abstract-timekeeper.svg')] opacity-10" />
