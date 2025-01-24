@@ -180,7 +180,7 @@ const ViewPlans: React.FC<ViewPlansProps> = ({ isOpen, onClose }) => {
                         </div>
 
                         <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
-                        <GetApp isOpen={isGetAppOpen} onClose={() => setIsGetAppOpen(false)} selectedPlan={selectedPlan} />
+                        <GetApp isOpen={isGetAppOpen} onClose={() => setIsGetAppOpen(false)} />
                     </motion.div>
                 </motion.div>
             )}

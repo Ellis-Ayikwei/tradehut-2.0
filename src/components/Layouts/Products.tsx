@@ -8,12 +8,12 @@ interface Product {
     description: string;
     image: string;
     technologies: string[];
-    demoLink: string;
+    demoLink?: string;
     githubLink?: string;
     features: string[];
     category: 'web' | 'mobile' | 'desktop';
     status: 'completed' | 'in-progress' | 'maintenance';
-    price: string;
+    price?: string;
 }
 
 const products: Product[] = [
