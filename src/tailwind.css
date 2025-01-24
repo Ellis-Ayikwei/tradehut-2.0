@@ -11,7 +11,11 @@
     }
 
     body {
-        @apply bg-[#fafafa] font-nunito;
+        @apply bg-[#fafafa] font-sans;
+        background-image: url('/src/assets/images/abstract-timekeeper.svg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     body.dark {

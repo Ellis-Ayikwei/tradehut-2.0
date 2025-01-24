@@ -116,7 +116,7 @@ function App({ children }: PropsWithChildren) {
 
     return (
         <div>
-            <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} className="-z-20 " />
+            {/* <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} className="-z-20 " /> */}
             <div
                 className={`${(store.getState().themeConfig.sidebar && 'toggle-sidebar') || ''} ${themeConfig.menu} ${themeConfig.layout} ${
                     themeConfig.rtlClass

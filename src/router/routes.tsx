@@ -3,6 +3,7 @@ import ExploreMyStory from '../components/Layouts/mystroy';
 import ExperienceTimeline from '../components/Layouts/experince';
 import Portfolio from '../components/Layouts/myPortfolio';
 import ContactMe from '../components/Layouts/contact';
+import AboutUs from '../components/Layouts/AboutUs';
 const Index = lazy(() => import('../pages/Index'));
 
 const routes = [
@@ -10,6 +11,11 @@ const routes = [
     {
         path: '/',
         element: <Index />,
+        layout: 'blank',
+    },
+    {
+        path: '/aboutUs',
+        element: <AboutUs />,
         layout: 'blank',
     },
     {
@@ -31,8 +37,7 @@ const routes = [
         path: '/contactme',
         element: <ContactMe />,
         layout: 'blank',
-    }
-
+    },
 ];
 
 export { routes };
