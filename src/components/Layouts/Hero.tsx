@@ -13,16 +13,16 @@ import IconMenu from '../Icon/IconMenu';
 import IconShoppingBag from '../Icon/IconShoppingBag';
 
 const brands = [
-    { name: 'Brand 1', image: '/src/assets/images/campanies/brand1.png' },
-    { name: 'Brand 2', image: '/src/assets/images/campanies/brand2.png' },
-    { name: 'Brand 3', image: '/src/assets/images/campanies/brand3.png' },
-    { name: 'Brand 4', image: '/src/assets/images/campanies/brand4.png' },
-    { name: 'Brand 5', image: '/src/assets/images/campanies/brand5.png' },
-    { name: 'Brand 6', image: '/src/assets/images/campanies/brand6.png' },
-    { name: 'Brand 7', image: '/src/assets/images/campanies/brand7.png' },
-    { name: 'Brand 8', image: '/src/assets/images/campanies/brand8.png' },
-    { name: 'Brand 9', image: '/src/assets/images/campanies/brand9.png' },
-    { name: 'Brand 10', image: '/src/assets/images/campanies/brand10.png' },
+    { name: 'Brand 1', image: '/assets/images/campanies/brand1.png' },
+    { name: 'Brand 2', image: '/assets/images/campanies/brand2.png' },
+    { name: 'Brand 3', image: '/assets/images/campanies/brand3.png' },
+    { name: 'Brand 4', image: '/assets/images/campanies/brand4.png' },
+    { name: 'Brand 5', image: '/assets/images/campanies/brand5.png' },
+    { name: 'Brand 6', image: '/assets/images/campanies/brand6.png' },
+    { name: 'Brand 7', image: '/assets/images/campanies/brand7.png' },
+    { name: 'Brand 8', image: '/assets/images/campanies/brand8.png' },
+    { name: 'Brand 9', image: '/assets/images/campanies/brand9.png' },
+    { name: 'Brand 10', image: '/assets/images/campanies/brand10.png' },
 ];
 
 const socialLinks = [

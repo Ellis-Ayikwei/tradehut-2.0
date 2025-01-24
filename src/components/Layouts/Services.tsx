@@ -38,7 +38,7 @@ const services: ServiceItem[] = [
         title: 'Sales of Electronic Devices',
         description: 'Premium quality devices and accessories at competitive prices',
         icon: 'fas fa-store',
-        image: '/src/assets/images/services/shop.png',
+        image: '/assets/images/services/shop.png',
         features: ['Latest Laptops', 'Premium Mobile Phones', 'Genuine Accessories'],
         buttonText: 'Shop Now',
         buttonLink: '#shop',
