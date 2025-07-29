@@ -7,22 +7,21 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { TextPlugin } from 'gsap/TextPlugin';
 import { useRef, useState } from 'react';
-import './jh.css';
+import { motion } from 'framer-motion';
 import ContactModal from './ContactModal';
-import IconMenu from '../Icon/IconMenu';
-import IconShoppingBag from '../Icon/IconShoppingBag';
+import { faArrowRight, faPlay, faRocket, faShieldAlt, faBolt } from '@fortawesome/free-solid-svg-icons';
 
 const brands = [
-    { name: 'Brand 1', image: '/assets/images/campanies/brand1.png' },
-    { name: 'Brand 2', image: '/assets/images/campanies/brand2.png' },
-    { name: 'Brand 3', image: '/assets/images/campanies/brand3.png' },
-    { name: 'Brand 4', image: '/assets/images/campanies/brand4.png' },
-    { name: 'Brand 5', image: '/assets/images/campanies/brand5.png' },
-    { name: 'Brand 6', image: '/assets/images/campanies/brand6.png' },
-    { name: 'Brand 7', image: '/assets/images/campanies/brand7.png' },
-    { name: 'Brand 8', image: '/assets/images/campanies/brand8.png' },
-    { name: 'Brand 9', image: '/assets/images/campanies/brand9.png' },
-    { name: 'Brand 10', image: '/assets/images/campanies/brand10.png' },
+    { name: 'Microsoft', image: '/assets/images/campanies/brand1.png' },
+    { name: 'Google', image: '/assets/images/campanies/brand2.png' },
+    { name: 'Amazon', image: '/assets/images/campanies/brand3.png' },
+    { name: 'Apple', image: '/assets/images/campanies/brand4.png' },
+    { name: 'Meta', image: '/assets/images/campanies/brand5.png' },
+    { name: 'Netflix', image: '/assets/images/campanies/brand6.png' },
+    { name: 'Tesla', image: '/assets/images/campanies/brand7.png' },
+    { name: 'Adobe', image: '/assets/images/campanies/brand8.png' },
+    { name: 'Spotify', image: '/assets/images/campanies/brand9.png' },
+    { name: 'Oracle', image: '/assets/images/campanies/brand10.png' },
 ];
 
 const socialLinks = [
@@ -31,6 +30,12 @@ const socialLinks = [
     { icon: faInstagram, href: 'https://www.instagram.com/ellis_rockefeller/', label: 'Instagram' },
     { icon: faLinkedin, href: 'https://www.linkedin.com/in/ellis-armah-ayikwei-4a817b192/', label: 'LinkedIn' },
     { icon: faTwitter, href: 'https://x.com/home', label: 'Twitter' },
+];
+
+const features = [
+    { icon: faRocket, text: 'Lightning Fast', color: 'from-blue-500 to-cyan-500' },
+    { icon: faShieldAlt, text: 'Secure & Reliable', color: 'from-purple-500 to-pink-500' },
+    { icon: faBolt, text: 'Cutting Edge', color: 'from-orange-500 to-red-500' },
 ];
 
 export default function Hero() {
@@ -42,152 +47,239 @@ export default function Hero() {
     gsap.registerPlugin(TextPlugin, ScrollTrigger);
 
     useGSAP(() => {
-        // Animation for name text
-        gsap.to(nameRef.current, {
-            text: 'Ellis Armah Ayikwei',
-            duration: 5,
+        // Smooth parallax effect for background
+        gsap.to(bgRef.current, {
+            yPercent: 50,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: boxRef.current,
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true,
+            },
         });
 
-        // Hero content fade in animation
-        gsap.from('.hero-content', {
+        // Animated text effect
+        const tl = gsap.timeline();
+        tl.from('.hero-title', {
+            y: 100,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.1,
+            ease: 'power4.out',
+        })
+        .from('.hero-subtitle', {
             y: 50,
             opacity: 0,
-            duration: 1.5,
-            ease: 'power2.out',
-            stagger: 0.3,
-            scrollTrigger: {
-                trigger: '.hero-content',
-                start: 'top 80%',
-            },
-        });
-
-        // Brand logos animation
-        gsap.from('.brand-logo', {
-            scale: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+        }, '-=0.5')
+        .from('.hero-cta', {
+            scale: 0.8,
             opacity: 0,
-            duration: 0.5,
-            stagger: 0.1,
+            duration: 0.6,
+            stagger: 0.2,
             ease: 'back.out(1.7)',
-            scrollTrigger: {
-                trigger: '.brands-section',
-                start: 'top 80%',
-            },
-        });
+        }, '-=0.3');
     });
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1,
+                delayChildren: 0.3,
+            },
+        },
+    };
+
+    const itemVariants = {
+        hidden: { y: 20, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                type: 'spring',
+                stiffness: 100,
+            },
+        },
+    };
+
     return (
-        <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#dc711a] to-[#B95D13FF] mx-2 my-0 md:mx-10 md:my-10">
-            {/* Background Pattern */}
-            <div className="absolute inset-0">
-                <div className="absolute inset-0 bg-[url('/src/assets/images/abstract-timekeeper.svg')] opacity-10" />
-                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
-
-                {/* Animated Circles */}
-                <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl animate-blob" />
-                <div className="absolute top-1/2 right-0 w-96 h-96 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl animate-blob animation-delay-2000" />
-                <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-white/10 rounded-full -translate-y-1/2 blur-3xl animate-blob animation-delay-4000" />
-            </div>
-
-            {/* Main Hero Content */}
-            <div className="relative grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-                <div className="mr-auto place-self-center lg:col-span-7 hero-content">
-                    {/* Company Logo */}
-                    <div className="mb-2 md:mb-10 ">
-                        <img src="/assets/images/tradehut3.png" alt="TradeHut Logo" className="h-16 w-48 md:h-20 md:w-auto object-contain brightness-0 invert" />
+        <>
+            <section ref={boxRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+                {/* Animated Background */}
+                <div ref={bgRef} className="absolute inset-0 z-0">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-purple-500/10 to-pink-500/20" />
+                    <div className="absolute inset-0">
+                        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/30 rounded-full filter blur-3xl animate-pulse" />
+                        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/30 rounded-full filter blur-3xl animate-pulse animation-delay-2000" />
+                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-pink-500/20 rounded-full filter blur-3xl animate-pulse animation-delay-4000" />
                     </div>
+                    {/* Grid Pattern */}
+                    <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3Cpattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"%3E%3Cpath d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23grid)"/%3E%3C/svg%3E')] opacity-50" />
+                </div>
 
-                    {/* Alert Banner */}
-                    <div className="flex items-center gap-2 px-4 py-2 mb-2 text-sm bg-white/10 backdrop-blur-sm rounded-full w-fit">
-                        <span className="flex h-2 w-2 ">
-                            <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-white opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                        </span>
-                        <p className="text-white/90 text-xs md:text-sm">
-                            <span className="font-semibold text-white">New:</span> Check out our latest products
+                {/* Main Content */}
+                <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <motion.div
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="visible"
+                        className="max-w-5xl mx-auto"
+                    >
+                        {/* Badge */}
+                        <motion.div
+                            initial={{ scale: 0, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ duration: 0.5 }}
+                            className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 to-purple-500/10 backdrop-blur-sm border border-primary/20 rounded-full mb-8"
+                        >
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                            </span>
+                            <span className="text-sm font-medium text-gray-700">🚀 Welcome to the Future of Technology</span>
+                        </motion.div>
+
+                        {/* Main Title */}
+                        <h1 className="hero-title text-5xl sm:text-6xl lg:text-7xl font-bold mb-6">
+                            <span className="block bg-gradient-to-r from-gray-900 via-primary to-purple-600 bg-clip-text text-transparent">
+                                Build Amazing
+                            </span>
+                            <span className="block bg-gradient-to-r from-purple-600 via-pink-600 to-primary bg-clip-text text-transparent">
+                                Digital Experiences
+                            </span>
+                        </h1>
+
+                        {/* Subtitle */}
+                        <p className="hero-subtitle text-xl sm:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed">
+                            Transform your ideas into reality with cutting-edge technology and world-class expertise. 
+                            We deliver innovative solutions that drive your business forward.
                         </p>
-                    </div>
 
-                    {/* Hero Title */}
-                    <h1 className="max-w-2xl mb-4 text-4xl font-bold tracking-tight leading-none md:text-5xl xl:text-6xl text-white">
-                        Welcome to <span className="text-white/90 font-extrabold">TradeHut</span>
-                    </h1>
-
-                    {/* Hero Description */}
-                    <p className="max-w-2xl mb-6 text-white/80 lg:mb-8 md:text-lg lg:text-xl font-light">
-                        Your trusted destination for reliable phone and laptop repairs, sales, professional IT support, and web development services. We deliver exceptional solutions tailored to your
-                        needs.
-                    </p>
-
-                    {/* CTA Button */}
-                    <div className="flex flex-nowrap md:flex-wrap gap-4 mt-8">
-                        <button
-                            onClick={() => setIsContactModalOpen(true)}
-                            className="btn btn-outline items-center px-4 md:px-8 py-2 text-sm md:text-base font-semibold text-white bg-transparent backdrop-blur-sm rounded-full hover:bg-[#dc711a]/30 transition-all"
-                        >
-                            Contact Us
-                            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                                />
-                            </svg>
-                        </button>
-                        <a
-                            href="#store"
-                            className="inline-flex items-center px-4 md:px-8 py-2 text-sm md:text-base font-semibold text-[#dc711a] bg-white rounded-full hover:bg-white/90 transition-all"
-                        >
-                            <IconShoppingBag className="mr-2" /> Store
-                            {/* <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg> */}
-                        </a>
-                    </div>
-
-                    {/* Social Links */}
-                    <div className="flex gap-4 mt-8">
-                        {socialLinks.map((social, index) => (
-                            <a
-                                key={index}
-                                href={social.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-                                aria-label={social.label}
+                        {/* CTA Buttons */}
+                        <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center mb-16">
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => setIsContactModalOpen(true)}
+                                className="group relative px-8 py-4 bg-gradient-to-r from-primary to-primary-dark text-white font-semibold rounded-full shadow-xl hover:shadow-2xl hover:shadow-primary/25 transition-all duration-300 overflow-hidden"
                             >
-                                <FontAwesomeIcon icon={social.icon} className="w-5 h-5" />
-                            </a>
-                        ))}
-                    </div>
-                </div>
+                                <span className="relative z-10 flex items-center justify-center gap-2">
+                                    Get Started
+                                    <FontAwesomeIcon icon={faArrowRight} className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                </span>
+                                <motion.div
+                                    className="absolute inset-0 bg-gradient-to-r from-primary-dark to-purple-600"
+                                    initial={{ x: '100%' }}
+                                    whileHover={{ x: 0 }}
+                                    transition={{ duration: 0.3 }}
+                                />
+                            </motion.button>
 
-                {/* Hero Image */}
-                <div className="hidden lg:mt-0 lg:col-span-5 lg:flex hero-content">
-                    <img src="/assets/images/arts/phone.png" alt="TradeHut Services" className="w-full h-auto object-contain drop-shadow-2xl animate-float" />
-                </div>
-            </div>
-
-            {/* Brands Section */}
-            <div className="px-4 py-5 mx-auto max-w-screen-xl text-center brands-section">
-                <h4 className="font-semibold text-xl mb-3 text-white">We Deal in Brands Like</h4>
-                <div className="w-24 h-1 mx-auto bg-white/20 mb-8"></div>
-
-                <div className="flex flex-wrap justify-center gap-6">
-                    {brands.map((brand, index) => (
-                        <div key={index} className="shadow-sm p-2 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300 w-32 h-16 flex items-center justify-center">
-                            <img
-                                src={brand.image}
-                                alt={`${brand.name} logo`}
-                                title={`${brand.name} Logo`}
-                                className="max-w-[80px] max-h-[80px] object-contain brightness-0 invert hover:brightness-100 hover:invert-0 transition-all duration-300"
-                            />
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="group px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-800 font-semibold rounded-full shadow-lg hover:shadow-xl border border-gray-200 transition-all duration-300 flex items-center justify-center gap-2"
+                            >
+                                <FontAwesomeIcon icon={faPlay} className="w-4 h-4 text-primary" />
+                                Watch Demo
+                            </motion.button>
                         </div>
-                    ))}
-                </div>
-            </div>
 
+                        {/* Features */}
+                        <motion.div 
+                            variants={containerVariants}
+                            className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16"
+                        >
+                            {features.map((feature, index) => (
+                                <motion.div
+                                    key={index}
+                                    variants={itemVariants}
+                                    whileHover={{ y: -5 }}
+                                    className="group relative p-6 bg-white/70 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200/50"
+                                >
+                                    <div className={`w-12 h-12 bg-gradient-to-r ${feature.color} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                                        <FontAwesomeIcon icon={feature.icon} className="text-white text-xl" />
+                                    </div>
+                                    <h3 className="text-lg font-semibold text-gray-800">{feature.text}</h3>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+
+                        {/* Social Links */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1, duration: 0.5 }}
+                            className="flex justify-center gap-4 mb-16"
+                        >
+                            {socialLinks.map((social, index) => (
+                                <motion.a
+                                    key={index}
+                                    href={social.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    whileHover={{ scale: 1.1, y: -2 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="w-12 h-12 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 group"
+                                >
+                                    <FontAwesomeIcon 
+                                        icon={social.icon} 
+                                        className="text-gray-600 group-hover:text-primary transition-colors duration-300" 
+                                    />
+                                </motion.a>
+                            ))}
+                        </motion.div>
+
+                        {/* Trusted By Section */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1.2, duration: 0.8 }}
+                            className="pt-8 border-t border-gray-200/50"
+                        >
+                            <p className="text-sm font-medium text-gray-500 mb-6">Trusted by industry leaders</p>
+                            <div className="flex flex-wrap justify-center items-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                                {brands.slice(0, 5).map((brand, index) => (
+                                    <motion.img
+                                        key={index}
+                                        src={brand.image}
+                                        alt={brand.name}
+                                        className="h-8 sm:h-10 object-contain hover:scale-110 transition-transform duration-300"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 1.4 + index * 0.1 }}
+                                    />
+                                ))}
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                </div>
+
+                {/* Scroll Indicator */}
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 2, duration: 0.5 }}
+                    className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+                >
+                    <motion.div
+                        animate={{ y: [0, 10, 0] }}
+                        transition={{ repeat: Infinity, duration: 1.5 }}
+                        className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center p-1"
+                    >
+                        <motion.div
+                            animate={{ y: [0, 15, 0] }}
+                            transition={{ repeat: Infinity, duration: 1.5 }}
+                            className="w-1 h-3 bg-gray-400 rounded-full"
+                        />
+                    </motion.div>
+                </motion.div>
+            </section>
             <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
-        </section>
+        </>
     );
 }

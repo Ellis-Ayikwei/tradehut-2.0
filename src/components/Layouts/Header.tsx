@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import React from 'react';
 import ContactModal from './ContactModal';
 
@@ -45,159 +45,255 @@ const Header: React.FC = () => {
     }, []);
 
     const NavItem = ({ item }: NavItemProps) => (
-        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+        <motion.div 
+            whileHover={{ scale: 1.05 }} 
+            whileTap={{ scale: 0.95 }}
+            className="relative"
+        >
             {item.action ? (
                 <button
                     onClick={item.action}
-                    className={`flex items-center px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-gray-600 hover:text-[#dc711a] hover:bg-orange-50/50`}
+                    className="relative px-6 py-2 text-gray-700 font-medium transition-all duration-300 hover:text-primary group"
                 >
-                    {item.name}
-                </button>
-            ) : item.path?.startsWith('#') ? (
-                <button
-                    onClick={() => scrollToSection(item.path!)}
-                    className={`flex items-center px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                        location.hash === item.path ? 'text-[#dc711a] font-semibold bg-orange-50' : 'text-gray-600 hover:text-[#dc711a] hover:bg-orange-50/50'
-                    }`}
-                >
-                    {item.name}
+                    <span className="relative z-10">{item.name}</span>
+                    <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        initial={{ scale: 0.8 }}
+                        whileHover={{ scale: 1 }}
+                    />
+                    <motion.div
+                        className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-primary-dark origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                    />
                 </button>
             ) : (
                 <Link
-                    to={item.path!}
-                    className={`flex items-center px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                        location.pathname === item.path ? 'text-[#dc711a] font-semibold bg-orange-50' : 'text-gray-600 hover:text-[#dc711a] hover:bg-orange-50/50'
-                    }`}
+                    to={item.path || '#'}
+                    onClick={(e) => {
+                        if (item.path?.startsWith('#')) {
+                            e.preventDefault();
+                            const id = item.path.substring(1);
+                            const element = document.getElementById(id);
+                            if (element) {
+                                element.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }
+                    }}
+                    className="relative px-6 py-2 text-gray-700 font-medium transition-all duration-300 hover:text-primary group"
                 >
-                    {item.name}
+                    <span className="relative z-10">{item.name}</span>
+                    <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-primary/10 to-primary/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        initial={{ scale: 0.8 }}
+                        whileHover={{ scale: 1 }}
+                    />
+                    <motion.div
+                        className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary to-primary-dark origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                    />
                 </Link>
             )}
         </motion.div>
     );
 
-    const Dot = () => <span className="text-gray-300 text-lg font-bold">•</span>;
+    const mobileMenuVariants = {
+        closed: {
+            opacity: 0,
+            y: -20,
+            transition: {
+                duration: 0.3,
+                staggerChildren: 0.05,
+                staggerDirection: -1,
+            },
+        },
+        open: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                duration: 0.3,
+                staggerChildren: 0.07,
+                delayChildren: 0.2,
+            },
+        },
+    };
 
-    const scrollToSection = (elementId: string) => {
-        const element = document.querySelector(elementId);
-        if (element) {
-            element.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-            });
-        }
+    const mobileItemVariants = {
+        closed: { opacity: 0, x: -20 },
+        open: { opacity: 1, x: 0 },
     };
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 text-2xl">
-            <div className="max-w-[95%] mx-auto">
-                <nav className="px-4 py-3">
-                    {/* Desktop Navigation */}
-                    <div className="hidden md:flex justify-center items-center">
-                        <div className={`flex items-center gap-2 p-2 rounded-full bg-white/90 shadow-lg border border-gray-200`}>
-                            {/* Home Section */}
-                            <div className="flex items-center space-x-2 mr-10">
-                                {mainNavItems.map((item) => (
-                                    <NavItem key={item.path} item={item} />
-                                ))}
-                            </div>
-
-                            {/* Separator */}
-                            <span className="mx-4 text-gray-300 font-light">|</span>
-
-                            {/* Center Navigation */}
-                            <div className="flex items-center space-x-2">
-                                {centerNavItems.map((item, index) => (
-                                    <React.Fragment key={item.path}>
-                                        <NavItem item={item} />
-                                        {index < centerNavItems.length - 1 && <Dot />}
-                                    </React.Fragment>
-                                ))}
-                            </div>
-
-                            {/* Separator */}
-                            <span className="mx-4 text-gray-300 font-light">|</span>
-
-                            {/* End Section */}
-                            <div className="flex items-center space-x-2 ml-10">
-                                {endNavItems.map((item) => (
-                                    <NavItem key={item.name} item={item} />
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Mobile Navigation */}
-                    <div className="md:hidden">
-                        <button
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="p-3 rounded-xl bg-white/90 shadow-md border border-gray-200 hover:bg-orange-50 transition-colors"
-                            aria-label="Toggle menu"
+        <>
+            <motion.header
+                initial={{ y: -100 }}
+                animate={{ y: 0 }}
+                transition={{ duration: 0.6, ease: 'easeOut' }}
+                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+                    isScrolled 
+                        ? 'backdrop-blur-xl bg-white/80 shadow-lg border-b border-gray-200/50' 
+                        : 'backdrop-blur-md bg-white/60'
+                }`}
+            >
+                <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="flex items-center justify-between h-20">
+                        {/* Logo */}
+                        <motion.div 
+                            className="flex items-center space-x-8"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5 }}
                         >
-                            <svg className="w-6 h-6 text-gray-700" fill="none" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
-                                {isMobileMenuOpen ? <path d="M6 18L18 6M6 6l12 12" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
-                            </svg>
-                        </button>
-
-                        {/* Mobile Menu */}
-                        <motion.div
-                            initial={{ opacity: 0, y: -20 }}
-                            animate={{
-                                opacity: isMobileMenuOpen ? 1 : 0,
-                                y: isMobileMenuOpen ? 0 : -20,
-                                display: isMobileMenuOpen ? 'block' : 'none',
-                            }}
-                            className="absolute top-full left-0 right-0 bg-white/95 backdrop-blur-md shadow-lg border-t border-gray-200 mt-2 rounded-2xl mx-4"
-                        >
-                            <div className="p-4 space-y-2">
-                                {[...mainNavItems, ...centerNavItems].map((item) => (
-                                    <div key={item.path} className="flex items-center">
-                                        {item.path?.startsWith('#') ? (
-                                            <button
-                                                onClick={() => {
-                                                    scrollToSection(item.path!);
-                                                    setIsMobileMenuOpen(false);
-                                                }}
-                                                className={`flex-1 flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-                                                    location.hash === item.path ? 'text-[#dc711a] bg-orange-50 font-semibold' : 'text-gray-600 hover:text-[#dc711a] hover:bg-orange-50/50'
-                                                }`}
-                                            >
-                                                <span className="text-lg mr-2">•</span>
-                                                {item.name}
-                                            </button>
-                                        ) : (
-                                            <Link
-                                                to={item.path!}
-                                                onClick={() => setIsMobileMenuOpen(false)}
-                                                className={`flex-1 flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
-                                                    location.pathname === item.path ? 'text-[#dc711a] bg-orange-50 font-semibold' : 'text-gray-600 hover:text-[#dc711a] hover:bg-orange-50/50'
-                                                }`}
-                                            >
-                                                <span className="text-lg mr-2">•</span>
-                                                {item.name}
-                                            </Link>
-                                        )}
-                                    </div>
-                                ))}
-                                {/* Add Contact button to mobile menu */}
-                                <button
-                                    onClick={() => {
-                                        setIsContactModalOpen(true);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className="flex-1 flex items-center px-4 py-3 rounded-xl text-sm font-medium text-[#dc711a] hover:bg-orange-50/50 transition-all duration-300"
+                            <Link to="/" className="flex items-center space-x-3 group">
+                                <motion.div
+                                    whileHover={{ rotate: 360 }}
+                                    transition={{ duration: 0.5 }}
+                                    className="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-primary/30"
                                 >
-                                    <span className="text-lg mr-2">•</span>
-                                    Contact
-                                </button>
-                            </div>
+                                    <span className="text-white font-bold text-xl">E</span>
+                                </motion.div>
+                                <span className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                                    Ellis Tech
+                                </span>
+                            </Link>
                         </motion.div>
-                    </div>
-                </nav>
-            </div>
 
-            {/* Add the modal */}
+                        {/* Desktop Navigation */}
+                        <div className="hidden lg:flex items-center space-x-1">
+                            {mainNavItems.map((item, index) => (
+                                <motion.div
+                                    key={item.name}
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                >
+                                    <NavItem item={item} />
+                                </motion.div>
+                            ))}
+                            {centerNavItems.map((item, index) => (
+                                <motion.div
+                                    key={item.name}
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.5, delay: (index + 1) * 0.1 }}
+                                >
+                                    <NavItem item={item} />
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        {/* CTA Button */}
+                        <motion.div 
+                            className="hidden lg:flex items-center space-x-4"
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.5 }}
+                        >
+                            {endNavItems.map((item) => (
+                                <motion.button
+                                    key={item.name}
+                                    onClick={item.action}
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="relative px-8 py-3 bg-gradient-to-r from-primary to-primary-dark text-white font-semibold rounded-full shadow-lg hover:shadow-primary/30 transition-all duration-300 overflow-hidden group"
+                                >
+                                    <span className="relative z-10">{item.name}</span>
+                                    <motion.div
+                                        className="absolute inset-0 bg-gradient-to-r from-primary-dark to-primary"
+                                        initial={{ x: '100%' }}
+                                        whileHover={{ x: 0 }}
+                                        transition={{ duration: 0.3 }}
+                                    />
+                                </motion.button>
+                            ))}
+                        </motion.div>
+
+                        {/* Mobile Menu Button */}
+                        <motion.button
+                            whileTap={{ scale: 0.9 }}
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            className="lg:hidden relative w-10 h-10 flex items-center justify-center rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                        >
+                            <div className="relative w-6 h-5 flex flex-col justify-center">
+                                <motion.span
+                                    animate={{
+                                        rotate: isMobileMenuOpen ? 45 : 0,
+                                        y: isMobileMenuOpen ? 0 : -8,
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                    className="absolute w-full h-0.5 bg-gray-800 rounded-full"
+                                />
+                                <motion.span
+                                    animate={{
+                                        opacity: isMobileMenuOpen ? 0 : 1,
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                    className="absolute w-full h-0.5 bg-gray-800 rounded-full"
+                                />
+                                <motion.span
+                                    animate={{
+                                        rotate: isMobileMenuOpen ? -45 : 0,
+                                        y: isMobileMenuOpen ? 0 : 8,
+                                    }}
+                                    transition={{ duration: 0.3 }}
+                                    className="absolute w-full h-0.5 bg-gray-800 rounded-full"
+                                />
+                            </div>
+                        </motion.button>
+                    </div>
+
+                    {/* Mobile Menu */}
+                    <AnimatePresence>
+                        {isMobileMenuOpen && (
+                            <motion.div
+                                variants={mobileMenuVariants}
+                                initial="closed"
+                                animate="open"
+                                exit="closed"
+                                className="lg:hidden absolute top-full left-0 right-0 bg-white/95 backdrop-blur-xl shadow-xl border-t border-gray-200/50"
+                            >
+                                <div className="px-4 py-6 space-y-2">
+                                    {[...mainNavItems, ...centerNavItems, ...endNavItems].map((item) => (
+                                        <motion.div
+                                            key={item.name}
+                                            variants={mobileItemVariants}
+                                        >
+                                            {item.action ? (
+                                                <button
+                                                    onClick={() => {
+                                                        item.action();
+                                                        setIsMobileMenuOpen(false);
+                                                    }}
+                                                    className="block w-full text-left px-6 py-3 text-gray-700 font-medium hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 rounded-lg transition-all duration-300"
+                                                >
+                                                    {item.name}
+                                                </button>
+                                            ) : (
+                                                <Link
+                                                    to={item.path || '#'}
+                                                    onClick={(e) => {
+                                                        if (item.path?.startsWith('#')) {
+                                                            e.preventDefault();
+                                                            const id = item.path.substring(1);
+                                                            const element = document.getElementById(id);
+                                                            if (element) {
+                                                                element.scrollIntoView({ behavior: 'smooth' });
+                                                            }
+                                                        }
+                                                        setIsMobileMenuOpen(false);
+                                                    }}
+                                                    className="block px-6 py-3 text-gray-700 font-medium hover:bg-gradient-to-r hover:from-primary/10 hover:to-primary/5 rounded-lg transition-all duration-300"
+                                                >
+                                                    {item.name}
+                                                </Link>
+                                            )}
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </nav>
+            </motion.header>
             <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
-        </header>
+        </>
     );
 };
 

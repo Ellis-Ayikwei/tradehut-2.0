@@ -1,6 +1,21 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+    faStore, 
+    faTools, 
+    faCode, 
+    faHeadset,
+    faArrowRight,
+    faCheck,
+    faLaptop,
+    faMobile,
+    faWrench,
+    faGlobe,
+    faShieldAlt,
+    faClock
+} from '@fortawesome/free-solid-svg-icons';
 import BookRepair from './BookRepair';
 import CheckStatus from './CheckStatus';
 import GetSupport from './GetSupport';
@@ -12,181 +27,116 @@ import ReviewCarousel from './ReviewCarousel';
 interface ServiceItem {
     title: string;
     description: string;
-    icon: string;
+    icon: any;
+    gradient: string;
     image: string;
     features: string[];
     buttonText: string;
     buttonLink: string;
-    reversed?: boolean;
-}
-
-interface ServiceCTA {
-    title: string;
-    description: string;
-    primaryButton: {
-        text: string;
-        link: string;
-    };
-    secondaryButton?: {
-        text: string;
-        link: string;
-    };
+    accentColor: string;
 }
 
 const services: ServiceItem[] = [
     {
         title: 'Sales of Electronic Devices',
-        description: 'Premium quality devices and accessories at competitive prices',
-        icon: 'fas fa-store',
+        description: 'Premium quality devices and accessories at competitive prices with warranty',
+        icon: faStore,
+        gradient: 'from-blue-500 to-cyan-500',
         image: '/assets/images/services/shop.png',
-        features: ['Latest Laptops', 'Premium Mobile Phones', 'Genuine Accessories'],
+        features: ['Latest Laptops & PCs', 'Premium Mobile Phones', 'Genuine Accessories', 'Extended Warranty'],
         buttonText: 'Shop Now',
         buttonLink: '#shop',
+        accentColor: 'blue',
     },
     {
-        title: 'Mobile Phone And Laptop Repairs',
-        description: 'Expert repair services with quality guarantees',
-        icon: 'fas fa-tools',
+        title: 'Mobile & Laptop Repairs',
+        description: 'Expert repair services with quality guarantees and fast turnaround',
+        icon: faTools,
+        gradient: 'from-purple-500 to-pink-500',
         image: '/assets/images/services/repairs.png',
-        features: ['Screen replacement and repair', 'Battery replacement', 'Charging port repair', 'Software troubleshooting', 'Water damage repair', 'Hardware upgrades'],
-        buttonText: 'Book Now',
+        features: ['Screen Replacement', 'Battery Service', 'Hardware Repairs', 'Data Recovery'],
+        buttonText: 'Book Repair',
         buttonLink: '#book',
-        reversed: true,
+        accentColor: 'purple',
     },
     {
         title: 'Web Development',
         description: 'Custom websites and applications tailored to your business needs',
-        icon: 'fas fa-code',
+        icon: faCode,
+        gradient: 'from-orange-500 to-red-500',
         image: '/assets/images/services/webdev.png',
-        features: ['Custom Website Development', 'Mobile App Development', 'E-commerce Solutions', 'Web Applications', 'UI/UX Design', 'API Integration'],
+        features: ['Custom Websites', 'Mobile Apps', 'E-commerce', 'API Integration'],
         buttonText: 'Get Started',
         buttonLink: '#website',
+        accentColor: 'orange',
     },
     {
         title: 'Professional IT Support',
-        description: 'Comprehensive IT solutions',
-        icon: 'fas fa-headset',
+        description: 'Comprehensive IT solutions for businesses and individuals',
+        icon: faHeadset,
+        gradient: 'from-green-500 to-teal-500',
         image: '/assets/images/services/support.png',
-        features: [
-            'Network setup and configuration',
-            'Server maintenance and administration',
-            'Data backup and recovery',
-            'Software troubleshooting and updates',
-            'Virus and malware removal',
-            'Hardware upgrades and repairs',
-            'IT security solutions',
-            'Remote technical support',
-            'Software Installation and Configuration',
-        ],
-        buttonText: 'Talk to a Professional',
+        features: ['Network Setup', 'Security Solutions', '24/7 Support', 'Cloud Services'],
+        buttonText: 'Get Support',
         buttonLink: '#support',
-        reversed: true,
+        accentColor: 'green',
     },
 ];
 
-const serviceCTAs: Record<string, ServiceCTA> = {
-    'Sales of Electronic Devices': {
-        title: 'Ready to upgrade your devices?',
-        description: 'Browse our premium selection of laptops, phones, and accessories. Get the best deals with warranty coverage.',
-        primaryButton: {
-            text: 'Shop Now',
-            link: '#shop',
-        },
-        secondaryButton: {
-            text: 'View Catalog',
-            link: '#catalog',
-        },
-    },
-    'Mobile Phone And Laptop Repairs': {
-        title: 'Need expert repair service?',
-        description: 'Get your devices fixed by certified technicians. Same-day service available for most repairs.',
-        primaryButton: {
-            text: 'Book Repair',
-            link: '#book',
-        },
-        secondaryButton: {
-            text: 'Check Status',
-            link: '#status',
-        },
-    },
-    'Web Development': {
-        title: 'Ready to build your online presence?',
-        description: 'Get a custom website that perfectly represents your brand and drives results.',
-        primaryButton: {
-            text: 'Get Started',
-            link: '#start',
-        },
-        secondaryButton: {
-            text: 'View Plans',
-            link: '#plans',
-        },
-    },
-    'Professional IT Support': {
-        title: 'Need professional IT assistance?',
-        description: 'Get reliable IT support for your business. 24/7 availability for critical issues.',
-        primaryButton: {
-            text: 'Get Support',
-            link: '#support',
-        },
-        secondaryButton: {
-            text: 'See Plans',
-            link: '#plans',
-        },
-    },
-};
-
-const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-};
-
-const staggerChildren = {
-    visible: {
-        transition: {
-            staggerChildren: 0.3,
-        },
-    },
-};
+const stats = [
+    { icon: faLaptop, value: '10K+', label: 'Devices Sold' },
+    { icon: faWrench, value: '25K+', label: 'Repairs Done' },
+    { icon: faGlobe, value: '500+', label: 'Websites Built' },
+    { icon: faClock, value: '24/7', label: 'Support Available' },
+];
 
 const Services: React.FC = () => {
-    const [ref, inView] = useInView({
+    const [isBookModalOpen, setIsBookModalOpen] = useState(false);
+    const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);
+    const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
+    const [isAppModalOpen, setIsAppModalOpen] = useState(false);
+    const [isPlansModalOpen, setIsPlansModalOpen] = useState(false);
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+
+    const { ref, inView } = useInView({
         triggerOnce: true,
         threshold: 0.1,
     });
 
-    const servicesRef = useRef(null);
-    const [isBookRepairOpen, setIsBookRepairOpen] = useState(false);
-    const [isCheckStatusOpen, setIsCheckStatusOpen] = useState(false);
-    const [isGetSupportOpen, setIsGetSupportOpen] = useState(false);
-    const [isGetAppOpen, setIsGetAppOpen] = useState(false);
-    const [isViewPlansOpen, setIsViewPlansOpen] = useState(false);
-    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2,
+            },
+        },
+    };
 
-    const handleCTAClick = (serviceTitle: string, buttonType: 'primary' | 'secondary') => {
-        switch (serviceTitle) {
-            case 'Mobile Phone And Laptop Repairs':
-                if (buttonType === 'primary') {
-                    setIsBookRepairOpen(true);
-                } else {
-                    setIsCheckStatusOpen(true);
-                }
+    const itemVariants = {
+        hidden: { y: 50, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                type: 'spring',
+                stiffness: 100,
+                damping: 15,
+            },
+        },
+    };
+
+    const handleButtonClick = (buttonLink: string) => {
+        switch (buttonLink) {
+            case '#book':
+                setIsBookModalOpen(true);
                 break;
-            case 'Sales of Electronic Devices':
-                console.log(buttonType === 'primary' ? 'Shop Now' : 'View Catalog');
+            case '#support':
+                setIsSupportModalOpen(true);
                 break;
-            case 'Web Development':
-                if (buttonType === 'primary') {
-                    setIsGetAppOpen(true);
-                } else {
-                    setIsViewPlansOpen(true);
-                }
-                break;
-            case 'Professional IT Support':
-                if (buttonType === 'primary') {
-                    setIsGetSupportOpen(true);
-                } else {
-                    console.log('See Plans');
-                }
+            case '#shop':
+            case '#website':
+                setIsContactModalOpen(true);
                 break;
             default:
                 break;
@@ -194,121 +144,193 @@ const Services: React.FC = () => {
     };
 
     return (
-        <section id="services" className="relative bg-gradient-to-b from-white to-gray-50 py-24 mx-2 md:mx-10 mt-10 border-2 border-gray-200 rounded-3xl">
-            {/* Subtle Background Pattern */}
-            <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/src/assets/images/pattern-light.svg')] opacity-[0.03]" />
-                <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-orange-100/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2" />
-                <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-orange-100/10 rounded-full blur-[120px] translate-x-1/2 translate-y-1/2" />
-            </div>
+        <>
+            <section id="services" className="relative py-20 lg:py-32 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
+                {/* Background Elements */}
+                <div className="absolute inset-0 z-0">
+                    <div className="absolute top-0 left-0 w-96 h-96 bg-primary/5 rounded-full filter blur-3xl" />
+                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/5 rounded-full filter blur-3xl" />
+                </div>
 
-            <div className="container mx-auto px-4 max-w-6xl relative">
-                {/* Refined Section Header */}
-                <motion.div className="text-center mb-20" initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={fadeInUp} ref={ref}>
-                    <span className="inline-block px-4 py-1.5 bg-orange-100/40 text-[#dc711a] rounded-full text-sm font-medium mb-6">Our Services</span>
-                    <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
-                        Comprehensive Digital{' '}
-                        <span className="relative inline-block">
-                            <span className="relative z-10 text-[#dc711a]">Solutions</span>
-                            <span className="absolute bottom-1 left-0 w-full h-2 bg-orange-200 -z-0"></span>
+                <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+                    {/* Section Header */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-16"
+                    >
+                        <span className="inline-block px-4 py-2 bg-primary/10 text-primary font-semibold rounded-full text-sm mb-4">
+                            Our Services
                         </span>
-                    </h1>
-                    <p className="text-gray-600 text-lg max-w-2xl mx-auto">From device repairs to web development, we provide end-to-end technology services with exceptional quality.</p>
-                </motion.div>
+                        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                            Solutions That Drive
+                            <span className="block bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+                                Your Success
+                            </span>
+                        </h2>
+                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                            From cutting-edge technology to expert support, we provide comprehensive solutions 
+                            tailored to meet your unique needs.
+                        </p>
+                    </motion.div>
 
-                {/* Refined Services List */}
-                <motion.div variants={staggerChildren} initial="hidden" animate="visible" className="space-y-24">
-                    {services.map((service, index) => (
-                        <motion.div key={index} variants={fadeInUp} className="group">
-                            <div
-                                className={`relative bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl ${
-                                    service.reversed ? 'md:flex-row-reverse' : ''
-                                }`}
+                    {/* Services Grid */}
+                    <motion.div
+                        ref={ref}
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate={inView ? "visible" : "hidden"}
+                        className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20"
+                    >
+                        {services.map((service, index) => (
+                            <motion.div
+                                key={index}
+                                variants={itemVariants}
+                                whileHover={{ y: -10 }}
+                                className="group relative bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500"
                             >
-                                {/* Service Content Grid */}
-                                <div className="grid md:grid-cols-2 gap-0">
-                                    {/* Refined Image Section */}
-                                    <div className="relative h-[400px] md:h-full overflow-hidden">
+                                {/* Gradient Background */}
+                                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                                
+                                <div className="relative p-8 lg:p-10">
+                                    {/* Icon */}
+                                    <motion.div
+                                        whileHover={{ rotate: 360 }}
+                                        transition={{ duration: 0.5 }}
+                                        className={`w-16 h-16 bg-gradient-to-br ${service.gradient} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:shadow-xl transition-shadow duration-300`}
+                                    >
+                                        <FontAwesomeIcon icon={service.icon} className="text-white text-2xl" />
+                                    </motion.div>
+
+                                    {/* Content */}
+                                    <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-primary transition-colors duration-300">
+                                        {service.title}
+                                    </h3>
+                                    <p className="text-gray-600 mb-6 leading-relaxed">
+                                        {service.description}
+                                    </p>
+
+                                    {/* Features */}
+                                    <ul className="space-y-3 mb-8">
+                                        {service.features.map((feature, idx) => (
+                                            <motion.li
+                                                key={idx}
+                                                initial={{ opacity: 0, x: -20 }}
+                                                animate={inView ? { opacity: 1, x: 0 } : {}}
+                                                transition={{ delay: 0.1 * idx }}
+                                                className="flex items-center text-gray-700"
+                                            >
+                                                <FontAwesomeIcon 
+                                                    icon={faCheck} 
+                                                    className={`text-${service.accentColor}-500 mr-3 text-sm`} 
+                                                />
+                                                <span className="text-sm">{feature}</span>
+                                            </motion.li>
+                                        ))}
+                                    </ul>
+
+                                    {/* CTA Button */}
+                                    <motion.button
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        onClick={() => handleButtonClick(service.buttonLink)}
+                                        className={`group/btn relative inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r ${service.gradient} text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden`}
+                                    >
+                                        <span className="relative z-10">{service.buttonText}</span>
+                                        <FontAwesomeIcon 
+                                            icon={faArrowRight} 
+                                            className="relative z-10 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" 
+                                        />
                                         <motion.div
-                                            className="absolute inset-0 bg-gradient-to-br from-[#dc711a]/80 to-[#E19D66FF]/80 mix-blend-multiply"
-                                            initial={{ opacity: 0.6 }}
-                                            whileHover={{ opacity: 0.7 }}
+                                            className="absolute inset-0 bg-white/20"
+                                            initial={{ x: '-100%' }}
+                                            whileHover={{ x: 0 }}
                                             transition={{ duration: 0.3 }}
                                         />
-                                        <motion.img
-                                            src={service.image}
+                                    </motion.button>
+
+                                    {/* Decorative Element */}
+                                    <div className="absolute top-0 right-0 w-32 h-32 opacity-10">
+                                        <img 
+                                            src={service.image} 
                                             alt={service.title}
-                                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                            className="w-full h-full object-contain"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                                        <div className="absolute bottom-0 left-0 right-0 p-8">
-                                            <div className="text-3xl mb-4 text-white/90">
-                                                <i className={service.icon}></i>
-                                            </div>
-                                            <h3 className="text-2xl font-bold mb-2 text-white">{service.title}</h3>
-                                            <p className="text-white/80 text-sm">{service.description}</p>
-                                        </div>
-                                    </div>
-
-                                    {/* Refined Content Section */}
-                                    <div className="p-8 flex flex-col justify-center bg-white">
-                                        <div className="grid grid-cols-1 gap-4">
-                                            {service.features.map((feature, idx) => (
-                                                <motion.div key={idx} className="flex items-center space-x-3 p-3 rounded-xl hover:bg-orange-50/50 transition-colors" whileHover={{ x: 4 }}>
-                                                    <span className="flex-shrink-0 w-8 h-8 rounded-lg bg-orange-100 flex items-center justify-center">
-                                                        <i className="fas fa-check text-[#dc711a] text-sm"></i>
-                                                    </span>
-                                                    <span className="text-gray-700 text-sm">{feature}</span>
-                                                </motion.div>
-                                            ))}
-                                        </div>
                                     </div>
                                 </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
 
-                                {/* Refined CTA Section */}
-                                <div className="bg-gradient-to-r from-[#dc711a] to-[#E19D66FF] p-8">
-                                    <div className="max-w-3xl mx-auto text-center">
-                                        <h3 className="text-2xl font-bold mb-3 text-white">{serviceCTAs[service.title].title}</h3>
-                                        <p className="text-white/80 mb-6 text-sm max-w-xl mx-auto">{serviceCTAs[service.title].description}</p>
-                                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                            <motion.button
-                                                onClick={() => handleCTAClick(service.title, 'primary')}
-                                                className="group inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-[#dc711a] bg-white rounded-lg hover:bg-gray-50 transition-all"
-                                                whileHover={{ scale: 1.02 }}
-                                                whileTap={{ scale: 0.98 }}
-                                            >
-                                                {serviceCTAs[service.title].primaryButton.text}
-                                                <i className="fas fa-arrow-right ml-2 transform transition-transform group-hover:translate-x-1"></i>
-                                            </motion.button>
-                                            {serviceCTAs[service.title].secondaryButton && (
-                                                <motion.button
-                                                    onClick={() => handleCTAClick(service.title, 'secondary')}
-                                                    className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-white border border-white/30 rounded-lg hover:bg-white/10 transition-all"
-                                                    whileHover={{ scale: 1.02 }}
-                                                    whileTap={{ scale: 0.98 }}
-                                                >
-                                                    {serviceCTAs[service.title].secondaryButton?.text}
-                                                </motion.button>
-                                            )}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
-            </div>
+                    {/* Stats Section */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 40 }}
+                        animate={inView ? { opacity: 1, y: 0 } : {}}
+                        transition={{ duration: 0.8, delay: 0.4 }}
+                        className="bg-gradient-to-r from-primary to-primary-dark rounded-3xl p-8 lg:p-12 shadow-2xl"
+                    >
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                            {stats.map((stat, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ scale: 0 }}
+                                    animate={inView ? { scale: 1 } : {}}
+                                    transition={{ duration: 0.5, delay: 0.1 * index }}
+                                    className="text-center"
+                                >
+                                    <FontAwesomeIcon 
+                                        icon={stat.icon} 
+                                        className="text-white/80 text-3xl mb-3" 
+                                    />
+                                    <h4 className="text-3xl font-bold text-white mb-1">{stat.value}</h4>
+                                    <p className="text-white/80 text-sm">{stat.label}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
 
-            {/* Keep existing modals */}
-            <BookRepair isOpen={isBookRepairOpen} onClose={() => setIsBookRepairOpen(false)} />
-            <CheckStatus isOpen={isCheckStatusOpen} onClose={() => setIsCheckStatusOpen(false)} />
-            <GetSupport isOpen={isGetSupportOpen} onClose={() => setIsGetSupportOpen(false)} />
-            <GetApp isOpen={isGetAppOpen} onClose={() => setIsGetAppOpen(false)} />
-            <ViewPlans isOpen={isViewPlansOpen} onClose={() => setIsViewPlansOpen(false)} />
-            <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
+                    {/* Quick Actions */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={inView ? { opacity: 1 } : {}}
+                        transition={{ duration: 0.6, delay: 0.6 }}
+                        className="mt-16 text-center"
+                    >
+                        <p className="text-gray-600 mb-6">Need help choosing the right service?</p>
+                        <div className="flex flex-wrap justify-center gap-4">
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => setIsStatusModalOpen(true)}
+                                className="px-6 py-3 bg-white text-gray-800 font-semibold rounded-full shadow-lg hover:shadow-xl border border-gray-200 transition-all duration-300"
+                            >
+                                Check Repair Status
+                            </motion.button>
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() => setIsPlansModalOpen(true)}
+                                className="px-6 py-3 bg-white text-gray-800 font-semibold rounded-full shadow-lg hover:shadow-xl border border-gray-200 transition-all duration-300"
+                            >
+                                View Service Plans
+                            </motion.button>
+                        </div>
+                    </motion.div>
+                </div>
+            </section>
 
+            {/* Reviews Section */}
             <ReviewCarousel />
-        </section>
+
+            {/* Modals */}
+            <BookRepair isOpen={isBookModalOpen} onClose={() => setIsBookModalOpen(false)} />
+            <CheckStatus isOpen={isStatusModalOpen} onClose={() => setIsStatusModalOpen(false)} />
+            <GetSupport isOpen={isSupportModalOpen} onClose={() => setIsSupportModalOpen(false)} />
+            <GetApp isOpen={isAppModalOpen} onClose={() => setIsAppModalOpen(false)} />
+            <ViewPlans isOpen={isPlansModalOpen} onClose={() => setIsPlansModalOpen(false)} />
+            <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
+        </>
     );
 };
 
