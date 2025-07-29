@@ -278,7 +278,7 @@ const ModernNavbar: React.FC = () => {
                                     </div>
                                     <div className="flex flex-col">
                                         <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                            TechHub
+                                            TradeHut
                                         </span>
                                         <span className="text-xs text-gray-500 -mt-1">Innovation First</span>
                                     </div>
@@ -317,7 +317,7 @@ const ModernNavbar: React.FC = () => {
                                         <Sparkles className="w-5 h-5" />
                                     </div>
                                     <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                        TechHub
+                                        TradeHut
                                     </span>
                                 </Link>
 

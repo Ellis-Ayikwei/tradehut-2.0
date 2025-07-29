@@ -14,7 +14,6 @@ const Index = () => {
             <ModernProducts />
             <FAQ />
             <AboutUs />
-            <Footer />
             <ScrollToTop />
         </div>
     );

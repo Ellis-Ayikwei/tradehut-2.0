@@ -98,7 +98,7 @@ export default function Hero() {
 
     return (
         <>
-            <ModernNavbar />
+           
             
             {/* Ultra Modern Hero Section */}
             <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950">

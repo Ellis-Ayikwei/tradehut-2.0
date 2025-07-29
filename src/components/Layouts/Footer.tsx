@@ -154,7 +154,7 @@ const Footer: React.FC = () => {
                                 </div>
                             </div>
                             <div>
-                                <h2 className="text-2xl font-bold text-white">TechHub</h2>
+                                <h2 className="text-2xl font-bold text-white">TradeHut</h2>
                                 <p className="text-xs text-gray-400">Innovation First</p>
                             </div>
                         </div>
@@ -170,9 +170,9 @@ const Footer: React.FC = () => {
                                 <IconPhone className="w-5 h-5 text-blue-400" />
                                 <span>+1 (234) 567-890</span>
                             </a>
-                            <a href="mailto:info@techhub.com" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors">
+                            <a href="mailto:info@TradeHut.com" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors">
                                 <IconMail className="w-5 h-5 text-purple-400" />
-                                <span>info@techhub.com</span>
+                                <span>info@TradeHut.com</span>
                             </a>
                             <div className="flex items-start gap-3 text-gray-400">
                                 <IconMapPin className="w-5 h-5 text-green-400 mt-0.5" />
@@ -220,9 +220,9 @@ const Footer: React.FC = () => {
                     <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
                         {/* Copyright */}
                         <div className="text-gray-400 text-sm text-center lg:text-left">
-                            <p>© {currentYear} TechHub. All rights reserved.</p>
+                            <p>© {currentYear} TradeHut. All rights reserved.</p>
                             <p className="mt-1 flex items-center justify-center lg:justify-start gap-1">
-                                Made with <Heart className="w-4 h-4 text-red-500 fill-current" /> by TechHub Team
+                                Made with <Heart className="w-4 h-4 text-red-500 fill-current" /> by TradeHut Team
                             </p>
                         </div>
 

@@ -32,8 +32,8 @@ const faqs = [
     {
         id: 1,
         category: 'general',
-        question: 'What services does TechHub offer?',
-        answer: 'TechHub provides comprehensive technology solutions including device repairs (smartphones, laptops, tablets), IT infrastructure support, custom web development, and 24/7 technical support. We serve both individual customers and businesses with cutting-edge solutions.',
+        question: 'What services does TradeHut offer?',
+        answer: 'TradeHut provides comprehensive technology solutions including device repairs (smartphones, laptops, tablets), IT infrastructure support, custom web development, and 24/7 technical support. We serve both individual customers and businesses with cutting-edge solutions.',
         icon: <IconBulb className="w-6 h-6" />
     },
     {

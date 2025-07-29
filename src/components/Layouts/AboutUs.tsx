@@ -14,12 +14,12 @@ import {
     Zap,
     CheckCircle,
     Star,
-    ArrowRight
+    ArrowRight,
+    Handshake
 } from 'lucide-react';
 import {
     IconRocket,
     IconBulb,
-    IconHandshake,
     IconAward,
     IconChartLine,
     IconUsers,
@@ -41,7 +41,7 @@ const values = [
         gradient: 'from-blue-500 to-cyan-500'
     },
     {
-        icon: <IconHandshake className="w-8 h-8" />,
+        icon: <Handshake className="w-8 h-8" />,
         title: 'Partnership',
         description: 'Growing together with our clients as technology partners',
         gradient: 'from-purple-500 to-pink-500'
@@ -91,7 +91,7 @@ const AboutUs: React.FC = () => {
                         className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-full border border-blue-500/20 mb-4"
                     >
                         <IconSparkles className="w-4 h-4 text-blue-400" />
-                        <span className="text-sm text-blue-300 font-medium">About TechHub</span>
+                        <span className="text-sm text-blue-300 font-medium">About TradeHut</span>
                     </motion.div>
                     
                     <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
@@ -121,7 +121,7 @@ const AboutUs: React.FC = () => {
                                 Leading the Future of Technology
                             </h3>
                             <p className="text-gray-300 leading-relaxed">
-                                Since our inception, TechHub has been at the forefront of technological innovation. 
+                                Since our inception, TradeHut has been at the forefront of technological innovation. 
                                 We combine deep industry expertise with cutting-edge technology to deliver solutions 
                                 that not only meet today's challenges but anticipate tomorrow's opportunities.
                             </p>
@@ -283,7 +283,7 @@ const AboutUs: React.FC = () => {
                         <IconRocket className="w-12 h-12 text-blue-400 mb-4" />
                         <h3 className="text-2xl font-bold text-white mb-2">Ready to Start Your Journey?</h3>
                         <p className="text-gray-400 mb-6 max-w-md">
-                            Join thousands of satisfied customers who have transformed their business with TechHub
+                            Join thousands of satisfied customers who have transformed their business with TradeHut
                         </p>
                         <div className="flex flex-wrap gap-4 justify-center">
                             <motion.button
