@@ -7,6 +7,12 @@ import AboutUs from '../components/Layouts/AboutUs';
 import AdminDashboard from '../components/Admin/AdminDashboard';
 const Index = lazy(() => import('../pages/Index'));
 
+// Service Pages
+const DeviceRepair = lazy(() => import('../pages/services/DeviceRepair'));
+const ITSolutions = lazy(() => import('../pages/services/ITSolutions'));
+const WebDevelopment = lazy(() => import('../pages/services/WebDevelopment'));
+const TechSupport = lazy(() => import('../pages/services/TechSupport'));
+
 const routes = [
     // dashboard
     {
@@ -42,6 +48,27 @@ const routes = [
     {
         path: '/admin',
         element: <AdminDashboard />,
+        layout: 'blank',
+    },
+    // Service Pages
+    {
+        path: '/services/device-repair',
+        element: <DeviceRepair />,
+        layout: 'blank',
+    },
+    {
+        path: '/services/it-solutions',
+        element: <ITSolutions />,
+        layout: 'blank',
+    },
+    {
+        path: '/services/web-development',
+        element: <WebDevelopment />,
+        layout: 'blank',
+    },
+    {
+        path: '/services/tech-support',
+        element: <TechSupport />,
         layout: 'blank',
     },
 ];

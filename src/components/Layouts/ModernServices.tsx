@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { Link } from 'react-router-dom';
 import { 
     Smartphone, 
     Laptop, 
@@ -242,6 +243,18 @@ const ModernServices: React.FC = () => {
                                         ))}
                                     </div>
                                 </div>
+
+                                {/* View Details Button */}
+                                <Link to={`/services/${service.id === 1 ? 'device-repair' : service.id === 2 ? 'it-solutions' : service.id === 3 ? 'web-development' : 'tech-support'}`}>
+                                    <motion.button
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className="w-full mt-4 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                                    >
+                                        <span>View Details</span>
+                                        <ArrowRight className="w-4 h-4" />
+                                    </motion.button>
+                                </Link>
 
                                 {/* Hover Effect Overlay */}
                                 <motion.div
