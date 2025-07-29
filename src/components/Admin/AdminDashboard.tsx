@@ -226,12 +226,12 @@ const AdminDashboard: React.FC = () => {
                                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
                                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                                         {[
-                                            { title: 'Add Product', icon: 'fas fa-plus', color: 'bg-blue-600', href: '/admin/products/new' },
-                                            { title: 'New Repair Job', icon: 'fas fa-tools', color: 'bg-orange-600', href: '/admin/repairs/new' },
-                                            { title: 'View Orders', icon: 'fas fa-list', color: 'bg-green-600', href: '/admin/orders' },
-                                            { title: 'Manage Users', icon: 'fas fa-users', color: 'bg-purple-600', href: '/admin/users' },
-                                            { title: 'Analytics', icon: 'fas fa-chart-bar', color: 'bg-indigo-600', href: '/admin/analytics' },
-                                            { title: 'Settings', icon: 'fas fa-cog', color: 'bg-gray-600', href: '/admin/settings' }
+                                                                        { title: 'Manage Products', icon: 'fas fa-box', color: 'bg-blue-600', href: '/admin/products' },
+                            { title: 'Repair Jobs', icon: 'fas fa-tools', color: 'bg-orange-600', href: '/admin/repairs' },
+                            { title: 'View Orders', icon: 'fas fa-list', color: 'bg-green-600', href: '/admin/orders' },
+                            { title: 'Manage Users', icon: 'fas fa-users', color: 'bg-purple-600', href: '/admin/users' },
+                            { title: 'Analytics', icon: 'fas fa-chart-bar', color: 'bg-indigo-600', href: '/admin/analytics' },
+                            { title: 'Settings', icon: 'fas fa-cog', color: 'bg-gray-600', href: '/admin/settings' }
                                         ].map((action, index) => (
                                             <motion.button
                                                 key={index}
