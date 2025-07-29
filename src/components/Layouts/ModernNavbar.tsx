@@ -70,25 +70,25 @@ const ModernNavbar: React.FC = () => {
             children: [
                 {
                     name: 'Device Repair',
-                    path: '#repair',
+                    path: '/services/device-repair',
                     icon: <IconDeviceMobile className="w-5 h-5" />,
                     description: 'Professional repair for all devices'
                 },
                 {
                     name: 'IT Solutions',
-                    path: '#it-solutions',
+                    path: '/services/it-solutions',
                     icon: <IconServer className="w-5 h-5" />,
                     description: 'Complete IT infrastructure support'
                 },
                 {
                     name: 'Web Development',
-                    path: '#web-dev',
+                    path: '/services/web-development',
                     icon: <IconCode className="w-5 h-5" />,
                     description: 'Custom web applications'
                 },
                 {
                     name: 'Tech Support',
-                    path: '#support',
+                    path: '/services/tech-support',
                     icon: <IconHeadset className="w-5 h-5" />,
                     description: '24/7 technical assistance'
                 }
