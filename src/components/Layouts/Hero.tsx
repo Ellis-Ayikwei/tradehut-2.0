@@ -1,36 +1,52 @@
 'use client';
 
-import { faFacebookF, faGithub, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { TextPlugin } from 'gsap/TextPlugin';
-import { useRef, useState } from 'react';
-import './jh.css';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 import ContactModal from './ContactModal';
-import IconMenu from '../Icon/IconMenu';
-import IconShoppingBag from '../Icon/IconShoppingBag';
+import ModernNavbar from './ModernNavbar';
 
-const brands = [
-    { name: 'Brand 1', image: '/assets/images/campanies/brand1.png' },
-    { name: 'Brand 2', image: '/assets/images/campanies/brand2.png' },
-    { name: 'Brand 3', image: '/assets/images/campanies/brand3.png' },
-    { name: 'Brand 4', image: '/assets/images/campanies/brand4.png' },
-    { name: 'Brand 5', image: '/assets/images/campanies/brand5.png' },
-    { name: 'Brand 6', image: '/assets/images/campanies/brand6.png' },
-    { name: 'Brand 7', image: '/assets/images/campanies/brand7.png' },
-    { name: 'Brand 8', image: '/assets/images/campanies/brand8.png' },
-    { name: 'Brand 9', image: '/assets/images/campanies/brand9.png' },
-    { name: 'Brand 10', image: '/assets/images/campanies/brand10.png' },
+const trustedBrands = [
+    { name: 'Apple', icon: 'fab fa-apple' },
+    { name: 'Samsung', icon: 'fas fa-mobile-alt' },
+    { name: 'HP', icon: 'fas fa-laptop' },
+    { name: 'Dell', icon: 'fas fa-desktop' },
+    { name: 'Lenovo', icon: 'fas fa-laptop-code' },
+    { name: 'Microsoft', icon: 'fab fa-microsoft' },
 ];
 
-const socialLinks = [
-    { icon: faFacebookF, href: 'https://web.facebook.com/ellis.hero/', label: 'Facebook' },
-    { icon: faGithub, href: 'https://github.com/Ellis-Ayikwei', label: 'GitHub' },
-    { icon: faInstagram, href: 'https://www.instagram.com/ellis_rockefeller/', label: 'Instagram' },
-    { icon: faLinkedin, href: 'https://www.linkedin.com/in/ellis-armah-ayikwei-4a817b192/', label: 'LinkedIn' },
-    { icon: faTwitter, href: 'https://x.com/home', label: 'Twitter' },
+const stats = [
+    { number: '5000+', label: 'Devices Repaired', icon: 'fas fa-tools' },
+    { number: '98%', label: 'Success Rate', icon: 'fas fa-check-circle' },
+    { number: '24/7', label: 'Support Available', icon: 'fas fa-headset' },
+    { number: '50+', label: 'Expert Technicians', icon: 'fas fa-users' },
+];
+
+const services = [
+    {
+        icon: 'fas fa-mobile-alt',
+        title: 'Device Repair',
+        description: 'Professional repair services for smartphones, tablets, and laptops',
+        color: 'from-blue-500 to-cyan-500'
+    },
+    {
+        icon: 'fas fa-shopping-cart',
+        title: 'Device Sales',
+        description: 'Premium quality devices and accessories at competitive prices',
+        color: 'from-purple-500 to-pink-500'
+    },
+    {
+        icon: 'fas fa-server',
+        title: 'IT Solutions',
+        description: 'Complete IT infrastructure and support services for businesses',
+        color: 'from-green-500 to-emerald-500'
+    },
+    {
+        icon: 'fas fa-code',
+        title: 'Web Development',
+        description: 'Custom web applications and digital solutions',
+        color: 'from-orange-500 to-red-500'
+    }
 ];
 
 export default function Hero() {
