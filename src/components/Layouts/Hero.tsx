@@ -50,160 +50,240 @@ const services = [
 ];
 
 export default function Hero() {
-    const boxRef = useRef<HTMLDivElement | null>(null);
-    const nameRef = useRef<HTMLParagraphElement | null>(null);
-    const bgRef = useRef<HTMLDivElement | null>(null);
     const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+    const [currentService, setCurrentService] = useState(0);
+    const { ref, inView } = useInView({ threshold: 0.1 });
 
-    gsap.registerPlugin(TextPlugin, ScrollTrigger);
-
-    useGSAP(() => {
-        // Animation for name text
-        gsap.to(nameRef.current, {
-            text: 'Ellis Armah Ayikwei',
-            duration: 5,
-        });
-
-        // Hero content fade in animation
-        gsap.from('.hero-content', {
-            y: 50,
-            opacity: 0,
-            duration: 1.5,
-            ease: 'power2.out',
-            stagger: 0.3,
-            scrollTrigger: {
-                trigger: '.hero-content',
-                start: 'top 80%',
-            },
-        });
-
-        // Brand logos animation
-        gsap.from('.brand-logo', {
-            scale: 0,
-            opacity: 0,
-            duration: 0.5,
-            stagger: 0.1,
-            ease: 'back.out(1.7)',
-            scrollTrigger: {
-                trigger: '.brands-section',
-                start: 'top 80%',
-            },
-        });
-    });
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentService((prev) => (prev + 1) % services.length);
+        }, 3000);
+        return () => clearInterval(interval);
+    }, []);
 
     return (
-        <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#dc711a] to-[#B95D13FF] mx-2 my-0 md:mx-10 md:my-10">
-            {/* Background Pattern */}
-            <div className="absolute inset-0">
-                <div className="absolute inset-0 bg-[url('/src/assets/images/abstract-timekeeper.svg')] opacity-10" />
-                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+        <>
+            <ModernNavbar />
+            
+            {/* Ultra Modern Hero Section */}
+            <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+                {/* Animated Background Elements */}
+                <div className="absolute inset-0">
+                    {/* Geometric Shapes */}
+                    <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-blue-400/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+                    <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-indigo-400/10 to-purple-500/10 rounded-full blur-3xl animate-spin-slow"></div>
+                    
+                    {/* Grid Pattern */}
+                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+                    
+                    {/* Floating Elements */}
+                    <motion.div
+                        animate={{ y: [-20, 20, -20] }}
+                        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute top-1/4 right-1/4 w-4 h-4 bg-blue-500 rounded-full opacity-60"
+                    ></motion.div>
+                    <motion.div
+                        animate={{ y: [20, -20, 20] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute bottom-1/4 left-1/4 w-6 h-6 bg-purple-500 rounded-full opacity-40"
+                    ></motion.div>
+                </div>
 
-                {/* Animated Circles */}
-                <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl animate-blob" />
-                <div className="absolute top-1/2 right-0 w-96 h-96 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl animate-blob animation-delay-2000" />
-                <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-white/10 rounded-full -translate-y-1/2 blur-3xl animate-blob animation-delay-4000" />
-            </div>
-
-            {/* Main Hero Content */}
-            <div className="relative grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-                <div className="mr-auto place-self-center lg:col-span-7 hero-content">
-                    {/* Company Logo */}
-                    <div className="mb-2 md:mb-10 ">
-                        <img src="/assets/images/tradehut3.png" alt="TradeHut Logo" className="h-16 w-48 md:h-20 md:w-auto object-contain brightness-0 invert" />
-                    </div>
-
-                    {/* Alert Banner */}
-                    <div className="flex items-center gap-2 px-4 py-2 mb-2 text-sm bg-white/10 backdrop-blur-sm rounded-full w-fit">
-                        <span className="flex h-2 w-2 ">
-                            <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-white opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                        </span>
-                        <p className="text-white/90 text-xs md:text-sm">
-                            <span className="font-semibold text-white">New:</span> Check out our latest products
-                        </p>
-                    </div>
-
-                    {/* Hero Title */}
-                    <h1 className="max-w-2xl mb-4 text-4xl font-bold tracking-tight leading-none md:text-5xl xl:text-6xl text-white">
-                        Welcome to <span className="text-white/90 font-extrabold">TradeHut</span>
-                    </h1>
-
-                    {/* Hero Description */}
-                    <p className="max-w-2xl mb-6 text-white/80 lg:mb-8 md:text-lg lg:text-xl font-light">
-                        Your trusted destination for reliable phone and laptop repairs, sales, professional IT support, and web development services. We deliver exceptional solutions tailored to your
-                        needs.
-                    </p>
-
-                    {/* CTA Button */}
-                    <div className="flex flex-nowrap md:flex-wrap gap-4 mt-8">
-                        <button
-                            onClick={() => setIsContactModalOpen(true)}
-                            className="btn btn-outline items-center px-4 md:px-8 py-2 text-sm md:text-base font-semibold text-white bg-transparent backdrop-blur-sm rounded-full hover:bg-[#dc711a]/30 transition-all"
+                {/* Main Content */}
+                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        {/* Left Content */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="space-y-8"
                         >
-                            Contact Us
-                            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                                />
-                            </svg>
-                        </button>
-                        <a
-                            href="#store"
-                            className="inline-flex items-center px-4 md:px-8 py-2 text-sm md:text-base font-semibold text-[#dc711a] bg-white rounded-full hover:bg-white/90 transition-all"
-                        >
-                            <IconShoppingBag className="mr-2" /> Store
-                            {/* <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg> */}
-                        </a>
-                    </div>
-
-                    {/* Social Links */}
-                    <div className="flex gap-4 mt-8">
-                        {socialLinks.map((social, index) => (
-                            <a
-                                key={index}
-                                href={social.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-                                aria-label={social.label}
+                            {/* Badge */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.2 }}
+                                className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm border border-blue-200 rounded-full px-4 py-2 shadow-lg"
                             >
-                                <FontAwesomeIcon icon={social.icon} className="w-5 h-5" />
-                            </a>
-                        ))}
+                                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                                <span className="text-sm font-medium text-gray-700">🚀 Ghana's Leading IT Service Provider</span>
+                            </motion.div>
+
+                            {/* Main Heading */}
+                            <div className="space-y-4">
+                                <motion.h1
+                                    initial={{ opacity: 0, y: 30 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.3 }}
+                                    className="text-5xl md:text-7xl font-bold leading-tight"
+                                >
+                                    <span className="bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
+                                        Next-Gen
+                                    </span>
+                                    <br />
+                                    <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                                        IT Solutions
+                                    </span>
+                                </motion.h1>
+                                
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.4 }}
+                                    className="h-20 overflow-hidden"
+                                >
+                                    <motion.div
+                                        animate={{ y: -currentService * 80 }}
+                                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                                        className="space-y-4"
+                                    >
+                                        {services.map((service, index) => (
+                                            <div key={index} className="h-16 flex items-center">
+                                                <div className={`inline-flex items-center space-x-3 px-4 py-2 rounded-lg bg-gradient-to-r ${service.color} text-white shadow-lg`}>
+                                                    <i className={`${service.icon} text-xl`}></i>
+                                                    <span className="font-semibold text-lg">{service.title}</span>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </motion.div>
+                                </motion.div>
+                            </div>
+
+                            {/* Description */}
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.5 }}
+                                className="text-xl text-gray-600 leading-relaxed max-w-lg"
+                            >
+                                Transform your business with cutting-edge technology solutions. From device repairs to enterprise IT infrastructure, we deliver excellence at every level.
+                            </motion.p>
+
+                            {/* CTA Buttons */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.6 }}
+                                className="flex flex-wrap gap-4"
+                            >
+                                <button
+                                    onClick={() => setIsContactModalOpen(true)}
+                                    className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-blue-500/25 transform hover:scale-105 transition-all duration-300 overflow-hidden"
+                                >
+                                    <span className="relative z-10 flex items-center">
+                                        Get Started Today
+                                        <i className="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                                    </span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </button>
+                                
+                                <button className="px-8 py-4 bg-white/80 backdrop-blur-sm text-gray-800 rounded-2xl font-semibold text-lg border border-gray-200 hover:bg-white hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                                    <i className="fas fa-play mr-2"></i>
+                                    Watch Demo
+                                </button>
+                            </motion.div>
+
+                            {/* Stats */}
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.7 }}
+                                className="grid grid-cols-2 gap-4 pt-8"
+                            >
+                                {stats.slice(0, 2).map((stat, index) => (
+                                    <div key={index} className="text-center lg:text-left">
+                                        <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                                            {stat.number}
+                                        </div>
+                                        <div className="text-gray-600 font-medium">{stat.label}</div>
+                                    </div>
+                                ))}
+                            </motion.div>
+                        </motion.div>
+
+                        {/* Right Content - 3D Visual */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.3 }}
+                            className="relative"
+                        >
+                            {/* Main Device Display */}
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-3xl blur-3xl scale-110"></div>
+                                <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl">
+                                    {/* Device Grid */}
+                                    <div className="grid grid-cols-3 gap-6">
+                                        {[
+                                            { icon: 'fas fa-mobile-alt', color: 'from-blue-500 to-cyan-500' },
+                                            { icon: 'fas fa-laptop', color: 'from-purple-500 to-pink-500' },
+                                            { icon: 'fas fa-tablet-alt', color: 'from-green-500 to-emerald-500' },
+                                            { icon: 'fas fa-desktop', color: 'from-orange-500 to-red-500' },
+                                            { icon: 'fas fa-server', color: 'from-indigo-500 to-purple-500' },
+                                            { icon: 'fas fa-microchip', color: 'from-cyan-500 to-blue-500' },
+                                        ].map((device, index) => (
+                                            <motion.div
+                                                key={index}
+                                                initial={{ opacity: 0, scale: 0 }}
+                                                animate={{ opacity: 1, scale: 1 }}
+                                                transition={{ delay: 0.8 + index * 0.1 }}
+                                                whileHover={{ scale: 1.1, rotate: 5 }}
+                                                className={`w-16 h-16 bg-gradient-to-r ${device.color} rounded-2xl flex items-center justify-center shadow-lg cursor-pointer`}
+                                            >
+                                                <i className={`${device.icon} text-white text-xl`}></i>
+                                            </motion.div>
+                                        ))}
+                                    </div>
+
+                                    {/* Central Hub */}
+                                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                                        <motion.div
+                                            animate={{ rotate: 360 }}
+                                            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                                            className="w-24 h-24 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center shadow-2xl"
+                                        >
+                                            <i className="fas fa-network-wired text-white text-2xl"></i>
+                                        </motion.div>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
                     </div>
                 </div>
 
-                {/* Hero Image */}
-                <div className="hidden lg:mt-0 lg:col-span-5 lg:flex hero-content">
-                    <img src="/assets/images/arts/phone.png" alt="TradeHut Services" className="w-full h-auto object-contain drop-shadow-2xl animate-float" />
-                </div>
-            </div>
-
-            {/* Brands Section */}
-            <div className="px-4 py-5 mx-auto max-w-screen-xl text-center brands-section">
-                <h4 className="font-semibold text-xl mb-3 text-white">We Deal in Brands Like</h4>
-                <div className="w-24 h-1 mx-auto bg-white/20 mb-8"></div>
-
-                <div className="flex flex-wrap justify-center gap-6">
-                    {brands.map((brand, index) => (
-                        <div key={index} className="shadow-sm p-2 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300 w-32 h-16 flex items-center justify-center">
-                            <img
-                                src={brand.image}
-                                alt={`${brand.name} logo`}
-                                title={`${brand.name} Logo`}
-                                className="max-w-[80px] max-h-[80px] object-contain brightness-0 invert hover:brightness-100 hover:invert-0 transition-all duration-300"
-                            />
+                {/* Trusted Brands Section */}
+                <motion.div
+                    ref={ref}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8 }}
+                    className="absolute bottom-8 left-0 right-0"
+                >
+                    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                        <div className="text-center mb-8">
+                            <p className="text-gray-600 font-medium">Trusted by industry leaders</p>
                         </div>
-                    ))}
-                </div>
-            </div>
+                        <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+                            {trustedBrands.map((brand, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, scale: 0 }}
+                                    animate={inView ? { opacity: 1, scale: 1 } : {}}
+                                    transition={{ delay: index * 0.1 }}
+                                    className="flex items-center space-x-2 px-4 py-2 bg-white/50 backdrop-blur-sm rounded-lg border border-gray-200/50"
+                                >
+                                    <i className={`${brand.icon} text-2xl text-gray-700`}></i>
+                                    <span className="font-semibold text-gray-700">{brand.name}</span>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </motion.div>
+            </section>
 
             <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
-        </section>
+        </>
     );
 }
