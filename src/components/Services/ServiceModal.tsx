@@ -46,6 +46,7 @@ interface ServiceModalProps {
 
 const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service }) => {
     const [activeTab, setActiveTab] = useState('overview');
+    const [showSuccess, setShowSuccess] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -69,9 +70,21 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
         e.preventDefault();
         // Handle form submission
         console.log('Form submitted:', formData);
-        // Show success message
-        alert('Your service request has been submitted! We\'ll contact you shortly.');
-        onClose();
+        setShowSuccess(true);
+        setTimeout(() => {
+            setShowSuccess(false);
+            onClose();
+            setActiveTab('overview');
+            setFormData({
+                name: '',
+                email: '',
+                phone: '',
+                device: '',
+                issue: '',
+                preferredDate: '',
+                preferredTime: ''
+            });
+        }, 3000);
     };
 
     const tabs = [
@@ -119,6 +132,23 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                     <p className="text-gray-400 mt-1">{service.description}</p>
                                 </div>
                             </div>
+
+                            {/* Success Message */}
+                            {showSuccess && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="mt-6 p-4 bg-green-500/20 border border-green-500/50 rounded-xl"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <CheckCircle className="w-6 h-6 text-green-400" />
+                                        <div>
+                                            <h4 className="text-green-400 font-semibold">Success!</h4>
+                                            <p className="text-green-300 text-sm">Your service request has been submitted. We'll contact you shortly.</p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            )}
 
                             {/* Tabs */}
                             <div className="flex gap-2 mt-6 overflow-x-auto">

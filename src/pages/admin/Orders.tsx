@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import Tooltip from '../../components/common/Tooltip';
 import { 
     ShoppingBag,
     Search,
@@ -314,9 +315,13 @@ const AdminOrders: React.FC = () => {
                                             <span className="text-gray-300 text-sm">{order.shippingMethod}</span>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
-                                                <Eye className="w-4 h-4" />
-                                            </button>
+                                            <Tooltip content="View Order Details">
+                                                <Link to={`/admin/orders/view/${order.id}`}>
+                                                    <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
+                                                        <Eye className="w-4 h-4" />
+                                                    </button>
+                                                </Link>
+                                            </Tooltip>
                                         </td>
                                     </motion.tr>
                                 ))}

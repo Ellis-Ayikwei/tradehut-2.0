@@ -216,12 +216,10 @@ const ModernNavbar: React.FC = () => {
                             >
                                 <div className="p-2">
                                     {item.children?.map((child) => (
-                                        <button
+                                        <Link
                                             key={child.path}
-                                            onClick={() => {
-                                                scrollToSection(child.path);
-                                                setActiveDropdown(null);
-                                            }}
+                                            to={child.path}
+                                            onClick={() => setActiveDropdown(null)}
                                             className="w-full flex items-start gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-200 group"
                                         >
                                             <div className="text-gray-600 group-hover:text-blue-600 transition-colors">
@@ -237,7 +235,7 @@ const ModernNavbar: React.FC = () => {
                                                     </div>
                                                 )}
                                             </div>
-                                        </button>
+                                        </Link>
                                     ))}
                                 </div>
                             </motion.div>
@@ -353,17 +351,15 @@ const ModernNavbar: React.FC = () => {
                                                     {item.children && (
                                                         <div className="ml-8 mt-2 space-y-1">
                                                             {item.children.map((child) => (
-                                                                <button
+                                                                <Link
                                                                     key={child.path}
-                                                                    onClick={() => {
-                                                                        scrollToSection(child.path);
-                                                                        setIsMobileMenuOpen(false);
-                                                                    }}
+                                                                    to={child.path}
+                                                                    onClick={() => setIsMobileMenuOpen(false)}
                                                                     className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                                                                 >
                                                                     {child.icon}
                                                                     <span>{child.name}</span>
-                                                                </button>
+                                                                </Link>
                                                             ))}
                                                         </div>
                                                     )}

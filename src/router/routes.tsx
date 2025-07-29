@@ -15,6 +15,7 @@ const TechSupport = lazy(() => import('../pages/services/TechSupport'));
 
 // Admin Pages
 const AdminProducts = lazy(() => import('../pages/admin/Products'));
+const AdminProductView = lazy(() => import('../pages/admin/ProductView'));
 const AdminRepairs = lazy(() => import('../pages/admin/Repairs'));
 const AdminOrders = lazy(() => import('../pages/admin/Orders'));
 const AdminUsers = lazy(() => import('../pages/admin/Users'));
@@ -91,6 +92,16 @@ const routes = [
         layout: 'blank',
     },
     {
+        path: '/admin/products/view/:id',
+        element: <AdminProductView />,
+        layout: 'blank',
+    },
+    {
+        path: '/admin/products/edit/:id',
+        element: <AdminProducts />, // You can create a separate EditProduct component later
+        layout: 'blank',
+    },
+    {
         path: '/admin/repairs',
         element: <AdminRepairs />,
         layout: 'blank',
@@ -101,13 +112,38 @@ const routes = [
         layout: 'blank',
     },
     {
+        path: '/admin/repairs/view/:id',
+        element: <AdminRepairs />, // You can create a separate RepairView component later
+        layout: 'blank',
+    },
+    {
+        path: '/admin/repairs/edit/:id',
+        element: <AdminRepairs />, // You can create a separate EditRepair component later
+        layout: 'blank',
+    },
+    {
         path: '/admin/orders',
         element: <AdminOrders />,
         layout: 'blank',
     },
     {
+        path: '/admin/orders/view/:id',
+        element: <AdminOrders />, // You can create a separate OrderView component later
+        layout: 'blank',
+    },
+    {
         path: '/admin/users',
         element: <AdminUsers />,
+        layout: 'blank',
+    },
+    {
+        path: '/admin/users/view/:id',
+        element: <AdminUsers />, // You can create a separate UserView component later
+        layout: 'blank',
+    },
+    {
+        path: '/admin/users/edit/:id',
+        element: <AdminUsers />, // You can create a separate EditUser component later
         layout: 'blank',
     },
     {

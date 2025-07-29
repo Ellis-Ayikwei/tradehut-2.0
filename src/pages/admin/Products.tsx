@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import Tooltip from '../../components/common/Tooltip';
 import { 
     Package, 
     Plus, 
@@ -269,15 +270,25 @@ const AdminProducts: React.FC = () => {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="flex items-center gap-2">
-                                                <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
-                                                    <Eye className="w-4 h-4" />
-                                                </button>
-                                                <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
-                                                    <Edit className="w-4 h-4" />
-                                                </button>
-                                                <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-red-400">
-                                                    <Trash2 className="w-4 h-4" />
-                                                </button>
+                                                <Tooltip content="View Details">
+                                                    <Link to={`/admin/products/view/${product.id}`}>
+                                                        <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
+                                                            <Eye className="w-4 h-4" />
+                                                        </button>
+                                                    </Link>
+                                                </Tooltip>
+                                                <Tooltip content="Edit Product">
+                                                    <Link to={`/admin/products/edit/${product.id}`}>
+                                                        <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
+                                                            <Edit className="w-4 h-4" />
+                                                        </button>
+                                                    </Link>
+                                                </Tooltip>
+                                                <Tooltip content="Delete Product">
+                                                    <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-red-400">
+                                                        <Trash2 className="w-4 h-4" />
+                                                    </button>
+                                                </Tooltip>
                                             </div>
                                         </td>
                                     </motion.tr>

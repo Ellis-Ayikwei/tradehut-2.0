@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import Tooltip from '../../components/common/Tooltip';
 import { 
     Wrench,
     Plus,
@@ -337,12 +338,20 @@ const AdminRepairs: React.FC = () => {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="flex items-center gap-2">
-                                                <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
-                                                    <Eye className="w-4 h-4" />
-                                                </button>
-                                                <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
-                                                    <Edit className="w-4 h-4" />
-                                                </button>
+                                                <Tooltip content="View Details">
+                                                    <Link to={`/admin/repairs/view/${repair.id}`}>
+                                                        <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
+                                                            <Eye className="w-4 h-4" />
+                                                        </button>
+                                                    </Link>
+                                                </Tooltip>
+                                                <Tooltip content="Edit Repair">
+                                                    <Link to={`/admin/repairs/edit/${repair.id}`}>
+                                                        <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
+                                                            <Edit className="w-4 h-4" />
+                                                        </button>
+                                                    </Link>
+                                                </Tooltip>
                                             </div>
                                         </td>
                                     </motion.tr>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 interface DashboardStats {
     totalOrders: number;
@@ -233,15 +234,16 @@ const AdminDashboard: React.FC = () => {
                             { title: 'Analytics', icon: 'fas fa-chart-bar', color: 'bg-indigo-600', href: '/admin/analytics' },
                             { title: 'Settings', icon: 'fas fa-cog', color: 'bg-gray-600', href: '/admin/settings' }
                                         ].map((action, index) => (
-                                            <motion.button
-                                                key={index}
-                                                whileHover={{ scale: 1.05 }}
-                                                whileTap={{ scale: 0.95 }}
-                                                className={`${action.color} text-white p-4 rounded-lg text-center hover:opacity-90 transition-opacity`}
-                                            >
-                                                <i className={`${action.icon} text-2xl mb-2 block`}></i>
-                                                <span className="text-sm font-medium">{action.title}</span>
-                                            </motion.button>
+                                            <Link key={index} to={action.href}>
+                                                <motion.div
+                                                    whileHover={{ scale: 1.05 }}
+                                                    whileTap={{ scale: 0.95 }}
+                                                    className={`${action.color} text-white p-4 rounded-lg text-center hover:opacity-90 transition-opacity h-full`}
+                                                >
+                                                    <i className={`${action.icon} text-2xl mb-2 block`}></i>
+                                                    <span className="text-sm font-medium">{action.title}</span>
+                                                </motion.div>
+                                            </Link>
                                         ))}
                                     </div>
                                 </div>

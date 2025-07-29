@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import Tooltip from '../../components/common/Tooltip';
 import { 
     Users,
     Search,
@@ -337,16 +338,26 @@ const AdminUsers: React.FC = () => {
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="flex items-center gap-2">
-                                                <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
-                                                    <Eye className="w-4 h-4" />
-                                                </button>
-                                                <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
-                                                    <Edit className="w-4 h-4" />
-                                                </button>
+                                                <Tooltip content="View User Details">
+                                                    <Link to={`/admin/users/view/${user.id}`}>
+                                                        <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
+                                                            <Eye className="w-4 h-4" />
+                                                        </button>
+                                                    </Link>
+                                                </Tooltip>
+                                                <Tooltip content="Edit User">
+                                                    <Link to={`/admin/users/edit/${user.id}`}>
+                                                        <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
+                                                            <Edit className="w-4 h-4" />
+                                                        </button>
+                                                    </Link>
+                                                </Tooltip>
                                                 {user.status !== 'suspended' && (
-                                                    <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-red-400">
-                                                        <Ban className="w-4 h-4" />
-                                                    </button>
+                                                    <Tooltip content="Suspend User">
+                                                        <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-red-400">
+                                                            <Ban className="w-4 h-4" />
+                                                        </button>
+                                                    </Tooltip>
                                                 )}
                                             </div>
                                         </td>
