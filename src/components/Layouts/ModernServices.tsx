@@ -1,339 +1,288 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { 
+    Smartphone, 
+    Laptop, 
+    Server, 
+    Code, 
+    Wrench,
+    Shield,
+    Clock,
+    CheckCircle,
+    ArrowRight,
+    Sparkles,
+    Zap,
+    Globe,
+    Cpu,
+    Wifi,
+    Database
+} from 'lucide-react';
+import {
+    IconDeviceMobile,
+    IconDeviceLaptop,
+    IconServer2,
+    IconCode,
+    IconTools,
+    IconShieldCheck,
+    IconRocket,
+    IconBrandApple,
+    IconBrandWindows,
+    IconBrandAndroid,
+    IconHeadset,
+    IconCloud,
+    IconNetwork
+} from '@tabler/icons-react';
 
-interface Service {
-    id: string;
-    icon: string;
-    title: string;
-    description: string;
-    features: string[];
-    gradient: string;
-    image?: string;
-}
-
-const services: Service[] = [
+const services = [
     {
-        id: 'device-repair',
-        icon: 'fas fa-tools',
-        title: 'Professional Device Repair',
-        description: 'Expert repair services for all your electronic devices with industry-leading warranty and quality assurance.',
+        id: 1,
+        title: 'Device Repair',
+        description: 'Professional repair services for all your devices with certified technicians',
+        icon: <IconDeviceMobile className="w-8 h-8" />,
+        gradient: 'from-blue-600 to-cyan-600',
         features: [
-            'Smartphone & Tablet Repair',
-            'Laptop & Desktop Repair',
-            'Gaming Console Repair',
-            'Same-Day Service Available',
-            '6-Month Warranty',
-            'Genuine Parts Guarantee'
+            'Same-day repairs',
+            'Original parts',
+            '90-day warranty',
+            'Free diagnostics'
         ],
-        gradient: 'from-blue-600 via-blue-700 to-indigo-800'
+        subServices: [
+            { name: 'iPhone Repair', icon: <IconBrandApple className="w-5 h-5" /> },
+            { name: 'Android Repair', icon: <IconBrandAndroid className="w-5 h-5" /> },
+            { name: 'Laptop Repair', icon: <IconDeviceLaptop className="w-5 h-5" /> },
+            { name: 'Tablet Repair', icon: <IconDeviceMobile className="w-5 h-5" /> }
+        ],
+        stats: { completed: '5000+', rating: '4.9/5' }
     },
     {
-        id: 'device-sales',
-        icon: 'fas fa-shopping-cart',
-        title: 'Premium Device Sales',
-        description: 'Curated selection of the latest technology devices from trusted brands at competitive prices.',
+        id: 2,
+        title: 'IT Solutions',
+        description: 'Complete IT infrastructure and support services for businesses',
+        icon: <IconServer2 className="w-8 h-8" />,
+        gradient: 'from-purple-600 to-pink-600',
         features: [
-            'Latest Smartphones',
-            'High-Performance Laptops',
-            'Professional Tablets',
-            'Gaming Equipment',
-            'Accessories & Parts',
-            'Extended Warranty Options'
+            'Network setup',
+            'Server management',
+            'Cloud solutions',
+            '24/7 monitoring'
         ],
-        gradient: 'from-purple-600 via-purple-700 to-pink-800'
+        subServices: [
+            { name: 'Cloud Migration', icon: <IconCloud className="w-5 h-5" /> },
+            { name: 'Network Security', icon: <Shield className="w-5 h-5" /> },
+            { name: 'Data Backup', icon: <Database className="w-5 h-5" /> },
+            { name: 'IT Consulting', icon: <IconHeadset className="w-5 h-5" /> }
+        ],
+        stats: { clients: '200+', uptime: '99.9%' }
     },
     {
-        id: 'it-solutions',
-        icon: 'fas fa-server',
-        title: 'Enterprise IT Solutions',
-        description: 'Comprehensive IT infrastructure and support services designed to scale with your business needs.',
+        id: 3,
+        title: 'Web Development',
+        description: 'Custom web applications and digital solutions for modern businesses',
+        icon: <IconCode className="w-8 h-8" />,
+        gradient: 'from-green-600 to-emerald-600',
         features: [
-            'Network Setup & Management',
-            'Cloud Solutions',
-            'Cybersecurity Services',
-            'Data Backup & Recovery',
-            '24/7 Technical Support',
-            'IT Consulting'
+            'Responsive design',
+            'E-commerce solutions',
+            'API integration',
+            'SEO optimization'
         ],
-        gradient: 'from-emerald-600 via-green-700 to-teal-800'
+        subServices: [
+            { name: 'Frontend Dev', icon: <Globe className="w-5 h-5" /> },
+            { name: 'Backend Dev', icon: <Server className="w-5 h-5" /> },
+            { name: 'Mobile Apps', icon: <Smartphone className="w-5 h-5" /> },
+            { name: 'UI/UX Design', icon: <Sparkles className="w-5 h-5" /> }
+        ],
+        stats: { projects: '300+', satisfaction: '98%' }
     },
     {
-        id: 'web-development',
-        icon: 'fas fa-code',
-        title: 'Custom Web Development',
-        description: 'Modern, responsive web applications and digital solutions built with cutting-edge technologies.',
+        id: 4,
+        title: 'Tech Support',
+        description: 'Round-the-clock technical support for all your technology needs',
+        icon: <IconHeadset className="w-8 h-8" />,
+        gradient: 'from-orange-600 to-red-600',
         features: [
-            'Custom Web Applications',
-            'E-commerce Solutions',
-            'Mobile-Responsive Design',
-            'SEO Optimization',
-            'API Integration',
-            'Ongoing Maintenance'
+            '24/7 availability',
+            'Remote assistance',
+            'On-site support',
+            'Priority response'
         ],
-        gradient: 'from-orange-600 via-red-700 to-pink-800'
+        subServices: [
+            { name: 'Remote Support', icon: <Wifi className="w-5 h-5" /> },
+            { name: 'Hardware Support', icon: <Cpu className="w-5 h-5" /> },
+            { name: 'Software Support', icon: <Code className="w-5 h-5" /> },
+            { name: 'Network Support', icon: <IconNetwork className="w-5 h-5" /> }
+        ],
+        stats: { resolved: '10K+', response: '<1hr' }
     }
 ];
 
 const ModernServices: React.FC = () => {
-    const [activeService, setActiveService] = useState<string>(services[0].id);
+    const [hoveredService, setHoveredService] = useState<number | null>(null);
+    const [selectedService, setSelectedService] = useState<number>(0);
     const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 50 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.6,
-                ease: "easeOut"
-            }
-        }
-    };
-
     return (
-        <section id="services" className="py-24 bg-gradient-to-br from-gray-50 to-blue-50 relative overflow-hidden">
+        <section id="services" className="py-24 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0">
-                <div className="absolute top-0 left-0 w-96 h-96 bg-blue-200/30 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200/30 rounded-full blur-3xl"></div>
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+                <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
             </div>
 
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 {/* Section Header */}
                 <motion.div
-                    ref={ref}
-                    initial="hidden"
-                    animate={inView ? "visible" : "hidden"}
-                    variants={containerVariants}
-                    className="text-center mb-20"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-16"
                 >
-                    <motion.div variants={itemVariants} className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm border border-blue-200 rounded-full px-6 py-3 mb-6">
-                        <i className="fas fa-rocket text-blue-600"></i>
-                        <span className="text-sm font-semibold text-gray-700">Our Services</span>
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true }}
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-full border border-blue-500/20 mb-4"
+                    >
+                        <Zap className="w-4 h-4 text-blue-400" />
+                        <span className="text-sm text-blue-300 font-medium">World-Class Services</span>
                     </motion.div>
                     
-                    <motion.h2 variants={itemVariants} className="text-4xl md:text-6xl font-bold mb-6">
-                        <span className="bg-gradient-to-r from-gray-900 via-blue-900 to-purple-900 bg-clip-text text-transparent">
-                            World-Class
+                    <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+                        Services That
+                        <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                            Transform Business
                         </span>
-                        <br />
-                        <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                            IT Services
-                        </span>
-                    </motion.h2>
+                    </h2>
                     
-                    <motion.p variants={itemVariants} className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                        Experience excellence in every service we provide. From device repairs to enterprise solutions, 
-                        we deliver cutting-edge technology services that exceed expectations.
-                    </motion.p>
+                    <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                        From device repairs to enterprise solutions, we deliver excellence with cutting-edge technology and unmatched expertise
+                    </p>
                 </motion.div>
 
                 {/* Services Grid */}
-                <motion.div
-                    initial="hidden"
-                    animate={inView ? "visible" : "hidden"}
-                    variants={containerVariants}
-                    className="grid lg:grid-cols-2 gap-8 items-start"
-                >
-                    {/* Service Cards */}
-                    <div className="space-y-6">
-                        {services.map((service, index) => (
-                            <motion.div
-                                key={service.id}
-                                variants={itemVariants}
-                                className={`group cursor-pointer transition-all duration-500 ${
-                                    activeService === service.id
-                                        ? 'scale-105'
-                                        : 'hover:scale-102'
-                                }`}
-                                onClick={() => setActiveService(service.id)}
-                            >
-                                <div className={`relative p-8 rounded-3xl border transition-all duration-500 ${
-                                    activeService === service.id
-                                        ? 'bg-white shadow-2xl border-blue-200 shadow-blue-500/20'
-                                        : 'bg-white/70 hover:bg-white shadow-lg border-gray-200 hover:shadow-xl hover:border-blue-200'
-                                }`}>
-                                    {/* Icon */}
-                                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${service.gradient} flex items-center justify-center mb-6 transition-all duration-500 ${
-                                        activeService === service.id ? 'scale-110' : 'group-hover:scale-105'
-                                    }`}>
-                                        <i className={`${service.icon} text-2xl text-white`}></i>
-                                    </div>
-
-                                    {/* Content */}
-                                    <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">
-                                        {service.title}
-                                    </h3>
-                                    
-                                    <p className="text-gray-600 leading-relaxed mb-6">
-                                        {service.description}
-                                    </p>
-
-                                    {/* Features - Show when active */}
-                                    <motion.div
-                                        initial={false}
-                                        animate={{
-                                            height: activeService === service.id ? 'auto' : 0,
-                                            opacity: activeService === service.id ? 1 : 0
-                                        }}
-                                        transition={{ duration: 0.5, ease: "easeInOut" }}
-                                        className="overflow-hidden"
-                                    >
-                                        <div className="pt-4 border-t border-gray-100">
-                                            <h4 className="font-semibold text-gray-900 mb-3">Key Features:</h4>
-                                            <div className="grid grid-cols-2 gap-2">
-                                                {service.features.map((feature, idx) => (
-                                                    <div key={idx} className="flex items-center space-x-2">
-                                                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                                        <span className="text-sm text-gray-600">{feature}</span>
-                                                    </div>
-                                                ))}
+                <div ref={ref} className="grid lg:grid-cols-2 gap-8 mb-16">
+                    {services.map((service, index) => (
+                        <motion.div
+                            key={service.id}
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={inView ? { opacity: 1, y: 0 } : {}}
+                            transition={{ delay: index * 0.1, duration: 0.5 }}
+                            onMouseEnter={() => setHoveredService(service.id)}
+                            onMouseLeave={() => setHoveredService(null)}
+                            onClick={() => setSelectedService(index)}
+                            className={`relative group cursor-pointer ${
+                                selectedService === index ? 'ring-2 ring-blue-500' : ''
+                            }`}
+                        >
+                            <div className="relative h-full bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl border border-white/10 p-8 overflow-hidden transition-all duration-300 hover:bg-white/10 hover:border-white/20">
+                                {/* Gradient Background */}
+                                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
+                                
+                                {/* Service Content */}
+                                <div className="relative z-10">
+                                    {/* Icon and Title */}
+                                    <div className="flex items-start justify-between mb-6">
+                                        <div className="flex items-center gap-4">
+                                            <motion.div
+                                                whileHover={{ rotate: 360 }}
+                                                transition={{ duration: 0.5 }}
+                                                className={`w-16 h-16 bg-gradient-to-r ${service.gradient} rounded-2xl flex items-center justify-center text-white shadow-lg`}
+                                            >
+                                                {service.icon}
+                                            </motion.div>
+                                            <div>
+                                                <h3 className="text-2xl font-bold text-white mb-1">{service.title}</h3>
+                                                <div className="flex items-center gap-4 text-sm">
+                                                    <span className="text-gray-400">{service.stats[Object.keys(service.stats)[0]]}</span>
+                                                    <span className="text-gray-600">•</span>
+                                                    <span className="text-gray-400">{service.stats[Object.keys(service.stats)[1]]}</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </motion.div>
-
-                                    {/* Active Indicator */}
-                                    {activeService === service.id && (
                                         <motion.div
-                                            layoutId="activeIndicator"
-                                            className="absolute -left-1 top-8 bottom-8 w-1 bg-gradient-to-b from-blue-500 to-purple-500 rounded-full"
-                                        />
-                                    )}
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                                            animate={{ x: hoveredService === service.id ? 0 : 10, opacity: hoveredService === service.id ? 1 : 0 }}
+                                            className="text-white"
+                                        >
+                                            <ArrowRight className="w-6 h-6" />
+                                        </motion.div>
+                                    </div>
 
-                    {/* Interactive Visual */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="lg:sticky lg:top-24"
-                    >
-                        <div className="relative">
-                            {/* Main Visual Container */}
-                            <div className="relative bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 shadow-2xl">
-                                {/* Dynamic Background */}
-                                <div className={`absolute inset-0 bg-gradient-to-br ${
-                                    services.find(s => s.id === activeService)?.gradient || 'from-blue-600 to-purple-600'
-                                } opacity-10 rounded-3xl transition-all duration-1000`}></div>
-                                
-                                {/* Content */}
-                                <div className="relative z-10">
-                                    {/* Active Service Display */}
-                                    <motion.div
-                                        key={activeService}
-                                        initial={{ opacity: 0, scale: 0.8 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        transition={{ duration: 0.5 }}
-                                        className="text-center"
-                                    >
-                                        <div className={`w-24 h-24 mx-auto rounded-3xl bg-gradient-to-r ${
-                                            services.find(s => s.id === activeService)?.gradient || 'from-blue-600 to-purple-600'
-                                        } flex items-center justify-center mb-8 shadow-2xl`}>
-                                            <i className={`${services.find(s => s.id === activeService)?.icon} text-4xl text-white`}></i>
-                                        </div>
-                                        
-                                        <h3 className="text-3xl font-bold text-gray-900 mb-4">
-                                            {services.find(s => s.id === activeService)?.title}
-                                        </h3>
-                                        
-                                        <p className="text-gray-600 leading-relaxed">
-                                            {services.find(s => s.id === activeService)?.description}
-                                        </p>
-                                    </motion.div>
+                                    {/* Description */}
+                                    <p className="text-gray-300 mb-6">{service.description}</p>
 
-                                    {/* Stats Grid */}
-                                    <div className="grid grid-cols-2 gap-6 mt-12">
-                                        {[
-                                            { number: '99.8%', label: 'Success Rate' },
-                                            { number: '24/7', label: 'Support' },
-                                            { number: '5000+', label: 'Happy Clients' },
-                                            { number: '6mo', label: 'Warranty' }
-                                        ].map((stat, index) => (
+                                    {/* Features */}
+                                    <div className="grid grid-cols-2 gap-3 mb-6">
+                                        {service.features.map((feature, idx) => (
                                             <motion.div
-                                                key={index}
-                                                initial={{ opacity: 0, y: 20 }}
-                                                animate={{ opacity: 1, y: 0 }}
-                                                transition={{ delay: index * 0.1 }}
-                                                className="text-center p-4 bg-white/50 backdrop-blur-sm rounded-2xl border border-white/30"
+                                                key={idx}
+                                                initial={{ opacity: 0, x: -20 }}
+                                                animate={inView ? { opacity: 1, x: 0 } : {}}
+                                                transition={{ delay: index * 0.1 + idx * 0.05 }}
+                                                className="flex items-center gap-2 text-gray-400"
                                             >
-                                                <div className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                                    {stat.number}
-                                                </div>
-                                                <div className="text-sm text-gray-600 font-medium">
-                                                    {stat.label}
-                                                </div>
+                                                <CheckCircle className="w-4 h-4 text-green-400" />
+                                                <span className="text-sm">{feature}</span>
                                             </motion.div>
                                         ))}
                                     </div>
 
-                                    {/* CTA Button */}
-                                    <motion.button
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        className={`w-full mt-8 px-8 py-4 bg-gradient-to-r ${
-                                            services.find(s => s.id === activeService)?.gradient || 'from-blue-600 to-purple-600'
-                                        } text-white rounded-2xl font-semibold text-lg shadow-2xl hover:shadow-blue-500/25 transition-all duration-300`}
-                                    >
-                                        Get Started Today
-                                        <i className="fas fa-arrow-right ml-2"></i>
-                                    </motion.button>
+                                    {/* Sub Services */}
+                                    <div className="flex flex-wrap gap-2">
+                                        {service.subServices.map((sub, idx) => (
+                                            <motion.div
+                                                key={idx}
+                                                whileHover={{ scale: 1.05 }}
+                                                className="flex items-center gap-1.5 px-3 py-1.5 bg-white/5 rounded-lg border border-white/10 hover:bg-white/10 transition-all duration-200"
+                                            >
+                                                <span className="text-gray-400">{sub.icon}</span>
+                                                <span className="text-xs text-gray-300">{sub.name}</span>
+                                            </motion.div>
+                                        ))}
+                                    </div>
                                 </div>
+
+                                {/* Hover Effect Overlay */}
+                                <motion.div
+                                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"
+                                    animate={{
+                                        x: hoveredService === service.id ? '100%' : '-100%',
+                                    }}
+                                    transition={{ duration: 0.6 }}
+                                />
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* CTA Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-center"
+                >
+                    <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl border border-white/10 backdrop-blur-sm">
+                        <div className="flex items-center gap-3">
+                            <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                                <IconRocket className="w-6 h-6 text-white" />
+                            </div>
+                            <div className="text-left">
+                                <h3 className="text-white font-semibold">Ready to get started?</h3>
+                                <p className="text-gray-400 text-sm">Transform your business with our services</p>
                             </div>
                         </div>
-                    </motion.div>
-                </motion.div>
-
-                {/* Process Section */}
-                <motion.div
-                    initial="hidden"
-                    animate={inView ? "visible" : "hidden"}
-                    variants={containerVariants}
-                    className="mt-32"
-                >
-                    <motion.div variants={itemVariants} className="text-center mb-16">
-                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                            Our <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Process</span>
-                        </h3>
-                        <p className="text-gray-600 text-lg">Simple, efficient, and transparent</p>
-                    </motion.div>
-
-                    <div className="grid md:grid-cols-4 gap-8">
-                        {[
-                            { step: '01', title: 'Consultation', description: 'Free initial assessment', icon: 'fas fa-comments' },
-                            { step: '02', title: 'Diagnosis', description: 'Thorough problem analysis', icon: 'fas fa-search' },
-                            { step: '03', title: 'Solution', description: 'Expert repair or service', icon: 'fas fa-cogs' },
-                            { step: '04', title: 'Delivery', description: 'Quality assurance & delivery', icon: 'fas fa-check-circle' }
-                        ].map((process, index) => (
-                            <motion.div
-                                key={index}
-                                variants={itemVariants}
-                                className="text-center group"
-                            >
-                                <div className="relative mb-6">
-                                    <div className="w-20 h-20 mx-auto bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
-                                        <i className={`${process.icon} text-2xl text-white`}></i>
-                                    </div>
-                                    <div className="absolute -top-2 -right-2 w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
-                                        {process.step}
-                                    </div>
-                                </div>
-                                <h4 className="text-xl font-bold text-gray-900 mb-2">{process.title}</h4>
-                                <p className="text-gray-600">{process.description}</p>
-                            </motion.div>
-                        ))}
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                        >
+                            <span className="flex items-center gap-2">
+                                Get Free Consultation
+                                <ArrowRight className="w-4 h-4" />
+                            </span>
+                        </motion.button>
                     </div>
                 </motion.div>
             </div>

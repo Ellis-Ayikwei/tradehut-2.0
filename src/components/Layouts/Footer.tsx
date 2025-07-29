@@ -1,151 +1,267 @@
-import React, { useState } from 'react';
-import ContactModal from './ContactModal';
-
-interface FooterLink {
-    text: string;
-    href?: string;
-    action?: () => void;
-}
-
-interface FooterSection {
-    title: string;
-    links: FooterLink[];
-}
-
-const footerSections: FooterSection[] = [
-    {
-        title: 'Company',
-        links: [
-            { text: 'About Us', href: '#mystory' },
-            { text: 'Services', href: '#services' },
-            { text: 'Products', href: '#products' },
-            { text: 'Contact', action: () => {} },
-        ],
-    },
-    {
-        title: 'Services',
-        links: [
-            { text: 'Phone Repairs', href: '#repairs' },
-            { text: 'Laptop Repairs', href: '#repairs' },
-            { text: 'IT Support', href: '#support' },
-            { text: 'Web Development', href: '#webdev' },
-        ],
-    },
-    {
-        title: 'Support',
-        links: [
-            { text: 'Help Center', href: '#help' },
-            { text: 'Terms of Service', href: '#terms' },
-            { text: 'Privacy Policy', href: '#privacy' },
-            { text: 'FAQ', href: '#faq' },
-        ],
-    },
-];
-
-const socialIcons = {
-    facebook: <path fillRule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clipRule="evenodd" />,
-    whatsapp: (
-        <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
-    ),
-    instagram: (
-        <path
-            fillRule="evenodd"
-            d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"
-            clipRule="evenodd"
-        />
-    ),
-};
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { 
+    Mail, 
+    Phone, 
+    MapPin, 
+    Send, 
+    Facebook, 
+    Twitter, 
+    Instagram, 
+    Linkedin,
+    Youtube,
+    ArrowRight,
+    Heart,
+    Sparkles,
+    Clock,
+    Shield,
+    Award
+} from 'lucide-react';
+import {
+    IconBrandFacebook,
+    IconBrandTwitter,
+    IconBrandInstagram,
+    IconBrandLinkedin,
+    IconBrandYoutube,
+    IconBrandGithub,
+    IconMail,
+    IconPhone,
+    IconMapPin,
+    IconClock
+} from '@tabler/icons-react';
 
 const Footer: React.FC = () => {
-    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+    const currentYear = new Date().getFullYear();
 
-    const sectionsWithActions = footerSections.map((section) => ({
-        ...section,
-        links: section.links.map((link) => ({
-            ...link,
-            action: link.text === 'Contact' ? () => setIsContactModalOpen(true) : undefined,
-        })),
-    }));
+    const footerLinks = {
+        company: [
+            { name: 'About Us', path: '/about' },
+            { name: 'Our Team', path: '/team' },
+            { name: 'Careers', path: '/careers' },
+            { name: 'Press Kit', path: '/press' }
+        ],
+        services: [
+            { name: 'Device Repair', path: '#repair' },
+            { name: 'IT Solutions', path: '#it-solutions' },
+            { name: 'Web Development', path: '#web-dev' },
+            { name: 'Tech Support', path: '#support' }
+        ],
+        support: [
+            { name: 'Help Center', path: '/help' },
+            { name: 'Contact Us', path: '/contact' },
+            { name: 'Track Repair', path: '/track' },
+            { name: 'Warranty', path: '/warranty' }
+        ],
+        legal: [
+            { name: 'Privacy Policy', path: '/privacy' },
+            { name: 'Terms of Service', path: '/terms' },
+            { name: 'Cookie Policy', path: '/cookies' },
+            { name: 'Refund Policy', path: '/refunds' }
+        ]
+    };
+
+    const socialLinks = [
+        { icon: <IconBrandFacebook className="w-5 h-5" />, href: '#', label: 'Facebook' },
+        { icon: <IconBrandTwitter className="w-5 h-5" />, href: '#', label: 'Twitter' },
+        { icon: <IconBrandInstagram className="w-5 h-5" />, href: '#', label: 'Instagram' },
+        { icon: <IconBrandLinkedin className="w-5 h-5" />, href: '#', label: 'LinkedIn' },
+        { icon: <IconBrandYoutube className="w-5 h-5" />, href: '#', label: 'YouTube' }
+    ];
 
     return (
-        <footer className=" dark:bg-gray-900">
-            <div className="mx-auto w-full max-w-screen-xl px-4 py-12">
-                <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
-                    {/* Company Info */}
-                    <div className="col-span-2 lg:col-span-1">
-                        <div className="mb-0 md:mb-10 ">
-                            <img src="/assets/images/tradehut3.png" alt="TradeHut Logo" className="h-8 w-24 md:h-20 md:w-auto object-contain" />
+        <footer className="relative bg-gradient-to-b from-slate-900 to-black pt-20 pb-8 overflow-hidden">
+            {/* Background Elements */}
+            <div className="absolute inset-0">
+                <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+            </div>
+
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Newsletter Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="mb-16"
+                >
+                    <div className="relative bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-white/10 overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 animate-pulse"></div>
+                        
+                        <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-center">
+                            <div>
+                                <h3 className="text-3xl font-bold text-white mb-4">
+                                    Stay Updated with Tech News
+                                </h3>
+                                <p className="text-gray-300 text-lg">
+                                    Get the latest updates on products, services, and exclusive offers delivered to your inbox.
+                                </p>
+                            </div>
+                            
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                <div className="relative flex-1">
+                                    <input
+                                        type="email"
+                                        placeholder="Enter your email"
+                                        className="w-full px-6 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
+                                    />
+                                    <Mail className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                                </div>
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                                >
+                                    <span>Subscribe</span>
+                                    <Send className="w-4 h-4" />
+                                </motion.button>
+                            </div>
                         </div>
-                        <h2 className="mb-6 text-lg font-semibold text-[#dc711a] flex items-center gap-2">{/* TradeHut Ghana */}</h2>
-                        <p className="text-gray-600 dark:text-gray-400 mb-4">Your trusted destination for electronic device repairs, sales, and IT solutions.</p>
-                        <div className="space-y-2 text-gray-600 dark:text-gray-400">
-                            <p className="flex items-start">
-                                <span className="mr-2">📍</span>
-                                Trade Fair, Giffard Road, Accra, Ghana
-                            </p>
-                            <p className="flex items-start">
-                                <span className="mr-2">📞</span>
-                                +233 24 123 4567
-                            </p>
-                            <p className="flex items-start">
-                                <span className="mr-2">✉️</span>
-                                tradehut1@gmail.com
-                            </p>
+
+                        {/* Trust Badges */}
+                        <div className="mt-6 flex flex-wrap items-center gap-6 text-sm text-gray-400">
+                            <div className="flex items-center gap-2">
+                                <Shield className="w-4 h-4 text-green-400" />
+                                <span>No spam, ever</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Clock className="w-4 h-4 text-blue-400" />
+                                <span>Weekly updates</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Award className="w-4 h-4 text-purple-400" />
+                                <span>Exclusive offers</span>
+                            </div>
                         </div>
                     </div>
+                </motion.div>
 
-                    {/* Navigation Sections */}
-                    {sectionsWithActions.map((section, index) => (
-                        <div key={index}>
-                            <h2 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">{section.title}</h2>
-                            <ul className="text-gray-600 dark:text-gray-400">
-                                {section.links.map((link, linkIndex) => (
-                                    <li key={linkIndex} className="mb-4">
-                                        {link.action ? (
-                                            <button onClick={link.action} className="hover:text-[#dc711a] cursor-pointer transition-colors">
-                                                {link.text}
-                                            </button>
-                                        ) : (
-                                            <a href={link.href} className="hover:text-[#dc711a] transition-colors">
-                                                {link.text}
-                                            </a>
-                                        )}
+                {/* Main Footer Content */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 mb-12">
+                    {/* Company Info */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="lg:col-span-2"
+                    >
+                        <div className="flex items-center gap-2 mb-6">
+                            <div className="relative">
+                                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl blur opacity-75"></div>
+                                <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white p-2.5 rounded-xl">
+                                    <Sparkles className="w-6 h-6" />
+                                </div>
+                            </div>
+                            <div>
+                                <h2 className="text-2xl font-bold text-white">TechHub</h2>
+                                <p className="text-xs text-gray-400">Innovation First</p>
+                            </div>
+                        </div>
+                        
+                        <p className="text-gray-400 mb-6 leading-relaxed">
+                            Your trusted partner for all technology needs. From device repairs to enterprise solutions, 
+                            we deliver excellence with cutting-edge innovation.
+                        </p>
+
+                        {/* Contact Info */}
+                        <div className="space-y-3">
+                            <a href="tel:+1234567890" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors">
+                                <IconPhone className="w-5 h-5 text-blue-400" />
+                                <span>+1 (234) 567-890</span>
+                            </a>
+                            <a href="mailto:info@techhub.com" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors">
+                                <IconMail className="w-5 h-5 text-purple-400" />
+                                <span>info@techhub.com</span>
+                            </a>
+                            <div className="flex items-start gap-3 text-gray-400">
+                                <IconMapPin className="w-5 h-5 text-green-400 mt-0.5" />
+                                <span>123 Tech Street, Silicon Valley, CA 94025</span>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Links Sections */}
+                    {Object.entries(footerLinks).map(([category, links], index) => (
+                        <motion.div
+                            key={category}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 }}
+                        >
+                            <h3 className="text-white font-semibold mb-4 capitalize">
+                                {category}
+                            </h3>
+                            <ul className="space-y-3">
+                                {links.map((link) => (
+                                    <li key={link.name}>
+                                        <Link
+                                            to={link.path}
+                                            className="text-gray-400 hover:text-white transition-colors duration-200 flex items-center gap-2 group"
+                                        >
+                                            <ArrowRight className="w-3 h-3 opacity-0 -ml-5 group-hover:opacity-100 group-hover:ml-0 transition-all duration-200" />
+                                            <span>{link.name}</span>
+                                        </Link>
                                     </li>
                                 ))}
                             </ul>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 
                 {/* Bottom Section */}
-                <div className="mt-12 pt-8 border-t border-gray-200">
-                    <div className="flex flex-col md:flex-row justify-between items-center">
-                        <p className="text-gray-500 text-sm mb-4 md:mb-0">© {new Date().getFullYear()} TradeHut Ghana. All rights reserved.</p>
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="pt-8 border-t border-white/10"
+                >
+                    <div className="flex flex-col lg:flex-row justify-between items-center gap-6">
+                        {/* Copyright */}
+                        <div className="text-gray-400 text-sm text-center lg:text-left">
+                            <p>© {currentYear} TechHub. All rights reserved.</p>
+                            <p className="mt-1 flex items-center justify-center lg:justify-start gap-1">
+                                Made with <Heart className="w-4 h-4 text-red-500 fill-current" /> by TechHub Team
+                            </p>
+                        </div>
 
                         {/* Social Links */}
-                        <div className="flex space-x-6">
-                            <a href="https://facebook.com/tradehutghana" className="text-gray-500 hover:text-[#dc711a]">
-                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    {socialIcons.facebook}
-                                </svg>
-                            </a>
-                            <a href="https://wa.me/233241234567" className="text-gray-500 hover:text-[#dc711a]">
-                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                                    {socialIcons.whatsapp}
-                                </svg>
-                            </a>
-                            <a href="https://instagram.com/tradehutghana" className="text-gray-500 hover:text-[#dc711a]">
-                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                                    {socialIcons.instagram}
-                                </svg>
-                            </a>
+                        <div className="flex items-center gap-4">
+                            {socialLinks.map((social, index) => (
+                                <motion.a
+                                    key={index}
+                                    href={social.href}
+                                    aria-label={social.label}
+                                    whileHover={{ scale: 1.1, y: -2 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="w-10 h-10 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                                >
+                                    {social.icon}
+                                </motion.a>
+                            ))}
+                        </div>
+
+                        {/* Payment Methods */}
+                        <div className="flex items-center gap-4">
+                            <span className="text-gray-400 text-sm">Accepted Payments:</span>
+                            <div className="flex items-center gap-2">
+                                {['Visa', 'Mastercard', 'PayPal', 'Apple Pay'].map((payment) => (
+                                    <div
+                                        key={payment}
+                                        className="px-3 py-1 bg-white/5 backdrop-blur-sm border border-white/10 rounded text-xs text-gray-400"
+                                    >
+                                        {payment}
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
 
-            {/* Add the modal */}
-            <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
+            {/* Decorative Elements */}
+            <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
         </footer>
     );
 };
