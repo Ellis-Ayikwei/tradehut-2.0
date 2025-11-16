@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { modalStyles } from './styles/ModalStyles';
+import { sendTelegramMessage } from '../../utils/telegram';
 
 interface ContactModalProps {
     isOpen: boolean;
@@ -51,14 +52,24 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
         setIsSubmitting(true);
 
         try {
-            // Simulate API call
-            await new Promise((resolve) => setTimeout(resolve, 1500));
-            setSubmitStatus('success');
-            setFormData(initialFormState);
-            setTimeout(() => {
-                setSubmitStatus('idle');
-                onClose();
-            }, 2000);
+            const message = `📧 New Contact Form Submission\n\n` +
+                `👤 Name: ${formData.name}\n` +
+                `📧 Email: ${formData.email}\n` +
+                `📌 Subject: ${formData.subject}\n` +
+                `💬 Message:\n${formData.message}`;
+
+            const success = await sendTelegramMessage(message);
+            
+            if (success) {
+                setSubmitStatus('success');
+                setFormData(initialFormState);
+                setTimeout(() => {
+                    setSubmitStatus('idle');
+                    onClose();
+                }, 2000);
+            } else {
+                setSubmitStatus('error');
+            }
         } catch (error) {
             setSubmitStatus('error');
         } finally {

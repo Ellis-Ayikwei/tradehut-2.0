@@ -55,7 +55,8 @@ module.exports = {
                 },
             },
             fontFamily: {
-                nunito: ['Nunito', 'sans-serif'],
+                sans: ['Manrope', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'],
+                manrope: ['Manrope', 'sans-serif'],
             },
             spacing: {
                 4.5: '18px',

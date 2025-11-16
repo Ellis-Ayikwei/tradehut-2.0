@@ -1,195 +1,306 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { 
+    Target, 
+    Eye, 
+    Heart,
+    Award,
+    Users,
+    Briefcase,
+    TrendingUp,
+    Globe,
+    Shield,
+    Zap,
+    CheckCircle,
+    Star,
+    ArrowRight,
+    Handshake
+} from 'lucide-react';
+import {
+    IconRocket,
+    IconBulb,
+    IconAward,
+    IconChartLine,
+    IconUsers,
+    IconShieldCheck,
+    IconSparkles
+} from '@tabler/icons-react';
 
-const AboutUs = () => {
-    const [ref, inView] = useInView({
-        triggerOnce: true,
-        threshold: 0.1,
-    });
+const values = [
+    {
+        icon: <IconBulb className="w-8 h-8" />,
+        title: 'Innovation',
+        description: 'Pushing boundaries with cutting-edge technology solutions',
+        color: 'bg-orange-500'
+    },
+    {
+        icon: <IconShieldCheck className="w-8 h-8" />,
+        title: 'Trust',
+        description: 'Building lasting relationships through transparency and reliability',
+        color: 'bg-blue-500'
+    },
+    {
+        icon: <Handshake className="w-8 h-8" />,
+        title: 'Partnership',
+        description: 'Growing together with our clients as technology partners',
+        color: 'bg-purple-500'
+    },
+    {
+        icon: <IconAward className="w-8 h-8" />,
+        title: 'Excellence',
+        description: 'Delivering world-class quality in every project we undertake',
+        color: 'bg-green-500'
+    }
+];
 
-    const fadeInUp = {
-        hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0 },
-    };
+const achievements = [
+    { number: '10+', label: 'Years of Excellence', icon: <Award className="w-6 h-6" /> },
+    { number: '5000+', label: 'Happy Customers', icon: <Users className="w-6 h-6" /> },
+    { number: '98%', label: 'Client Satisfaction', icon: <Star className="w-6 h-6" /> },
+    { number: '24/7', label: 'Support Available', icon: <Shield className="w-6 h-6" /> }
+];
 
-    const leaders = [
-        {
-            name: 'Ellis Armah Ayikwei',
-            role: 'CEO & Founder',
-            image: '/assets/images/team/ellis.jpg',
-            bio: 'With over 10 years in tech, Ellis leads TradeHut with a vision to revolutionize technology services in Ghana. His expertise in software development and business strategy drives our innovation.',
-            expertise: ['Software Development', 'Business Strategy', 'Tech Innovation'],
-            social: {
-                linkedin: 'https://www.linkedin.com/in/ellis-armah-ayikwei-4a817b192/',
-                twitter: 'https://twitter.com/EllisAyikwei',
-            },
-        },
-        // {
-        //     name: 'Samuel Mensah',
-        //     role: 'Technical Director',
-        //     image: '/src/assets/images/team/samuel.jpg',
-        //     bio: 'Samuel brings 8+ years of hardware expertise, leading our repair and maintenance division. His commitment to quality ensures top-tier service delivery.',
-        //     expertise: ['Hardware Repair', 'Quality Assurance', 'Team Leadership'],
-        //     social: {
-        //         linkedin: 'https://linkedin.com/in/samuel-mensah',
-        //     },
-        // },
-        // {
-        //     name: 'Grace Addo',
-        //     role: 'Operations Manager',
-        //     image: '/src/assets/images/team/grace.jpg',
-        //     bio: 'Grace oversees daily operations with 6 years of experience in operations management. Her focus on efficiency and customer satisfaction drives our service excellence.',
-        //     expertise: ['Operations Management', 'Customer Relations', 'Process Optimization'],
-        //     social: {
-        //         linkedin: 'https://linkedin.com/in/grace-addo',
-        //     },
-        // },
-    ];
+const AboutUs: React.FC = () => {
+    const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.1, triggerOnce: true });
+    const { ref: contentRef, inView: contentInView } = useInView({ threshold: 0.1, triggerOnce: true });
+    const { ref: valuesRef, inView: valuesInView } = useInView({ threshold: 0.1, triggerOnce: true });
 
     return (
-        <section id="about" className="py-20 relative overflow-hidden">
+        <section className="py-24 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 relative overflow-hidden">
             {/* Background Elements */}
-            {/* <div className="absolute inset-0 bg-gradient-to-b from-gray-50/50 to-transparent" />
-            <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-orange-50/30 to-transparent" /> */}
+            <div className="absolute inset-0">
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+            </div>
 
-            <div className="container mx-auto px-4 max-w-6xl relative">
-                {/* Enhanced Section Header with Story */}
-                <motion.div ref={ref} initial="hidden" animate={inView ? 'visible' : 'hidden'} variants={fadeInUp} className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        About <span className="text-[#dc711a]">TradeHut</span>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                {/* Section Header */}
+                <motion.div
+                    ref={headerRef}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={headerInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-16"
+                >
+                    <motion.div
+                        initial={{ scale: 0 }}
+                        animate={headerInView ? { scale: 1 } : {}}
+                        transition={{ delay: 0.2, type: "spring" }}
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-full border border-blue-500/20 mb-4"
+                    >
+                        <IconSparkles className="w-4 h-4 text-blue-400" />
+                        <span className="text-sm text-blue-300 font-medium">About TradeHut</span>
+                    </motion.div>
+                    
+                    <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+                        Transforming Ideas Into
+                        <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                            Digital Reality
+                        </span>
                     </h2>
-                    <p className="text-gray-600 max-w-3xl mx-auto mb-8">
-                        Founded in 2018, TradeHut emerged from a vision to bridge the technology gap in Ghana. What started as a small repair shop has grown into a comprehensive technology solutions
-                        provider, serving hundreds of satisfied customers across the country.
+                    
+                    <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+                        We're not just a tech company - we're your partners in digital transformation, 
+                        delivering innovative solutions that drive real business growth.
                     </p>
-                    <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
-                        <div className="bg-orange-50/50 p-6 rounded-xl">
-                            <h4 className="font-semibold text-[#dc711a] mb-2">5+ Years</h4>
-                            <p className="text-sm text-gray-600">Of Excellence in Tech Solutions</p>
-                        </div>
-                        <div className="bg-orange-50/50 p-6 rounded-xl">
-                            <h4 className="font-semibold text-[#dc711a] mb-2">1000+</h4>
-                            <p className="text-sm text-gray-600">Satisfied Customers</p>
-                        </div>
-                        <div className="bg-orange-50/50 p-6 rounded-xl">
-                            <h4 className="font-semibold text-[#dc711a] mb-2">98%</h4>
-                            <p className="text-sm text-gray-600">Customer Satisfaction Rate</p>
-                        </div>
-                    </div>
                 </motion.div>
 
-                {/* Mission & Vision */}
-                <div className="grid md:grid-cols-2 gap-8 mb-20">
-                    <motion.div variants={fadeInUp} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-                        <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
-                            <i className="fas fa-bullseye text-[#dc711a] text-2xl"></i>
+                {/* Main Content Grid */}
+                <div ref={contentRef} className="grid lg:grid-cols-2 gap-12 mb-20">
+                    {/* Left Content */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={contentInView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.6 }}
+                        className="space-y-6"
+                    >
+                        <div className="space-y-4">
+                            <h3 className="text-3xl font-bold text-white">
+                                Leading the Future of Technology
+                            </h3>
+                            <p className="text-gray-300 leading-relaxed">
+                                Since our inception, TradeHut has been at the forefront of technological innovation. 
+                                We combine deep industry expertise with cutting-edge technology to deliver solutions 
+                                that not only meet today's challenges but anticipate tomorrow's opportunities.
+                            </p>
+                            <p className="text-gray-300 leading-relaxed">
+                                Our team of passionate experts works tirelessly to ensure that every client receives 
+                                personalized attention and solutions tailored to their unique needs. From startups to 
+                                enterprises, we've helped businesses across industries harness the power of technology.
+                            </p>
                         </div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">Our Mission</h3>
-                        <p className="text-gray-600">
-                            To provide cutting-edge technology solutions and exceptional service that empowers businesses and individuals to achieve their digital goals while ensuring reliability,
-                            innovation, and customer satisfaction.
-                        </p>
+
+                        {/* Mission & Vision */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <motion.div
+                                whileHover={{ scale: 1.02 }}
+                                className="bg-gradient-to-br from-blue-600/10 to-purple-600/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
+                            >
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="w-12 h-12 bg-[#e5500e] rounded-xl flex items-center justify-center">
+                                        <Target className="w-6 h-6 text-white" />
+                                    </div>
+                                    <h4 className="text-xl font-semibold text-white">Our Mission</h4>
+                                </div>
+                                <p className="text-gray-300 text-sm">
+                                    To empower businesses and individuals with innovative technology solutions 
+                                    that drive growth, efficiency, and success in the digital age.
+                                </p>
+                            </motion.div>
+
+                            <motion.div
+                                whileHover={{ scale: 1.02 }}
+                                className="bg-gradient-to-br from-purple-600/10 to-pink-600/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
+                            >
+                                <div className="flex items-center gap-3 mb-4">
+                                    <div className="w-12 h-12 bg-[#e5500e] rounded-xl flex items-center justify-center">
+                                        <Eye className="w-6 h-6 text-white" />
+                                    </div>
+                                    <h4 className="text-xl font-semibold text-white">Our Vision</h4>
+                                </div>
+                                <p className="text-gray-300 text-sm">
+                                    To be the global leader in technology innovation, setting new standards 
+                                    for excellence and transforming how the world interacts with technology.
+                                </p>
+                            </motion.div>
+                        </div>
+
+                        {/* CTA Button */}
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#d44a0d]"
+                        >
+                            <span>Learn More About Us</span>
+                            <ArrowRight className="w-4 h-4" />
+                        </motion.button>
                     </motion.div>
 
-                    <motion.div variants={fadeInUp} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-                        <div className="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
-                            <i className="fas fa-eye text-[#dc711a] text-2xl"></i>
+                    {/* Right Content - Stats & Image */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={contentInView ? { opacity: 1, x: 0 } : {}}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="relative"
+                    >
+                        {/* Decorative Image/Visual */}
+                        <div className="relative h-full min-h-[400px] bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-3xl overflow-hidden">
+                            <div className="absolute inset-0 bg-[url('/api/placeholder/600/400')] bg-cover bg-center opacity-50"></div>
+                            
+                            {/* Floating Stats */}
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="grid grid-cols-2 gap-4 p-8">
+                                    {achievements.map((stat, index) => (
+                                        <motion.div
+                                            key={index}
+                                            initial={{ opacity: 0, scale: 0.5 }}
+                                            animate={contentInView ? { opacity: 1, scale: 1 } : {}}
+                                            transition={{ delay: 0.4 + index * 0.1, type: "spring" }}
+                                            whileHover={{ scale: 1.05 }}
+                                            className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20"
+                                        >
+                                            <div className="text-blue-400 mb-2 flex justify-center">
+                                                {stat.icon}
+                                            </div>
+                                            <div className="text-3xl font-bold text-white mb-1">
+                                                {stat.number}
+                                            </div>
+                                            <div className="text-sm text-gray-300">
+                                                {stat.label}
+                                            </div>
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Decorative Elements */}
+                            <div className="absolute top-4 right-4">
+                                <motion.div
+                                    animate={{ rotate: 360 }}
+                                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                                    className="w-20 h-20 border-4 border-blue-500/20 rounded-full"
+                                />
+                            </div>
+                            <div className="absolute bottom-4 left-4">
+                                <motion.div
+                                    animate={{ scale: [1, 1.2, 1] }}
+                                    transition={{ duration: 3, repeat: Infinity }}
+                                    className="w-16 h-16 bg-purple-500/20 rounded-full blur-xl"
+                                />
+                            </div>
                         </div>
-                        <h3 className="text-xl font-bold text-gray-900 mb-4">Our Vision</h3>
-                        <p className="text-gray-600">
-                            To become Ghana's leading technology solutions provider, recognized for our excellence, innovation, and commitment to transforming how businesses and individuals interact
-                            with technology.
-                        </p>
                     </motion.div>
                 </div>
 
                 {/* Core Values */}
-                <motion.div variants={fadeInUp} className="mb-20">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Our Core Values</h3>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                        {[
-                            { icon: 'medal', title: 'Excellence', desc: 'Striving for the highest quality in everything we do' },
-                            { icon: 'heart', title: 'Integrity', desc: 'Maintaining honest and ethical business practices' },
-                            { icon: 'users', title: 'Teamwork', desc: 'Collaborating to achieve exceptional results' },
-                            { icon: 'lightbulb', title: 'Innovation', desc: 'Embracing new technologies and solutions' },
-                        ].map((value, index) => (
-                            <motion.div key={index} variants={fadeInUp} className="text-center p-6 rounded-xl hover:bg-orange-50/50 transition-colors">
-                                <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i className={`fas fa-${value.icon} text-[#dc711a]`}></i>
-                                </div>
-                                <h4 className="font-semibold text-gray-900 mb-2">{value.title}</h4>
-                                <p className="text-sm text-gray-600">{value.desc}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.div>
-
-                {/* Enhanced Team Section */}
-                <motion.div variants={fadeInUp} className="text-center">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Our Leadership Team</h3>
-                    <p className="text-gray-600 max-w-2xl mx-auto mb-12">
-                        Meet the dedicated professionals who drive our vision forward, bringing together decades of combined experience in technology and business management.
+                <motion.div
+                    ref={valuesRef}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={valuesInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-12"
+                >
+                    <h3 className="text-3xl font-bold text-white mb-4">Our Core Values</h3>
+                    <p className="text-gray-400 max-w-2xl mx-auto mb-12">
+                        These principles guide everything we do and shape how we work with our clients
                     </p>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {leaders.map((leader, index) => (
-                            <motion.div key={index} variants={fadeInUp} className="relative group">
-                                <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-                                    <div className="relative">
-                                        <img src={leader.image} alt={leader.name} className="w-full aspect-square object-cover" />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                                            <div className="absolute bottom-0 left-0 right-0 p-6">
-                                                <div className="flex gap-4 justify-center">
-                                                    {leader.social.linkedin && (
-                                                        <a href={leader.social.linkedin} target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#dc711a] transition-colors">
-                                                            <i className="fab fa-linkedin text-xl"></i>
-                                                        </a>
-                                                    )}
-                                                    {leader.social.twitter && (
-                                                        <a href={leader.social.twitter} target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#dc711a] transition-colors">
-                                                            <i className="fab fa-twitter text-xl"></i>
-                                                        </a>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        </div>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {values.map((value, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={valuesInView ? { opacity: 1, y: 0 } : {}}
+                                transition={{ delay: index * 0.1 }}
+                                whileHover={{ y: -5 }}
+                                className="group"
+                            >
+                                <div className="relative h-full bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300">
+                                    <div className={`w-16 h-16 ${value.color} rounded-2xl flex items-center justify-center text-white mb-4 mx-auto group-hover:scale-110 transition-transform`}>
+                                        {value.icon}
                                     </div>
-                                    <div className="p-6">
-                                        <h4 className="text-xl font-bold text-gray-900 mb-1">{leader.name}</h4>
-                                        <p className="text-[#dc711a] font-medium mb-4">{leader.role}</p>
-                                        <p className="text-gray-600 text-sm mb-4">{leader.bio}</p>
-                                        <div className="flex flex-wrap gap-2">
-                                            {leader.expertise.map((skill, idx) => (
-                                                <span key={idx} className="px-3 py-1 text-xs font-medium bg-orange-100/50 text-[#dc711a] rounded-full">
-                                                    {skill}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </div>
+                                    <h4 className="text-xl font-semibold text-white mb-2">{value.title}</h4>
+                                    <p className="text-gray-400 text-sm">{value.description}</p>
+                                    
+                                    {/* Hover Effect */}
+                                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                 </div>
                             </motion.div>
                         ))}
                     </div>
                 </motion.div>
 
-                {/* New Achievement Section */}
-                <motion.div variants={fadeInUp} className="mt-20 text-center">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-12">Our Journey</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                        {[
-                            { year: '2018', title: 'Founded', desc: 'Started as a mobile repair shop' },
-                            { year: '2020', title: 'Expansion', desc: 'Added IT support services' },
-                            { year: '2021', title: 'Growth', desc: 'Launched web development division' },
-                            { year: '2023', title: 'Innovation', desc: 'Introduced remote support solutions' },
-                        ].map((milestone, index) => (
-                            <motion.div key={index} variants={fadeInUp} className="relative p-6 rounded-xl bg-white shadow-lg hover:shadow-xl transition-shadow">
-                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-[#dc711a] text-white rounded-full flex items-center justify-center text-sm font-bold">
-                                    {milestone.year.slice(2)}
-                                </div>
-                                <h4 className="text-lg font-bold text-gray-900 mt-2 mb-2">{milestone.title}</h4>
-                                <p className="text-sm text-gray-600">{milestone.desc}</p>
-                            </motion.div>
-                        ))}
+                {/* Call to Action */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-center mt-20"
+                >
+                    <div className="inline-flex flex-col items-center p-8 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl border border-white/10 backdrop-blur-sm">
+                        <IconRocket className="w-12 h-12 text-blue-400 mb-4" />
+                        <h3 className="text-2xl font-bold text-white mb-2">Ready to Start Your Journey?</h3>
+                        <p className="text-gray-400 mb-6 max-w-md">
+                            Join thousands of satisfied customers who have transformed their business with TradeHut
+                        </p>
+                        <div className="flex flex-wrap gap-4 justify-center">
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="px-6 py-3 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#d44a0d]"
+                            >
+                                Get Started Today
+                            </motion.button>
+                            <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 text-white rounded-xl font-medium hover:bg-white/10 transition-all duration-300"
+                            >
+                                Schedule a Call
+                            </motion.button>
+                        </div>
                     </div>
                 </motion.div>
             </div>

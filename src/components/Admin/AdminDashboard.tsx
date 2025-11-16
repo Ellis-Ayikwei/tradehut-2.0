@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 interface DashboardStats {
     totalOrders: number;
@@ -226,22 +227,23 @@ const AdminDashboard: React.FC = () => {
                                     <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
                                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                                         {[
-                                            { title: 'Add Product', icon: 'fas fa-plus', color: 'bg-blue-600', href: '/admin/products/new' },
-                                            { title: 'New Repair Job', icon: 'fas fa-tools', color: 'bg-orange-600', href: '/admin/repairs/new' },
-                                            { title: 'View Orders', icon: 'fas fa-list', color: 'bg-green-600', href: '/admin/orders' },
-                                            { title: 'Manage Users', icon: 'fas fa-users', color: 'bg-purple-600', href: '/admin/users' },
-                                            { title: 'Analytics', icon: 'fas fa-chart-bar', color: 'bg-indigo-600', href: '/admin/analytics' },
-                                            { title: 'Settings', icon: 'fas fa-cog', color: 'bg-gray-600', href: '/admin/settings' }
+                                                                        { title: 'Manage Products', icon: 'fas fa-box', color: 'bg-blue-600', href: '/admin/products' },
+                            { title: 'Repair Jobs', icon: 'fas fa-tools', color: 'bg-orange-600', href: '/admin/repairs' },
+                            { title: 'View Orders', icon: 'fas fa-list', color: 'bg-green-600', href: '/admin/orders' },
+                            { title: 'Manage Users', icon: 'fas fa-users', color: 'bg-purple-600', href: '/admin/users' },
+                            { title: 'Analytics', icon: 'fas fa-chart-bar', color: 'bg-indigo-600', href: '/admin/analytics' },
+                            { title: 'Settings', icon: 'fas fa-cog', color: 'bg-gray-600', href: '/admin/settings' }
                                         ].map((action, index) => (
-                                            <motion.button
-                                                key={index}
-                                                whileHover={{ scale: 1.05 }}
-                                                whileTap={{ scale: 0.95 }}
-                                                className={`${action.color} text-white p-4 rounded-lg text-center hover:opacity-90 transition-opacity`}
-                                            >
-                                                <i className={`${action.icon} text-2xl mb-2 block`}></i>
-                                                <span className="text-sm font-medium">{action.title}</span>
-                                            </motion.button>
+                                            <Link key={index} to={action.href}>
+                                                <motion.div
+                                                    whileHover={{ scale: 1.05 }}
+                                                    whileTap={{ scale: 0.95 }}
+                                                    className={`${action.color} text-white p-4 rounded-lg text-center hover:opacity-90 transition-opacity h-full`}
+                                                >
+                                                    <i className={`${action.icon} text-2xl mb-2 block`}></i>
+                                                    <span className="text-sm font-medium">{action.title}</span>
+                                                </motion.div>
+                                            </Link>
                                         ))}
                                     </div>
                                 </div>
