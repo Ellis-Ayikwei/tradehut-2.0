@@ -10,7 +10,6 @@ import {
     ShoppingBag, 
     Phone,
     ChevronDown,
-    Sparkles,
     Globe,
     Zap,
     Shield,
@@ -81,10 +80,10 @@ const ModernNavbar: React.FC = () => {
                     description: 'Complete IT infrastructure support'
                 },
                 {
-                    name: 'Web Development',
-                    path: '/services/web-development',
+                    name: 'Software Development',
+                    path: '/services/software-development',
                     icon: <IconCode className="w-5 h-5" />,
-                    description: 'Custom web applications'
+                    description: 'Web, mobile & desktop apps'
                 },
                 {
                     name: 'Tech Support',
@@ -176,10 +175,10 @@ const ModernNavbar: React.FC = () => {
                     {item.path && !item.path.startsWith('#') ? (
                         <Link
                             to={item.path}
-                            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
+                            className={`flex items-center gap-2 px-2 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
                                 isActive
-                                    ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-blue-500/25'
-                                    : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/80'
+                                    ? 'text-white bg-black shadow-lg'
+                                    : 'text-gray-700 hover:text-black hover:bg-gray-100/80'
                             }`}
                             onClick={() => isMobile && setIsMobileMenuOpen(false)}
                         >
@@ -192,8 +191,8 @@ const ModernNavbar: React.FC = () => {
                             onClick={handleClick}
                             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
                                 isActive
-                                    ? 'text-white bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg shadow-blue-500/25'
-                                    : 'text-gray-700 hover:text-gray-900 hover:bg-gray-100/80'
+                                    ? 'text-white bg-black shadow-lg'
+                                    : 'text-gray-700 hover:text-black hover:bg-gray-100/80'
                             }`}
                         >
                             {item.icon}
@@ -220,13 +219,13 @@ const ModernNavbar: React.FC = () => {
                                             key={child.path}
                                             to={child.path}
                                             onClick={() => setActiveDropdown(null)}
-                                            className="w-full flex items-start gap-3 px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 transition-all duration-200 group"
+                                            className="w-full flex items-start gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 transition-all duration-200 group"
                                         >
-                                            <div className="text-gray-600 group-hover:text-blue-600 transition-colors">
+                                            <div className="text-gray-600 group-hover:text-black transition-colors">
                                                 {child.icon}
                                             </div>
                                             <div className="text-left">
-                                                <div className="font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
+                                                <div className="font-medium text-gray-900 group-hover:text-black transition-colors">
                                                     {child.name}
                                                 </div>
                                                 {child.description && (
@@ -260,25 +259,21 @@ const ModernNavbar: React.FC = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <nav className={`relative rounded-2xl transition-all duration-500 ${
                         isScrolled
-                            ? 'bg-white/80 backdrop-blur-xl shadow-xl border border-gray-200/50'
-                            : 'bg-white/60 backdrop-blur-md shadow-lg border border-gray-200/30'
+                            ? 'bg-white backdrop-blur-xl shadow-xl border border-gray-200 opacity-80'
+                            : 'bg-white backdrop-blur-md shadow-lg border border-gray-200'
                     }`}>
-                        <div className="px-6 py-4">
+                        <div className="px-6 py-2">
                             {/* Desktop Navigation */}
                             <div className="hidden lg:flex items-center justify-between">
                                 {/* Logo */}
                                 <Link to="/" className="flex items-center gap-2 group">
-                                    <div className="relative">
-                                        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity"></div>
-                                        <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white p-2.5 rounded-xl">
-                                            <Sparkles className="w-6 h-6" />
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                            TradeHut
-                                        </span>
-                                        <span className="text-xs text-gray-500 -mt-1">Innovation First</span>
+                                    <div className="bg-black p-1 rounded-xl transition-all duration-300 group-hover:scale-105">
+                                        <motion.img
+                                            src="/assets/images/hero/tradehutfullText.png"
+                                            alt="TradeHut Logo"
+                                            className="h-8 object-contain"
+                                            whileHover={{ scale: 1.05 }}
+                                        />
                                     </div>
                                 </Link>
 
@@ -295,14 +290,11 @@ const ModernNavbar: React.FC = () => {
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                         onClick={() => setIsContactModalOpen(true)}
-                                        className="relative group"
+                                        className="flex items-center gap-2 px-6 py-2.5 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:bg-[#d44a0d] transition-colors"
                                     >
-                                        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl blur-lg opacity-75 group-hover:opacity-100 transition-opacity"></div>
-                                        <div className="relative flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium shadow-lg">
-                                            <Phone className="w-4 h-4" />
-                                            <span>Get in Touch</span>
-                                            <Zap className="w-4 h-4" />
-                                        </div>
+                                        <Phone className="w-4 h-4" />
+                                        <span>Get in Touch</span>
+                                        {/* <Zap className="w-4 h-4" /> */}
                                     </motion.button>
                                 </div>
                             </div>
@@ -311,12 +303,13 @@ const ModernNavbar: React.FC = () => {
                             <div className="lg:hidden flex items-center justify-between">
                                 {/* Logo */}
                                 <Link to="/" className="flex items-center gap-2">
-                                    <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-2 rounded-xl">
-                                        <Sparkles className="w-5 h-5" />
+                                    <div className="bg-black p-2 rounded-xl">
+                                        <motion.img
+                                            src="/assets/images/hero/tradehut logo.png"
+                                            alt="TradeHut Logo"
+                                            className="h-6 object-contain"
+                                        />
                                     </div>
-                                    <span className="text-lg font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                                        TradeHut
-                                    </span>
                                 </Link>
 
                                 {/* Mobile Menu Button */}
@@ -355,7 +348,7 @@ const ModernNavbar: React.FC = () => {
                                                                     key={child.path}
                                                                     to={child.path}
                                                                     onClick={() => setIsMobileMenuOpen(false)}
-                                                                    className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                                                                    className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg transition-colors"
                                                                 >
                                                                     {child.icon}
                                                                     <span>{child.name}</span>

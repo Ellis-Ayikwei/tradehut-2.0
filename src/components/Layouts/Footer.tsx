@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
@@ -13,11 +13,11 @@ import {
     Youtube,
     ArrowRight,
     Heart,
-    Sparkles,
     Clock,
     Shield,
     Award
 } from 'lucide-react';
+import { sendTelegramMessage } from '../../utils/telegram';
 import {
     IconBrandFacebook,
     IconBrandTwitter,
@@ -33,19 +33,48 @@ import {
 
 const Footer: React.FC = () => {
     const currentYear = new Date().getFullYear();
+    const [email, setEmail] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+    const handleNewsletterSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!email) return;
+
+        setIsSubmitting(true);
+        try {
+            const message = `📧 New Newsletter Subscription\n\n` +
+                `📧 Email: ${email}\n` +
+                `⏰ Time: ${new Date().toLocaleString()}`;
+
+            const success = await sendTelegramMessage(message);
+            
+            if (success) {
+                setSubmitStatus('success');
+                setEmail('');
+                setTimeout(() => setSubmitStatus('idle'), 3000);
+            } else {
+                setSubmitStatus('error');
+            }
+        } catch (error) {
+            setSubmitStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     const footerLinks = {
         company: [
-            { name: 'About Us', path: '/about' },
+            { name: 'About Us', path: '/aboutUs' },
             { name: 'Our Team', path: '/team' },
             { name: 'Careers', path: '/careers' },
             { name: 'Press Kit', path: '/press' }
         ],
         services: [
-            { name: 'Device Repair', path: '#repair' },
-            { name: 'IT Solutions', path: '#it-solutions' },
-            { name: 'Web Development', path: '#web-dev' },
-            { name: 'Tech Support', path: '#support' }
+            { name: 'Device Repair', path: '/services/device-repair' },
+            { name: 'IT Solutions', path: '/services/it-solutions' },
+            { name: 'Software Development', path: '/services/software-development' },
+            { name: 'Tech Support', path: '/services/tech-support' }
         ],
         support: [
             { name: 'Help Center', path: '/help' },
@@ -99,24 +128,45 @@ const Footer: React.FC = () => {
                                 </p>
                             </div>
                             
-                            <div className="flex flex-col sm:flex-row gap-4">
+                            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4">
                                 <div className="relative flex-1">
                                     <input
                                         type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
                                         placeholder="Enter your email"
+                                        required
                                         className="w-full px-6 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
                                     />
                                     <Mail className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                                 </div>
                                 <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
+                                    whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
+                                    className="px-8 py-4 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#d44a0d] disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
-                                    <span>Subscribe</span>
-                                    <Send className="w-4 h-4" />
+                                    {isSubmitting ? (
+                                        <span className="flex items-center gap-2">
+                                            <svg className="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24">
+                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                                            </svg>
+                                            Subscribing...
+                                        </span>
+                                    ) : submitStatus === 'success' ? (
+                                        <span>Subscribed! ✓</span>
+                                    ) : submitStatus === 'error' ? (
+                                        <span>Error - Try Again</span>
+                                    ) : (
+                                        <>
+                                            <span>Subscribe</span>
+                                            <Send className="w-4 h-4" />
+                                        </>
+                                    )}
                                 </motion.button>
-                            </div>
+                            </form>
                         </div>
 
                         {/* Trust Badges */}
@@ -147,16 +197,14 @@ const Footer: React.FC = () => {
                         className="lg:col-span-2"
                     >
                         <div className="flex items-center gap-2 mb-6">
-                            <div className="relative">
-                                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl blur opacity-75"></div>
-                                <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white p-2.5 rounded-xl">
-                                    <Sparkles className="w-6 h-6" />
-                                </div>
-                            </div>
-                            <div>
-                                <h2 className="text-2xl font-bold text-white">TradeHut</h2>
-                                <p className="text-xs text-gray-400">Innovation First</p>
-                            </div>
+                            <Link to="/">
+                                <motion.img
+                                    src="/assets/images/hero/tradehut technologies.png"
+                                    alt="TradeHut Logo"
+                                    className="h-12 object-contain"
+                                    whileHover={{ scale: 1.05 }}
+                                />
+                            </Link>
                         </div>
                         
                         <p className="text-gray-400 mb-6 leading-relaxed">

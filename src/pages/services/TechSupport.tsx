@@ -25,8 +25,6 @@ import {
     IconDeviceDesktopAnalytics,
     IconBug
 } from '@tabler/icons-react';
-import ModernNavbar from '../../components/Layouts/ModernNavbar';
-import Footer from '../../components/Layouts/Footer';
 import ServiceModal from '../../components/Services/ServiceModal';
 
 const supportServices = [
@@ -103,7 +101,7 @@ const TechSupport: React.FC = () => {
             icon: service.icon,
             features: service.services,
             pricing: {
-                starting: '$99/month',
+                starting: 'GHC 1,000/month',
                 factors: [
                     'Support level required',
                     'Number of devices/users',
@@ -142,8 +140,6 @@ const TechSupport: React.FC = () => {
 
     return (
         <>
-            <ModernNavbar />
-            
             {/* Hero Section */}
             <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-orange-950 to-red-950">
                 {/* Background Effects */}
@@ -419,8 +415,6 @@ const TechSupport: React.FC = () => {
                     </motion.div>
                 </div>
             </section>
-
-            <Footer />
 
             {/* Service Modal */}
             {selectedService && (

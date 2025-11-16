@@ -25,8 +25,6 @@ import {
     IconTools,
     IconShieldCheck
 } from '@tabler/icons-react';
-import ModernNavbar from '../../components/Layouts/ModernNavbar';
-import Footer from '../../components/Layouts/Footer';
 import ServiceModal from '../../components/Services/ServiceModal';
 
 const deviceTypes = [
@@ -111,7 +109,7 @@ const DeviceRepair: React.FC = () => {
             icon: device.icon,
             features: device.services,
             pricing: {
-                starting: '$49',
+                starting: 'GHC 500',
                 factors: [
                     'Device type and model',
                     'Severity of damage',
@@ -143,8 +141,6 @@ const DeviceRepair: React.FC = () => {
 
     return (
         <>
-            <ModernNavbar />
-            
             {/* Hero Section */}
             <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950">
                 {/* Background Effects */}
@@ -182,7 +178,7 @@ const DeviceRepair: React.FC = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                                className="px-8 py-4 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#d44a0d]"
                             >
                                 View Services
                             </motion.button>
@@ -216,7 +212,7 @@ const DeviceRepair: React.FC = () => {
                                 transition={{ delay: index * 0.1 }}
                                 className="text-center"
                             >
-                                <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white mb-3">
+                                <div className="inline-flex items-center justify-center w-12 h-12 bg-[#e5500e] rounded-xl text-white mb-3">
                                     {stat.icon}
                                 </div>
                                 <div className="text-2xl font-bold text-white">{stat.value}</div>
@@ -327,7 +323,7 @@ const DeviceRepair: React.FC = () => {
                             >
                                 <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300">
                                     <div className="flex items-start gap-4">
-                                        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center text-white">
+                                        <div className="flex-shrink-0 w-12 h-12 bg-[#e5500e] rounded-xl flex items-center justify-center text-white">
                                             {process.icon}
                                         </div>
                                         <div className="flex-1">
@@ -372,7 +368,7 @@ const DeviceRepair: React.FC = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setIsModalOpen(true)}
-                                className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                                className="px-8 py-4 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#d44a0d]"
                             >
                                 Book Repair Now
                             </motion.button>
@@ -387,8 +383,6 @@ const DeviceRepair: React.FC = () => {
                     </motion.div>
                 </div>
             </section>
-
-            <Footer />
 
             {/* Service Modal */}
             {selectedService && (

@@ -1,35 +1,37 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import { 
     ArrowRight, 
-    CheckCircle2, 
-    Sparkles, 
-    Zap, 
-    Shield, 
-    Clock,
-    Users,
-    Award,
     Play,
-    Star,
-    TrendingUp,
-    Globe
+    Database,
+    Cloud,
+    Network,
+    Cpu,
+    Shield,
+    Code,
+    Headphones,
+    Sparkles,
+    CheckCircle2
 } from 'lucide-react';
 import {
     IconBrandApple,
     IconBrandWindows,
-    IconBrandAndroid,
     IconDeviceMobile,
     IconDeviceLaptop,
     IconServer,
-    IconCode,
-    IconHeadset,
-    IconRocket,
-    IconBolt,
-    IconShieldCheck
+    IconBrandPython,
+    IconBrandJavascript,
+    IconBrandReact,
+    IconBrandNodejs,
+    IconBrandDocker,
+    IconBrandAws,
+    IconBrandGit,
+    IconBrandTypescript
 } from '@tabler/icons-react';
+import Marquee from 'react-fast-marquee';
 import ContactModal from './ContactModal';
 import ModernNavbar from './ModernNavbar';
 
@@ -42,44 +44,24 @@ const trustedBrands = [
     { name: 'Microsoft', icon: <IconBrandWindows className="w-8 h-8" /> },
 ];
 
-const stats = [
-    { number: '5000+', label: 'Devices Repaired', icon: <Zap className="w-6 h-6" /> },
-    { number: '98%', label: 'Success Rate', icon: <CheckCircle2 className="w-6 h-6" /> },
-    { number: '24/7', label: 'Support Available', icon: <Clock className="w-6 h-6" /> },
-    { number: '50+', label: 'Expert Technicians', icon: <Users className="w-6 h-6" /> },
+const techStack = [
+    { name: 'Python', icon: IconBrandPython },
+    { name: 'JavaScript', icon: IconBrandJavascript },
+    { name: 'TypeScript', icon: IconBrandTypescript },
+    { name: 'React', icon: IconBrandReact },
+    { name: 'Node.js', icon: IconBrandNodejs },
+    { name: 'Docker', icon: IconBrandDocker },
+    { name: 'AWS', icon: IconBrandAws },
+    { name: 'Git', icon: IconBrandGit },
+    { name: 'AI/ML', icon: Cpu },
+    { name: 'MCP', icon: Network },
+    { name: 'Database', icon: Database },
+    { name: 'Cloud', icon: Cloud },
 ];
 
-const services = [
-    {
-        icon: <IconDeviceMobile className="w-8 h-8" />,
-        title: 'Device Repair',
-        description: 'Professional repair services for smartphones, tablets, and laptops',
-        color: 'from-blue-500 to-cyan-500'
-    },
-    {
-        icon: <IconDeviceLaptop className="w-8 h-8" />,
-        title: 'Device Sales',
-        description: 'Premium quality devices and accessories at competitive prices',
-        color: 'from-purple-500 to-pink-500'
-    },
-    {
-        icon: <IconServer className="w-8 h-8" />,
-        title: 'IT Solutions',
-        description: 'Complete IT infrastructure and support services for businesses',
-        color: 'from-green-500 to-emerald-500'
-    },
-    {
-        icon: <IconCode className="w-8 h-8" />,
-        title: 'Web Development',
-        description: 'Custom web applications and digital solutions',
-        color: 'from-orange-500 to-red-500'
-    }
-];
 
 export default function Hero() {
     const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-    const [currentService, setCurrentService] = useState(0);
-    const { ref, inView } = useInView({ threshold: 0.1 });
     const containerRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -89,299 +71,319 @@ export default function Hero() {
     const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
     const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentService((prev) => (prev + 1) % services.length);
-        }, 3000);
-        return () => clearInterval(interval);
-    }, []);
 
     return (
         <>
            
             
             {/* Ultra Modern Hero Section */}
-            <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950">
-                {/* Advanced Background Effects */}
-                <div className="absolute inset-0">
-                    {/* Animated Gradient Orbs */}
-                    <motion.div
-                        animate={{
-                            x: [0, 100, 0],
-                            y: [0, -100, 0],
-                        }}
-                        transition={{
-                            duration: 20,
-                            repeat: Infinity,
-                            ease: "linear"
-                        }}
-                        className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/30 to-purple-500/30 rounded-full blur-3xl"
-                    />
-                    <motion.div
-                        animate={{
-                            x: [0, -100, 0],
-                            y: [0, 100, 0],
-                        }}
-                        transition={{
-                            duration: 15,
-                            repeat: Infinity,
-                            ease: "linear"
-                        }}
-                        className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-cyan-500/30 to-pink-500/30 rounded-full blur-3xl"
-                    />
-                    
-                    {/* Grid Pattern */}
-                    <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-                    
-                    {/* Floating Particles */}
-                    {[...Array(20)].map((_, i) => (
-                        <motion.div
-                            key={i}
-                            className="absolute w-1 h-1 bg-white/20 rounded-full"
-                            style={{
-                                left: `${Math.random() * 100}%`,
-                                top: `${Math.random() * 100}%`,
-                            }}
-                            animate={{
-                                y: [-20, 20, -20],
-                                opacity: [0.2, 1, 0.2],
-                            }}
-                            transition={{
-                                duration: 3 + Math.random() * 2,
-                                repeat: Infinity,
-                                delay: Math.random() * 2,
-                            }}
+            <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black py-8 sm:py-12 lg:py-0">
+                {/* Minimalist Beam Arch */}
+                {/* <div className="absolute inset-0 overflow-hidden">
+                    <svg className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="none">
+                        <defs>
+                            <radialGradient id="archGradient" cx="50%" cy="0%" r="30%">
+                                <stop offset="0%" stopColor="#e5500e" stopOpacity="0.9" />
+                                <stop offset="20%" stopColor="#e5500e" stopOpacity="0.4" />
+                                <stop offset="40%" stopColor="#e5500e" stopOpacity="0.1" />
+                                <stop offset="100%" stopColor="#e5500e" stopOpacity="0" />
+                            </radialGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="40" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <path
+                            d="M 0,400 Q 600,-150 1200,400 L 1200,800 L 0,800 Z"
+                            fill="url(#archGradient)"
+                            opacity="1"
+                            filter="url(#glow)"
                         />
-                    ))}
-                </div>
+                    </svg>
+                </div> */}
 
+                {/* Minimalist Grid Pattern */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+
+          
+          
                 {/* Main Content */}
                 <motion.div 
                     style={{ y, opacity }}
-                    className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32"
+                    className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 mt-16 sm:mt-20 md:mt-24 lg:mt-28"
                 >
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
-                        {/* Left Content */}
+                    <div className="flex flex-col items-center">
+                        {/* New Software Announcement */}
                         <motion.div
-                            initial={{ opacity: 0, x: -50 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8 }}
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                            className="text-center mb-4 sm:mb-6 w-full"
                         >
-                            {/* Badge */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2 }}
-                                className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 mb-6"
-                            >
-                                <Sparkles className="w-4 h-4 text-yellow-400" />
-                                <span className="text-sm text-white/90">Trusted by 5000+ Customers</span>
-                                <Star className="w-4 h-4 text-yellow-400" />
-                            </motion.div>
+                            <Link to="https://scrubimail.com">
+                                <motion.span
+                                    initial={{ scale: 0.9 }}
+                                    animate={{ scale: 1 }}
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
+                                    className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-[#e5500e]/20 backdrop-blur-sm rounded-full border border-[#e5500e]/30 text-[#e5500e] text-xs sm:text-sm font-medium hover:bg-[#e5500e]/30 transition-all duration-300 cursor-pointer"
+                                >
+                                    {/* Blinking Green Dot */}
+                                    <motion.span
+                                        animate={{ opacity: [1, 0.3, 1] }}
+                                        transition={{ 
+                                            duration: 1.5, 
+                                            repeat: Infinity,
+                                            ease: "easeInOut"
+                                        }}
+                                        className="relative flex items-center justify-center"
+                                    >
+                                        <span className="absolute w-2 h-2 bg-green-500 rounded-full"></span>
+                                    </motion.span>
+                                    <span>Whats New: ScrubiMail </span>
+                                    <span className="ml-2 px-3 py-1 flex items-center gap-2 bg-[#e5500e] text-white rounded-full text-xs font-medium">Check it out
+                                        <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                                    </span>
+                                </motion.span>
+                            </Link>
+                        </motion.div>
 
-                            {/* Main Heading */}
+                        {/* Main Heading */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.8 }}
+                            className="text-center mb-3 sm:mb-4 w-full"
+                        >
                             <motion.h1
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3 }}
-                                className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight"
+                                transition={{ delay: 1 }}
+                                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white mb-2 sm:mb-4 leading-tight px-1 sm:px-2"
                             >
-                                Transform Your
-                                <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-                                    Tech Experience
+                                Effortless Technology,
+                                <span className="block bg-gradient-to-r from-white via-gray-300 to-white bg-clip-text text-transparent">
+                                    Expertly Managed.
                                 </span>
                             </motion.h1>
+                        </motion.div>
 
-                            {/* Description */}
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.4 }}
-                                className="text-xl text-gray-300 mb-8 leading-relaxed"
-                            >
-                                World-class IT solutions, device repairs, and digital transformation services. 
-                                We bring innovation to your fingertips with cutting-edge technology and unmatched expertise.
-                            </motion.p>
+                        {/* Description and CTA */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.2 }}
+                            className="text-center w-full max-w-xs sm:max-w-lg md:max-w-2xl px-3 sm:px-4"
+                        >
+                            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-2 leading-relaxed font-medium">
+                                Your Complete Technology Ecosystem, Perfected.
+                            </p>
+                            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 mb-3 sm:mb-4 leading-relaxed">
+                                Repairs, software, cloud, automation, and everything in between. 
+                                Your one-stop solution for all technology needs—from device fixes to enterprise solutions.
+                            </p>
 
-                            {/* Features */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.5 }}
-                                className="grid grid-cols-2 gap-4 mb-8"
-                            >
-                                {[
-                                    { icon: <Shield className="w-5 h-5" />, text: "100% Secure" },
-                                    { icon: <Zap className="w-5 h-5" />, text: "Lightning Fast" },
-                                    { icon: <Award className="w-5 h-5" />, text: "Award Winning" },
-                                    { icon: <Globe className="w-5 h-5" />, text: "Global Reach" }
-                                ].map((feature, index) => (
-                                    <div key={index} className="flex items-center gap-2 text-white/80">
-                                        <div className="text-blue-400">{feature.icon}</div>
-                                        <span className="text-sm">{feature.text}</span>
-                                    </div>
-                                ))}
-                            </motion.div>
-
-                            {/* CTA Buttons */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.6 }}
-                                className="flex flex-wrap gap-4"
-                            >
+                            {/* CTA Buttons - Apple-like Dark Gradients */}
+                            {/* <div className="flex flex-wrap justify-center gap-4">
                                 <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
                                     onClick={() => setIsContactModalOpen(true)}
-                                    className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-semibold shadow-2xl shadow-blue-500/25 overflow-hidden"
+                                    className="group relative px-8 py-3.5 bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white rounded-lg font-medium shadow-lg border border-gray-700/50 hover:border-gray-600/50 transition-all duration-300 overflow-hidden"
                                 >
                                     <span className="relative z-10 flex items-center gap-2">
                                         Get Started
-                                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </span>
-                                    <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 </motion.button>
 
                                 <motion.button
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    className="group px-8 py-4 bg-white/10 backdrop-blur-md text-white rounded-xl font-semibold border border-white/20 hover:bg-white/20 transition-all duration-300"
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="group px-8 py-3.5 bg-gradient-to-r from-black via-gray-900 to-black text-white rounded-lg font-medium border border-gray-800/50 hover:border-gray-700/50 hover:bg-gradient-to-r hover:from-gray-900 hover:via-gray-800 hover:to-gray-900 transition-all duration-300"
                                 >
                                     <span className="flex items-center gap-2">
-                                        <Play className="w-5 h-5" />
+                                        <Play className="w-4 h-4" />
                                         Watch Demo
                                     </span>
                                 </motion.button>
-                            </motion.div>
-
-                            {/* Trust Indicators */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.8 }}
-                                className="mt-12 flex items-center gap-8"
-                            >
-                                <div className="flex -space-x-3">
-                                    {[...Array(4)].map((_, i) => (
-                                        <div
-                                            key={i}
-                                            className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 border-2 border-slate-900 flex items-center justify-center text-white text-xs font-bold"
-                                        >
-                                            {String.fromCharCode(65 + i)}
-                                        </div>
-                                    ))}
-                                </div>
-                                <div className="text-white/80">
-                                    <div className="flex items-center gap-1">
-                                        {[...Array(5)].map((_, i) => (
-                                            <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                                        ))}
-                                    </div>
-                                    <p className="text-sm mt-1">5.0 from 2,394 reviews</p>
-                                </div>
-                            </motion.div>
+                            </div> */}
                         </motion.div>
 
-                        {/* Right Content - 3D Card */}
+                        {/* Tech Stack Marquee - Full Width with Fade */}
                         <motion.div
-                            initial={{ opacity: 0, x: 50 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8 }}
-                            className="relative"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.4 }}
+                            className="w-full mt-3 sm:mt-4 mb-3 sm:mb-4 relative overflow-hidden"
                         >
-                            {/* Floating Service Cards */}
-                            <div className="relative h-[600px]">
-                                {services.map((service, index) => (
-                                    <motion.div
-                                        key={index}
-                                        className={`absolute inset-0 ${currentService === index ? 'z-20' : 'z-10'}`}
-                                        initial={{ opacity: 0, scale: 0.8 }}
-                                        animate={{
-                                            opacity: currentService === index ? 1 : 0.3,
-                                            scale: currentService === index ? 1 : 0.9,
-                                            x: currentService === index ? 0 : index % 2 === 0 ? -50 : 50,
-                                            y: currentService === index ? 0 : index % 2 === 0 ? -30 : 30,
-                                            rotateY: currentService === index ? 0 : 15,
-                                        }}
-                                        transition={{ duration: 0.5 }}
-                                    >
-                                        <div className="h-full bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/20 p-8 shadow-2xl">
-                                            <div className={`w-20 h-20 bg-gradient-to-r ${service.color} rounded-2xl flex items-center justify-center text-white mb-6`}>
-                                                {service.icon}
+                            {/* Fade overlay for soft entry/exit */}
+                            <div className="absolute inset-0 z-10 pointer-events-none">
+                                <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-gradient-to-r from-black to-transparent"></div>
+                                <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-gradient-to-l from-black to-transparent"></div>
+                            </div>
+                            
+                            <Marquee
+                                speed={50}
+                                gradient={false}
+                                pauseOnHover={true}
+                                className="py-2 sm:py-3 md:py-4"
+                            >
+                                {techStack.map((tech, index) => {
+                                    const IconComponent = tech.icon;
+                                    return (
+                                        <div
+                                            key={index}
+                                            className="flex items-center gap-2 sm:gap-3 mx-2 sm:mx-4 md:mx-6 px-3 sm:px-4 md:px-6 py-2 sm:py-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300"
+                                        >
+                                            <div className="text-white/80 flex-shrink-0">
+                                                <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10" />
                                             </div>
-                                            <h3 className="text-3xl font-bold text-white mb-4">{service.title}</h3>
-                                            <p className="text-gray-300 text-lg mb-6">{service.description}</p>
-                                            
-                                            {/* Service Features */}
-                                            <div className="space-y-3">
-                                                {['Fast Turnaround', 'Expert Team', 'Best Price', 'Warranty Included'].map((feature, i) => (
-                                                    <div key={i} className="flex items-center gap-3 text-white/80">
-                                                        <CheckCircle2 className="w-5 h-5 text-green-400" />
-                                                        <span>{feature}</span>
-                                                    </div>
-                                                ))}
-                                            </div>
-
-                                            {/* Service Stats */}
-                                            <div className="mt-8 pt-8 border-t border-white/10 grid grid-cols-2 gap-4">
-                                                <div>
-                                                    <div className="text-3xl font-bold text-white">99%</div>
-                                                    <div className="text-sm text-gray-400">Satisfaction</div>
-                                                </div>
-                                                <div>
-                                                    <div className="text-3xl font-bold text-white">24/7</div>
-                                                    <div className="text-sm text-gray-400">Support</div>
-                                                </div>
-                                            </div>
+                                            <span className="text-xs sm:text-sm text-gray-300 font-medium whitespace-nowrap">
+                                                {tech.name}
+                                            </span>
                                         </div>
-                                    </motion.div>
-                                ))}
-                            </div>
-
-                            {/* Service Indicators */}
-                            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 flex gap-2 z-30">
-                                {services.map((_, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => setCurrentService(index)}
-                                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                                            currentService === index 
-                                                ? 'w-8 bg-gradient-to-r from-blue-400 to-purple-400' 
-                                                : 'bg-white/30'
-                                        }`}
-                                    />
-                                ))}
-                            </div>
+                                    );
+                                })}
+                            </Marquee>
                         </motion.div>
+
+      {/* Laptop Image - Main Feature */}
+      <div className="relative w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto mt-3 sm:mt-4 md:mt-6 lg:mt-8 px-1 sm:px-2 md:px-4 lg:px-0">
+            {/* Glow effects around laptop */}
+            <div className="absolute inset-0 bg-[#e5500e]/20 rounded-3xl blur-3xl transform scale-110"></div>
+            <div className="absolute inset-0 bg-[#e5500e]/15 rounded-3xl blur-2xl transform scale-105"></div>
+            <div className="absolute inset-0 bg-[#e5500e]/10 rounded-3xl blur-xl"></div>
+            
+            {/* Laptop image container */}
+            <div className="relative">
+              <img 
+                src="/assets/images/hero/Macbook-Air-192.168.100.12.png" 
+                alt="Email Validation Dashboard on MacBook Air"
+                className="w-full h-auto mx-auto drop-shadow-2xl"
+              />
+              
+              {/* Floating Nodes Overlay - Inside laptop screen area */}
+              <div className="absolute top-[8%] left-[6%] right-[6%] bottom-[25%] pointer-events-none">
+                <div className="relative w-full h-full">
+                  {/* Floating Nodes */}
+                  {[
+                    { x: 20, y: 30, size: 16, color: 'rgb(16, 185, 129)' },
+                    { x: 60, y: 50, size: 24, color: 'rgb(30, 58, 138)' },
+                    { x: 80, y: 70, size: 20, color: 'rgb(16, 185, 129)' },
+                    { x: 40, y: 80, size: 16, color: 'rgb(30, 58, 138)' },
+                    { x: 70, y: 20, size: 20, color: 'rgb(16, 185, 129)' },
+                  ].map((node, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute rounded-full"
+                      style={{
+                        left: `${node.x}%`,
+                        top: `${node.y}%`,
+                        width: `${node.size}px`,
+                        height: `${node.size}px`,
+                        backgroundColor: node.color,
+                      }}
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.5, 1, 0.5],
+                      }}
+                      transition={{
+                        duration: 2 + i * 0.5,
+                        repeat: Infinity,
+                        delay: i * 0.3,
+                      }}
+                    />
+                  ))}
+
+                  {/* Connection Lines */}
+                  <svg className="absolute inset-0 w-full h-full opacity-30 pointer-events-none">
+                    <motion.line
+                      x1="20%"
+                      y1="30%"
+                      x2="60%"
+                      y2="50%"
+                      stroke="#10B981"
+                      strokeWidth="1"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      animate={{ pathLength: 1, opacity: 0.5 }}
+                      transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+                    />
+                    <motion.line
+                      x1="60%"
+                      y1="50%"
+                      x2="80%"
+                      y2="70%"
+                      stroke="#1E3A8A"
+                      strokeWidth="1"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      animate={{ pathLength: 1, opacity: 0.5 }}
+                      transition={{ duration: 2, delay: 0.5, repeat: Infinity, repeatType: "reverse" }}
+                    />
+                    <motion.line
+                      x1="80%"
+                      y1="70%"
+                      x2="40%"
+                      y2="80%"
+                      stroke="#10B981"
+                      strokeWidth="1"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      animate={{ pathLength: 1, opacity: 0.5 }}
+                      transition={{ duration: 2, delay: 1, repeat: Infinity, repeatType: "reverse" }}
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            
+
+            {/* Floating elements around laptop - hidden on mobile */}
+            <div className="hidden sm:block absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 animate-float-slow">
+              {/* Glow effect for analytics card */}
+              <div className="absolute inset-0 bg-[#1E3A8A]/30 rounded-2xl sm:rounded-3xl blur-xl"></div>
+              <div className="relative bg-white dark:bg-[#0d1117] rounded-2xl sm:rounded-3xl shadow-xl border border-gray-200 dark:border-[#30363d] p-3 sm:p-4 lg:p-6 transition-colors duration-300">
+                <div className="w-full h-full flex flex-col justify-between">
+                  <div className="flex items-center justify-between">
+                    <div className="w-1 h-4 sm:h-6 bg-[#10B981] rounded-full"></div>
+                    <div className="w-1 h-3 sm:h-4 bg-[#1E3A8A] rounded-full"></div>
+                    <div className="w-1 h-5 sm:h-8 bg-[#10B981] rounded-full"></div>
+                    <div className="w-1 h-2 sm:h-3 bg-[#EF4444] rounded-full"></div>
+                  </div>
+                  <div className="text-xs text-gray-500 dark:text-[#7d8590] text-center transition-colors duration-300">Analytics</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="hidden sm:block absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 animate-float-medium">
+              {/* Glow effect for shield */}
+              <div className="absolute inset-0 bg-[#1E3A8A]/30 rounded-full blur-xl"></div>
+              <div className="relative bg-white dark:bg-[#0d1117] rounded-full shadow-xl border border-gray-200 dark:border-[#30363d] flex items-center justify-center w-full h-full transition-colors duration-300">
+                <Shield className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-[#1E3A8A]" />
+              </div>
+            </div>
+          </div>
+
+
                     </div>
                 </motion.div>
 
-                {/* Scroll Indicator */}
+                {/* Soft Gradient at Bottom */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1 }}
-                    className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+                    className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
                 >
-                    <motion.div
-                        animate={{ y: [0, 10, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                        className="text-white/60 text-center"
-                    >
-                        <div className="text-sm mb-2">Scroll to explore</div>
-                        <div className="w-6 h-10 border-2 border-white/30 rounded-full mx-auto relative">
-                            <motion.div
-                                animate={{ y: [0, 20, 0] }}
-                                transition={{ duration: 1.5, repeat: Infinity }}
-                                className="w-1.5 h-1.5 bg-white rounded-full absolute left-1/2 transform -translate-x-1/2 top-2"
-                            />
-                        </div>
-                    </motion.div>
+                    <div className="w-full h-full bg-gradient-to-t from-black via-black/50 to-transparent"></div>
                 </motion.div>
             </section>
 
-            {/* Trusted Brands Section */}
+            {/* Our Services Section */}
             <section className="py-16 bg-gradient-to-b from-slate-950 to-slate-900">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
@@ -390,60 +392,63 @@ export default function Hero() {
                         viewport={{ once: true }}
                         className="text-center mb-12"
                     >
-                        <h2 className="text-3xl font-bold text-white mb-4">Trusted by Leading Brands</h2>
-                        <p className="text-gray-400">We're proud to work with the world's best technology companies</p>
+                        <h2 className="text-3xl font-bold text-white mb-4">Comprehensive Technology Solutions</h2>
+                        <p className="text-gray-400">From device repairs to IT infrastructure, we provide end-to-end technology services</p>
                     </motion.div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-                        {trustedBrands.map((brand, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                whileHover={{ scale: 1.1 }}
-                                className="flex flex-col items-center justify-center p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 transition-all duration-300"
-                            >
-                                <div className="text-white/60 hover:text-white transition-colors">
-                                    {brand.icon}
-                                </div>
-                                <span className="text-sm text-gray-400 mt-2">{brand.name}</span>
-                            </motion.div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[
+                            {
+                                title: 'Device Repair',
+                                description: 'Expert repair services for smartphones, laptops, and tablets',
+                                icon: <IconDeviceMobile className="w-8 h-8" />,
+                                stats: '5000+ Repairs',
+                                link: '/services/device-repair'
+                            },
+                            {
+                                title: 'IT Solutions',
+                                description: 'Complete IT infrastructure and support for businesses',
+                                icon: <IconServer className="w-8 h-8" />,
+                                stats: '200+ Clients',
+                                link: '/services/it-solutions'
+                            },
+                            {
+                                title: 'Software Development',
+                                description: 'Web, mobile & desktop applications',
+                                icon: <Code className="w-8 h-8" />,
+                                stats: '300+ Projects',
+                                link: '/services/software-development'
+                            },
+                            {
+                                title: 'Tech Support',
+                                description: '24/7 technical support and professional IT services',
+                                icon: <Headphones className="w-8 h-8" />,
+                                stats: '24/7 Available',
+                                link: '/services/tech-support'
+                            }
+                        ].map((service, index) => (
+                            <Link key={index} to={service.link} className="block">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
+                                    whileHover={{ scale: 1.05, y: -5 }}
+                                    className="flex flex-col p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 hover:border-[#e5500e]/30 transition-all duration-300 group cursor-pointer h-full"
+                                >
+                                    <div className="text-white/60 group-hover:text-[#e5500e] transition-colors mb-4">
+                                        {service.icon}
+                                    </div>
+                                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#e5500e] transition-colors">{service.title}</h3>
+                                    <p className="text-sm text-gray-400 mb-4 flex-grow">{service.description}</p>
+                                    <div className="text-xs text-[#e5500e] font-medium">{service.stats}</div>
+                                </motion.div>
+                            </Link>
                         ))}
                     </div>
                 </div>
             </section>
 
-            {/* Stats Section */}
-            <section ref={ref} className="py-20 bg-slate-900">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-                        {stats.map((stat, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 50 }}
-                                animate={inView ? { opacity: 1, y: 0 } : {}}
-                                transition={{ delay: index * 0.1, duration: 0.5 }}
-                                className="text-center"
-                            >
-                                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl text-white mb-4">
-                                    {stat.icon}
-                                </div>
-                                <motion.div
-                                    initial={{ scale: 0 }}
-                                    animate={inView ? { scale: 1 } : {}}
-                                    transition={{ delay: index * 0.1 + 0.3, type: "spring" }}
-                                    className="text-4xl font-bold text-white mb-2"
-                                >
-                                    {stat.number}
-                                </motion.div>
-                                <div className="text-gray-400">{stat.label}</div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
 
             {/* Add the modal */}
             <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />

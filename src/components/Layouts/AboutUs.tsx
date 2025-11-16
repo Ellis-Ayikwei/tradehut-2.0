@@ -32,25 +32,25 @@ const values = [
         icon: <IconBulb className="w-8 h-8" />,
         title: 'Innovation',
         description: 'Pushing boundaries with cutting-edge technology solutions',
-        gradient: 'from-yellow-500 to-orange-500'
+        color: 'bg-orange-500'
     },
     {
         icon: <IconShieldCheck className="w-8 h-8" />,
         title: 'Trust',
         description: 'Building lasting relationships through transparency and reliability',
-        gradient: 'from-blue-500 to-cyan-500'
+        color: 'bg-blue-500'
     },
     {
         icon: <Handshake className="w-8 h-8" />,
         title: 'Partnership',
         description: 'Growing together with our clients as technology partners',
-        gradient: 'from-purple-500 to-pink-500'
+        color: 'bg-purple-500'
     },
     {
         icon: <IconAward className="w-8 h-8" />,
         title: 'Excellence',
         description: 'Delivering world-class quality in every project we undertake',
-        gradient: 'from-green-500 to-emerald-500'
+        color: 'bg-green-500'
     }
 ];
 
@@ -139,7 +139,7 @@ const AboutUs: React.FC = () => {
                                 className="bg-gradient-to-br from-blue-600/10 to-purple-600/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
                             >
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                                    <div className="w-12 h-12 bg-[#e5500e] rounded-xl flex items-center justify-center">
                                         <Target className="w-6 h-6 text-white" />
                                     </div>
                                     <h4 className="text-xl font-semibold text-white">Our Mission</h4>
@@ -155,7 +155,7 @@ const AboutUs: React.FC = () => {
                                 className="bg-gradient-to-br from-purple-600/10 to-pink-600/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
                             >
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl flex items-center justify-center">
+                                    <div className="w-12 h-12 bg-[#e5500e] rounded-xl flex items-center justify-center">
                                         <Eye className="w-6 h-6 text-white" />
                                     </div>
                                     <h4 className="text-xl font-semibold text-white">Our Vision</h4>
@@ -171,7 +171,7 @@ const AboutUs: React.FC = () => {
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#d44a0d]"
                         >
                             <span>Learn More About Us</span>
                             <ArrowRight className="w-4 h-4" />
@@ -258,7 +258,7 @@ const AboutUs: React.FC = () => {
                                 className="group"
                             >
                                 <div className="relative h-full bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300">
-                                    <div className={`w-16 h-16 bg-gradient-to-r ${value.gradient} rounded-2xl flex items-center justify-center text-white mb-4 mx-auto group-hover:scale-110 transition-transform`}>
+                                    <div className={`w-16 h-16 ${value.color} rounded-2xl flex items-center justify-center text-white mb-4 mx-auto group-hover:scale-110 transition-transform`}>
                                         {value.icon}
                                     </div>
                                     <h4 className="text-xl font-semibold text-white mb-2">{value.title}</h4>
@@ -289,7 +289,7 @@ const AboutUs: React.FC = () => {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                                className="px-6 py-3 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#d44a0d]"
                             >
                                 Get Started Today
                             </motion.button>

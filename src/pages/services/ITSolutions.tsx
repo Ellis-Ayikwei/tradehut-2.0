@@ -25,8 +25,6 @@ import {
     IconDeviceAnalytics,
     IconServerCog
 } from '@tabler/icons-react';
-import ModernNavbar from '../../components/Layouts/ModernNavbar';
-import Footer from '../../components/Layouts/Footer';
 import ServiceModal from '../../components/Services/ServiceModal';
 
 const itServices = [
@@ -105,7 +103,7 @@ const ITSolutions: React.FC = () => {
             icon: service.icon,
             features: service.services,
             pricing: {
-                starting: '$299/month',
+                starting: 'GHC 3,000/month',
                 factors: [
                     'Business size and needs',
                     'Number of users/devices',
@@ -144,8 +142,6 @@ const ITSolutions: React.FC = () => {
 
     return (
         <>
-            <ModernNavbar />
-            
             {/* Hero Section */}
             <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-purple-950 to-blue-950">
                 {/* Background Effects */}
@@ -413,8 +409,6 @@ const ITSolutions: React.FC = () => {
                     </motion.div>
                 </div>
             </section>
-
-            <Footer />
 
             {/* Service Modal */}
             {selectedService && (

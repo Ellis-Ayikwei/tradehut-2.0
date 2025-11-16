@@ -33,7 +33,7 @@ const faqs = [
         id: 1,
         category: 'general',
         question: 'What services does TradeHut offer?',
-        answer: 'TradeHut provides comprehensive technology solutions including device repairs (smartphones, laptops, tablets), IT infrastructure support, custom web development, and 24/7 technical support. We serve both individual customers and businesses with cutting-edge solutions.',
+        answer: 'TradeHut provides comprehensive technology solutions including device repairs (smartphones, laptops, tablets), IT infrastructure support, custom software development (web, mobile & desktop), and 24/7 technical support. We serve both individual customers and businesses with cutting-edge solutions.',
         icon: <IconBulb className="w-6 h-6" />
     },
     {
@@ -178,7 +178,7 @@ const FAQ: React.FC = () => {
                         onClick={() => setSelectedCategory('all')}
                         className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
                             selectedCategory === 'all'
-                                ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                                ? 'bg-[#e5500e] text-white shadow-lg'
                                 : 'bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white'
                         }`}
                     >
@@ -193,7 +193,7 @@ const FAQ: React.FC = () => {
                             onClick={() => setSelectedCategory(category.id)}
                             className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
                                 selectedCategory === category.id
-                                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                                    ? 'bg-[#e5500e] text-white shadow-lg'
                                     : 'bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white'
                             }`}
                         >
@@ -285,7 +285,7 @@ const FAQ: React.FC = () => {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                                className="px-6 py-3 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#d44a0d]"
                             >
                                 Contact Support
                             </motion.button>

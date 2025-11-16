@@ -78,8 +78,8 @@ const services = [
     },
     {
         id: 3,
-        title: 'Web Development',
-        description: 'Custom web applications and digital solutions for modern businesses',
+        title: 'Software Development',
+        description: 'Web, mobile & desktop applications for modern businesses',
         icon: <IconCode className="w-8 h-8" />,
         gradient: 'from-green-600 to-emerald-600',
         features: [
@@ -245,11 +245,11 @@ const ModernServices: React.FC = () => {
                                 </div>
 
                                 {/* View Details Button */}
-                                <Link to={`/services/${service.id === 1 ? 'device-repair' : service.id === 2 ? 'it-solutions' : service.id === 3 ? 'web-development' : 'tech-support'}`}>
+                                <Link to={`/services/${service.id === 1 ? 'device-repair' : service.id === 2 ? 'it-solutions' : service.id === 3 ? 'software-development' : 'tech-support'}`}>
                                     <motion.button
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
-                                        className="w-full mt-4 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2"
+                                        className="w-full mt-4 px-6 py-3 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#d44a0d]"
                                     >
                                         <span>View Details</span>
                                         <ArrowRight className="w-4 h-4" />
@@ -278,7 +278,7 @@ const ModernServices: React.FC = () => {
                 >
                     <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl border border-white/10 backdrop-blur-sm">
                         <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                            <div className="w-12 h-12 bg-[#e5500e] rounded-xl flex items-center justify-center">
                                 <IconRocket className="w-6 h-6 text-white" />
                             </div>
                             <div className="text-left">
@@ -289,7 +289,7 @@ const ModernServices: React.FC = () => {
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                            className="px-6 py-3 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#d44a0d]"
                         >
                             <span className="flex items-center gap-2">
                                 Get Free Consultation

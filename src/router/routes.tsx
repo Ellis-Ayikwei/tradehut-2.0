@@ -10,8 +10,22 @@ const Index = lazy(() => import('../pages/Index'));
 // Service Pages
 const DeviceRepair = lazy(() => import('../pages/services/DeviceRepair'));
 const ITSolutions = lazy(() => import('../pages/services/ITSolutions'));
-const WebDevelopment = lazy(() => import('../pages/services/WebDevelopment'));
+const SoftwareDevelopment = lazy(() => import('../pages/services/SoftwareDevelopment'));
 const TechSupport = lazy(() => import('../pages/services/TechSupport'));
+const AllProjects = lazy(() => import('../pages/AllProjects'));
+
+// Footer Pages
+const Team = lazy(() => import('../pages/Team'));
+const Careers = lazy(() => import('../pages/Careers'));
+const Press = lazy(() => import('../pages/Press'));
+const Help = lazy(() => import('../pages/Help'));
+const Contact = lazy(() => import('../pages/Contact'));
+const Track = lazy(() => import('../pages/Track'));
+const Warranty = lazy(() => import('../pages/Warranty'));
+const Privacy = lazy(() => import('../pages/Privacy'));
+const Terms = lazy(() => import('../pages/Terms'));
+const Cookies = lazy(() => import('../pages/Cookies'));
+const Refunds = lazy(() => import('../pages/Refunds'));
 
 // Admin Pages
 const AdminProducts = lazy(() => import('../pages/admin/Products'));
@@ -71,13 +85,74 @@ const routes = [
         layout: 'blank',
     },
     {
-        path: '/services/web-development',
-        element: <WebDevelopment />,
+        path: '/services/software-development',
+        element: <SoftwareDevelopment />,
         layout: 'blank',
     },
     {
         path: '/services/tech-support',
         element: <TechSupport />,
+        layout: 'blank',
+    },
+    {
+        path: '/projects',
+        element: <AllProjects />,
+        layout: 'blank',
+    },
+    // Footer Pages
+    {
+        path: '/team',
+        element: <Team />,
+        layout: 'blank',
+    },
+    {
+        path: '/careers',
+        element: <Careers />,
+        layout: 'blank',
+    },
+    {
+        path: '/press',
+        element: <Press />,
+        layout: 'blank',
+    },
+    {
+        path: '/help',
+        element: <Help />,
+        layout: 'blank',
+    },
+    {
+        path: '/contact',
+        element: <Contact />,
+        layout: 'blank',
+    },
+    {
+        path: '/track',
+        element: <Track />,
+        layout: 'blank',
+    },
+    {
+        path: '/warranty',
+        element: <Warranty />,
+        layout: 'blank',
+    },
+    {
+        path: '/privacy',
+        element: <Privacy />,
+        layout: 'blank',
+    },
+    {
+        path: '/terms',
+        element: <Terms />,
+        layout: 'blank',
+    },
+    {
+        path: '/cookies',
+        element: <Cookies />,
+        layout: 'blank',
+    },
+    {
+        path: '/refunds',
+        element: <Refunds />,
         layout: 'blank',
     },
     // Admin Pages

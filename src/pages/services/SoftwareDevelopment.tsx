@@ -24,13 +24,12 @@ import {
     IconBrandNodejs,
     IconDatabase,
     IconApi,
-    IconDeviceMobileCode
+    IconDeviceMobileCode,
+    IconDeviceMobile
 } from '@tabler/icons-react';
-import ModernNavbar from '../../components/Layouts/ModernNavbar';
-import Footer from '../../components/Layouts/Footer';
-import ServiceModal from '../../components/Services/ServiceModal';
+import SoftwareDevelopmentModal from '../../components/Services/SoftwareDevelopmentModal';
 
-const webServices = [
+const softwareServices = [
     {
         icon: <IconCode className="w-8 h-8" />,
         title: 'Custom Web Applications',
@@ -40,11 +39,19 @@ const webServices = [
         technologies: ['React', 'Vue.js', 'Node.js', 'MongoDB']
     },
     {
+        icon: <IconDeviceMobile className="w-8 h-8" />,
+        title: 'Mobile App Development',
+        description: 'Native and cross-platform mobile applications',
+        services: ['iOS Development', 'Android Development', 'React Native', 'Flutter Apps', 'App Store Deployment'],
+        gradient: 'from-purple-500 to-pink-500',
+        technologies: ['React Native', 'Flutter', 'Swift', 'Kotlin']
+    },
+    {
         icon: <ShoppingCart className="w-8 h-8" />,
         title: 'E-Commerce Solutions',
         description: 'Complete online store setup with payment integration',
         services: ['Online Store Setup', 'Payment Gateway Integration', 'Inventory Management', 'Shopping Cart', 'Order Tracking'],
-        gradient: 'from-purple-500 to-pink-500',
+        gradient: 'from-green-500 to-emerald-500',
         technologies: ['WooCommerce', 'Shopify', 'Stripe', 'PayPal']
     },
     {
@@ -52,7 +59,7 @@ const webServices = [
         title: 'Responsive Web Design',
         description: 'Beautiful, mobile-first websites that work on all devices',
         services: ['Mobile-First Design', 'Cross-Browser Compatible', 'SEO Optimization', 'Fast Loading', 'Accessibility'],
-        gradient: 'from-green-500 to-emerald-500',
+        gradient: 'from-orange-500 to-red-500',
         technologies: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap']
     },
     {
@@ -60,8 +67,16 @@ const webServices = [
         title: 'API Development',
         description: 'Robust backend solutions and API integrations',
         services: ['RESTful APIs', 'GraphQL', 'Third-party Integration', 'Database Design', 'Authentication'],
-        gradient: 'from-orange-500 to-red-500',
+        gradient: 'from-indigo-500 to-purple-500',
         technologies: ['Node.js', 'Express', 'PostgreSQL', 'JWT']
+    },
+    {
+        icon: <IconDatabase className="w-8 h-8" />,
+        title: 'Desktop Applications',
+        description: 'Cross-platform desktop software solutions',
+        services: ['Electron Apps', 'Windows Applications', 'macOS Applications', 'Linux Applications', 'System Integration'],
+        gradient: 'from-teal-500 to-cyan-500',
+        technologies: ['Electron', 'Python', 'C#', 'Java']
     }
 ];
 
@@ -98,7 +113,7 @@ const developmentProcess = [
     }
 ];
 
-const WebDevelopment: React.FC = () => {
+const SoftwareDevelopment: React.FC = () => {
     const [selectedService, setSelectedService] = useState<any>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
@@ -109,30 +124,61 @@ const WebDevelopment: React.FC = () => {
             description: service.description,
             icon: service.icon,
             features: service.services,
-            pricing: {
-                starting: '$1,999',
-                factors: [
-                    'Project complexity',
-                    'Number of pages/features',
-                    'Design requirements',
-                    'Timeline urgency'
-                ]
-            },
+            packages: [
+                {
+                    name: 'Starter',
+                    price: 'GHC 5,000',
+                    features: [
+                        'Up to 5 pages/screens',
+                        'Responsive design',
+                        'Basic features',
+                        'Contact form',
+                        '3 months support'
+                    ]
+                },
+                {
+                    name: 'Professional',
+                    price: 'GHC 15,000',
+                    features: [
+                        'Up to 15 pages/screens',
+                        'Custom design',
+                        'Advanced features',
+                        'Payment integration',
+                        '6 months support',
+                        'Performance optimization'
+                    ],
+                    popular: true
+                },
+                {
+                    name: 'Enterprise',
+                    price: 'GHC 35,000+',
+                    features: [
+                        'Unlimited pages/screens',
+                        'Fully custom solution',
+                        'E-commerce functionality',
+                        'API integrations',
+                        'Advanced analytics',
+                        '12 months support',
+                        'Priority maintenance',
+                        'Dedicated project manager'
+                    ]
+                }
+            ],
             duration: '4-12 weeks depending on scope',
             warranty: '6 months free maintenance',
             process: developmentProcess.map(p => `${p.phase}: ${p.description}`),
             faqs: [
                 {
                     question: 'What technologies do you use?',
-                    answer: 'We use modern technologies like React, Vue.js, Node.js, and more. We choose the best tech stack based on your project requirements.'
+                    answer: 'We use modern technologies like React, React Native, Flutter, Node.js, and more. We choose the best tech stack based on your project requirements.'
                 },
                 {
-                    question: 'Do you provide hosting?',
-                    answer: 'Yes! We can set up and manage hosting on platforms like AWS, Vercel, or any provider of your choice.'
+                    question: 'Do you provide hosting and deployment?',
+                    answer: 'Yes! We can set up and manage hosting on platforms like AWS, Vercel, App Store, Google Play, or any provider of your choice.'
                 },
                 {
-                    question: 'Can you maintain my website?',
-                    answer: 'Absolutely! We offer ongoing maintenance packages to keep your website updated, secure, and running smoothly.'
+                    question: 'Can you maintain my application?',
+                    answer: 'Absolutely! We offer ongoing maintenance packages to keep your application updated, secure, and running smoothly.'
                 }
             ]
         };
@@ -142,8 +188,6 @@ const WebDevelopment: React.FC = () => {
 
     return (
         <>
-            <ModernNavbar />
-            
             {/* Hero Section */}
             <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-green-950 to-emerald-950">
                 {/* Background Effects */}
@@ -161,7 +205,7 @@ const WebDevelopment: React.FC = () => {
                     >
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-600/20 to-emerald-600/20 rounded-full border border-green-500/20 mb-6">
                             <Code className="w-4 h-4 text-green-400" />
-                            <span className="text-sm text-green-300 font-medium">Modern Web Development</span>
+                            <span className="text-sm text-green-300 font-medium">Modern Software Development</span>
                         </div>
                         
                         <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6">
@@ -172,7 +216,7 @@ const WebDevelopment: React.FC = () => {
                         </h1>
                         
                         <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                            Custom web applications and websites that drive results. 
+                            Custom software solutions - web, mobile, and desktop applications that drive results. 
                             From concept to deployment, we bring your vision to life.
                         </p>
 
@@ -207,7 +251,7 @@ const WebDevelopment: React.FC = () => {
                         className="text-center mb-12"
                     >
                         <h2 className="text-4xl font-bold text-white mb-4">
-                            Why Choose Our Web Development?
+                            Why Choose Our Software Development?
                         </h2>
                         <p className="text-xl text-gray-400 max-w-2xl mx-auto">
                             We deliver more than just code - we create digital experiences
@@ -217,7 +261,7 @@ const WebDevelopment: React.FC = () => {
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {[
                             { icon: <Palette className="w-6 h-6" />, title: 'Modern Design', description: 'Clean, contemporary designs that captivate users' },
-                            { icon: <Smartphone className="w-6 h-6" />, title: 'Mobile First', description: 'Responsive designs that work on all devices' },
+                            { icon: <Smartphone className="w-6 h-6" />, title: 'Cross-Platform', description: 'Solutions that work on all devices and platforms' },
                             { icon: <Gauge className="w-6 h-6" />, title: 'Fast Performance', description: 'Optimized for speed and user experience' },
                             { icon: <Search className="w-6 h-6" />, title: 'SEO Optimized', description: 'Built to rank well in search engines' },
                             { icon: <Shield className="w-6 h-6" />, title: 'Secure Code', description: 'Following best security practices' },
@@ -258,15 +302,15 @@ const WebDevelopment: React.FC = () => {
                         className="text-center mb-12"
                     >
                         <h2 className="text-4xl font-bold text-white mb-4">
-                            Web Development Services
+                            Software Development Services
                         </h2>
                         <p className="text-xl text-gray-400 max-w-2xl mx-auto">
                             From simple websites to complex applications, we've got you covered
                         </p>
                     </motion.div>
 
-                    <div ref={ref} className="grid md:grid-cols-2 gap-8">
-                        {webServices.map((service, index) => (
+                    <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {softwareServices.map((service, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, scale: 0.9 }}
@@ -395,7 +439,7 @@ const WebDevelopment: React.FC = () => {
                             Ready to Build Something Amazing?
                         </h2>
                         <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                            Let's discuss your project and bring your ideas to life with modern web development
+                            Let's discuss your project and bring your ideas to life with modern software development
                         </p>
                         <div className="flex flex-wrap gap-4 justify-center">
                             <motion.button
@@ -418,11 +462,9 @@ const WebDevelopment: React.FC = () => {
                 </div>
             </section>
 
-            <Footer />
-
             {/* Service Modal */}
             {selectedService && (
-                <ServiceModal
+                <SoftwareDevelopmentModal
                     isOpen={isModalOpen}
                     onClose={() => setIsModalOpen(false)}
                     service={selectedService}
@@ -432,4 +474,5 @@ const WebDevelopment: React.FC = () => {
     );
 };
 
-export default WebDevelopment;
+export default SoftwareDevelopment;
+
