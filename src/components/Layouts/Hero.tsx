@@ -1,193 +1,457 @@
 'use client';
 
-import { faFacebookF, faGithub, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { TextPlugin } from 'gsap/TextPlugin';
-import { useRef, useState } from 'react';
-import './jh.css';
+import React, { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { 
+    ArrowRight, 
+    Play,
+    Database,
+    Cloud,
+    Network,
+    Cpu,
+    Shield,
+    Code,
+    Headphones,
+    Sparkles,
+    CheckCircle2
+} from 'lucide-react';
+import {
+    IconBrandApple,
+    IconBrandWindows,
+    IconDeviceMobile,
+    IconDeviceLaptop,
+    IconServer,
+    IconBrandPython,
+    IconBrandJavascript,
+    IconBrandReact,
+    IconBrandNodejs,
+    IconBrandDocker,
+    IconBrandAws,
+    IconBrandGit,
+    IconBrandTypescript
+} from '@tabler/icons-react';
+import Marquee from 'react-fast-marquee';
 import ContactModal from './ContactModal';
-import IconMenu from '../Icon/IconMenu';
-import IconShoppingBag from '../Icon/IconShoppingBag';
+import ModernNavbar from './ModernNavbar';
 
-const brands = [
-    { name: 'Brand 1', image: '/assets/images/campanies/brand1.png' },
-    { name: 'Brand 2', image: '/assets/images/campanies/brand2.png' },
-    { name: 'Brand 3', image: '/assets/images/campanies/brand3.png' },
-    { name: 'Brand 4', image: '/assets/images/campanies/brand4.png' },
-    { name: 'Brand 5', image: '/assets/images/campanies/brand5.png' },
-    { name: 'Brand 6', image: '/assets/images/campanies/brand6.png' },
-    { name: 'Brand 7', image: '/assets/images/campanies/brand7.png' },
-    { name: 'Brand 8', image: '/assets/images/campanies/brand8.png' },
-    { name: 'Brand 9', image: '/assets/images/campanies/brand9.png' },
-    { name: 'Brand 10', image: '/assets/images/campanies/brand10.png' },
+const trustedBrands = [
+    { name: 'Apple', icon: <IconBrandApple className="w-8 h-8" /> },
+    { name: 'Samsung', icon: <IconDeviceMobile className="w-8 h-8" /> },
+    { name: 'HP', icon: <IconDeviceLaptop className="w-8 h-8" /> },
+    { name: 'Dell', icon: <IconServer className="w-8 h-8" /> },
+    { name: 'Lenovo', icon: <IconDeviceLaptop className="w-8 h-8" /> },
+    { name: 'Microsoft', icon: <IconBrandWindows className="w-8 h-8" /> },
 ];
 
-const socialLinks = [
-    { icon: faFacebookF, href: 'https://web.facebook.com/ellis.hero/', label: 'Facebook' },
-    { icon: faGithub, href: 'https://github.com/Ellis-Ayikwei', label: 'GitHub' },
-    { icon: faInstagram, href: 'https://www.instagram.com/ellis_rockefeller/', label: 'Instagram' },
-    { icon: faLinkedin, href: 'https://www.linkedin.com/in/ellis-armah-ayikwei-4a817b192/', label: 'LinkedIn' },
-    { icon: faTwitter, href: 'https://x.com/home', label: 'Twitter' },
+const techStack = [
+    { name: 'Python', icon: IconBrandPython },
+    { name: 'JavaScript', icon: IconBrandJavascript },
+    { name: 'TypeScript', icon: IconBrandTypescript },
+    { name: 'React', icon: IconBrandReact },
+    { name: 'Node.js', icon: IconBrandNodejs },
+    { name: 'Docker', icon: IconBrandDocker },
+    { name: 'AWS', icon: IconBrandAws },
+    { name: 'Git', icon: IconBrandGit },
+    { name: 'AI/ML', icon: Cpu },
+    { name: 'MCP', icon: Network },
+    { name: 'Database', icon: Database },
+    { name: 'Cloud', icon: Cloud },
 ];
+
 
 export default function Hero() {
-    const boxRef = useRef<HTMLDivElement | null>(null);
-    const nameRef = useRef<HTMLParagraphElement | null>(null);
-    const bgRef = useRef<HTMLDivElement | null>(null);
     const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-
-    gsap.registerPlugin(TextPlugin, ScrollTrigger);
-
-    useGSAP(() => {
-        // Animation for name text
-        gsap.to(nameRef.current, {
-            text: 'Ellis Armah Ayikwei',
-            duration: 5,
-        });
-
-        // Hero content fade in animation
-        gsap.from('.hero-content', {
-            y: 50,
-            opacity: 0,
-            duration: 1.5,
-            ease: 'power2.out',
-            stagger: 0.3,
-            scrollTrigger: {
-                trigger: '.hero-content',
-                start: 'top 80%',
-            },
-        });
-
-        // Brand logos animation
-        gsap.from('.brand-logo', {
-            scale: 0,
-            opacity: 0,
-            duration: 0.5,
-            stagger: 0.1,
-            ease: 'back.out(1.7)',
-            scrollTrigger: {
-                trigger: '.brands-section',
-                start: 'top 80%',
-            },
-        });
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end start"]
     });
+    
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+    const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+
 
     return (
-        <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#dc711a] to-[#B95D13FF] mx-2 my-0 md:mx-10 md:my-10">
-            {/* Background Pattern */}
-            <div className="absolute inset-0">
-                <div className="absolute inset-0 bg-[url('/src/assets/images/abstract-timekeeper.svg')] opacity-10" />
-                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+        <>
+           
+            
+            {/* Ultra Modern Hero Section */}
+            <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black py-8 sm:py-12 lg:py-0">
+                {/* Minimalist Beam Arch */}
+                {/* <div className="absolute inset-0 overflow-hidden">
+                    <svg className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="none">
+                        <defs>
+                            <radialGradient id="archGradient" cx="50%" cy="0%" r="30%">
+                                <stop offset="0%" stopColor="#e5500e" stopOpacity="0.9" />
+                                <stop offset="20%" stopColor="#e5500e" stopOpacity="0.4" />
+                                <stop offset="40%" stopColor="#e5500e" stopOpacity="0.1" />
+                                <stop offset="100%" stopColor="#e5500e" stopOpacity="0" />
+                            </radialGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="40" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <path
+                            d="M 0,400 Q 600,-150 1200,400 L 1200,800 L 0,800 Z"
+                            fill="url(#archGradient)"
+                            opacity="1"
+                            filter="url(#glow)"
+                        />
+                    </svg>
+                </div> */}
 
-                {/* Animated Circles */}
-                <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl animate-blob" />
-                <div className="absolute top-1/2 right-0 w-96 h-96 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl animate-blob animation-delay-2000" />
-                <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-white/10 rounded-full -translate-y-1/2 blur-3xl animate-blob animation-delay-4000" />
+                {/* Minimalist Grid Pattern */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+
+          
+          
+                {/* Main Content */}
+                <motion.div 
+                    style={{ y, opacity }}
+                    className="relative z-10 max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 mt-16 sm:mt-20 md:mt-24 lg:mt-28"
+                >
+                    <div className="flex flex-col items-center">
+                        {/* New Software Announcement */}
+                        <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                            className="text-center mb-4 sm:mb-6 w-full"
+                        >
+                            <Link to="https://scrubimail.com">
+                                <motion.span
+                                    initial={{ scale: 0.9 }}
+                                    animate={{ scale: 1 }}
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
+                                    className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-[#e5500e]/20 backdrop-blur-sm rounded-full border border-[#e5500e]/30 text-[#e5500e] text-xs sm:text-sm font-medium hover:bg-[#e5500e]/30 transition-all duration-300 cursor-pointer"
+                                >
+                                    {/* Blinking Green Dot */}
+                                    <motion.span
+                                        animate={{ opacity: [1, 0.3, 1] }}
+                                        transition={{ 
+                                            duration: 1.5, 
+                                            repeat: Infinity,
+                                            ease: "easeInOut"
+                                        }}
+                                        className="relative flex items-center justify-center"
+                                    >
+                                        <span className="absolute w-2 h-2 bg-green-500 rounded-full"></span>
+                                    </motion.span>
+                                    <span>Whats New: ScrubiMail </span>
+                                    <span className="ml-2 px-3 py-1 flex items-center gap-2 bg-[#e5500e] text-white rounded-full text-xs font-medium">Check it out
+                                        <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                                    </span>
+                                </motion.span>
+                            </Link>
+                        </motion.div>
+
+                        {/* Main Heading */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.8 }}
+                            className="text-center mb-3 sm:mb-4 w-full"
+                        >
+                            <motion.h1
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 1 }}
+                                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white mb-2 sm:mb-4 leading-tight px-1 sm:px-2"
+                            >
+                                Effortless Technology,
+                                <span className="block bg-gradient-to-r from-white via-gray-300 to-white bg-clip-text text-transparent">
+                                    Expertly Managed.
+                                </span>
+                            </motion.h1>
+                        </motion.div>
+
+                        {/* Description and CTA */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.2 }}
+                            className="text-center w-full max-w-xs sm:max-w-lg md:max-w-2xl px-3 sm:px-4"
+                        >
+                            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-2 leading-relaxed font-medium">
+                                Your Complete Technology Ecosystem, Perfected.
+                            </p>
+                            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 mb-3 sm:mb-4 leading-relaxed">
+                                Repairs, software, cloud, automation, and everything in between. 
+                                Your one-stop solution for all technology needs—from device fixes to enterprise solutions.
+                            </p>
+
+                            {/* CTA Buttons - Apple-like Dark Gradients */}
+                            {/* <div className="flex flex-wrap justify-center gap-4">
+                                <motion.button
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    onClick={() => setIsContactModalOpen(true)}
+                                    className="group relative px-8 py-3.5 bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white rounded-lg font-medium shadow-lg border border-gray-700/50 hover:border-gray-600/50 transition-all duration-300 overflow-hidden"
+                                >
+                                    <span className="relative z-10 flex items-center gap-2">
+                                        Get Started
+                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                    </span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </motion.button>
+
+                                <motion.button
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="group px-8 py-3.5 bg-gradient-to-r from-black via-gray-900 to-black text-white rounded-lg font-medium border border-gray-800/50 hover:border-gray-700/50 hover:bg-gradient-to-r hover:from-gray-900 hover:via-gray-800 hover:to-gray-900 transition-all duration-300"
+                                >
+                                    <span className="flex items-center gap-2">
+                                        <Play className="w-4 h-4" />
+                                        Watch Demo
+                                    </span>
+                                </motion.button>
+                            </div> */}
+                        </motion.div>
+
+                        {/* Tech Stack Marquee - Full Width with Fade */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1.4 }}
+                            className="w-full mt-3 sm:mt-4 mb-3 sm:mb-4 relative overflow-hidden"
+                        >
+                            {/* Fade overlay for soft entry/exit */}
+                            <div className="absolute inset-0 z-10 pointer-events-none">
+                                <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-gradient-to-r from-black to-transparent"></div>
+                                <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-24 md:w-32 bg-gradient-to-l from-black to-transparent"></div>
+                            </div>
+                            
+                            <Marquee
+                                speed={50}
+                                gradient={false}
+                                pauseOnHover={true}
+                                className="py-2 sm:py-3 md:py-4"
+                            >
+                                {techStack.map((tech, index) => {
+                                    const IconComponent = tech.icon;
+                                    return (
+                                        <div
+                                            key={index}
+                                            className="flex items-center gap-2 sm:gap-3 mx-2 sm:mx-4 md:mx-6 px-3 sm:px-4 md:px-6 py-2 sm:py-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300"
+                                        >
+                                            <div className="text-white/80 flex-shrink-0">
+                                                <IconComponent className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10" />
+                                            </div>
+                                            <span className="text-xs sm:text-sm text-gray-300 font-medium whitespace-nowrap">
+                                                {tech.name}
+                                            </span>
+                                        </div>
+                                    );
+                                })}
+                            </Marquee>
+                        </motion.div>
+
+      {/* Laptop Image - Main Feature */}
+      <div className="relative w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto mt-3 sm:mt-4 md:mt-6 lg:mt-8 px-1 sm:px-2 md:px-4 lg:px-0">
+            {/* Glow effects around laptop */}
+            <div className="absolute inset-0 bg-[#e5500e]/20 rounded-3xl blur-3xl transform scale-110"></div>
+            <div className="absolute inset-0 bg-[#e5500e]/15 rounded-3xl blur-2xl transform scale-105"></div>
+            <div className="absolute inset-0 bg-[#e5500e]/10 rounded-3xl blur-xl"></div>
+            
+            {/* Laptop image container */}
+            <div className="relative">
+              <img 
+                src="/assets/images/hero/Macbook-Air-192.168.100.12.png" 
+                alt="Email Validation Dashboard on MacBook Air"
+                className="w-full h-auto mx-auto drop-shadow-2xl"
+              />
+              
+              {/* Floating Nodes Overlay - Inside laptop screen area */}
+              <div className="absolute top-[8%] left-[6%] right-[6%] bottom-[25%] pointer-events-none">
+                <div className="relative w-full h-full">
+                  {/* Floating Nodes */}
+                  {[
+                    { x: 20, y: 30, size: 16, color: 'rgb(16, 185, 129)' },
+                    { x: 60, y: 50, size: 24, color: 'rgb(30, 58, 138)' },
+                    { x: 80, y: 70, size: 20, color: 'rgb(16, 185, 129)' },
+                    { x: 40, y: 80, size: 16, color: 'rgb(30, 58, 138)' },
+                    { x: 70, y: 20, size: 20, color: 'rgb(16, 185, 129)' },
+                  ].map((node, i) => (
+                    <motion.div
+                      key={i}
+                      className="absolute rounded-full"
+                      style={{
+                        left: `${node.x}%`,
+                        top: `${node.y}%`,
+                        width: `${node.size}px`,
+                        height: `${node.size}px`,
+                        backgroundColor: node.color,
+                      }}
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.5, 1, 0.5],
+                      }}
+                      transition={{
+                        duration: 2 + i * 0.5,
+                        repeat: Infinity,
+                        delay: i * 0.3,
+                      }}
+                    />
+                  ))}
+
+                  {/* Connection Lines */}
+                  <svg className="absolute inset-0 w-full h-full opacity-30 pointer-events-none">
+                    <motion.line
+                      x1="20%"
+                      y1="30%"
+                      x2="60%"
+                      y2="50%"
+                      stroke="#10B981"
+                      strokeWidth="1"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      animate={{ pathLength: 1, opacity: 0.5 }}
+                      transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+                    />
+                    <motion.line
+                      x1="60%"
+                      y1="50%"
+                      x2="80%"
+                      y2="70%"
+                      stroke="#1E3A8A"
+                      strokeWidth="1"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      animate={{ pathLength: 1, opacity: 0.5 }}
+                      transition={{ duration: 2, delay: 0.5, repeat: Infinity, repeatType: "reverse" }}
+                    />
+                    <motion.line
+                      x1="80%"
+                      y1="70%"
+                      x2="40%"
+                      y2="80%"
+                      stroke="#10B981"
+                      strokeWidth="1"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      animate={{ pathLength: 1, opacity: 0.5 }}
+                      transition={{ duration: 2, delay: 1, repeat: Infinity, repeatType: "reverse" }}
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
 
-            {/* Main Hero Content */}
-            <div className="relative grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-                <div className="mr-auto place-self-center lg:col-span-7 hero-content">
-                    {/* Company Logo */}
-                    <div className="mb-2 md:mb-10 ">
-                        <img src="/assets/images/tradehut3.png" alt="TradeHut Logo" className="h-16 w-48 md:h-20 md:w-auto object-contain brightness-0 invert" />
+            
+
+            {/* Floating elements around laptop - hidden on mobile */}
+            <div className="hidden sm:block absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 animate-float-slow">
+              {/* Glow effect for analytics card */}
+              <div className="absolute inset-0 bg-[#1E3A8A]/30 rounded-2xl sm:rounded-3xl blur-xl"></div>
+              <div className="relative bg-white dark:bg-[#0d1117] rounded-2xl sm:rounded-3xl shadow-xl border border-gray-200 dark:border-[#30363d] p-3 sm:p-4 lg:p-6 transition-colors duration-300">
+                <div className="w-full h-full flex flex-col justify-between">
+                  <div className="flex items-center justify-between">
+                    <div className="w-1 h-4 sm:h-6 bg-[#10B981] rounded-full"></div>
+                    <div className="w-1 h-3 sm:h-4 bg-[#1E3A8A] rounded-full"></div>
+                    <div className="w-1 h-5 sm:h-8 bg-[#10B981] rounded-full"></div>
+                    <div className="w-1 h-2 sm:h-3 bg-[#EF4444] rounded-full"></div>
+                  </div>
+                  <div className="text-xs text-gray-500 dark:text-[#7d8590] text-center transition-colors duration-300">Analytics</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="hidden sm:block absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 animate-float-medium">
+              {/* Glow effect for shield */}
+              <div className="absolute inset-0 bg-[#1E3A8A]/30 rounded-full blur-xl"></div>
+              <div className="relative bg-white dark:bg-[#0d1117] rounded-full shadow-xl border border-gray-200 dark:border-[#30363d] flex items-center justify-center w-full h-full transition-colors duration-300">
+                <Shield className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-[#1E3A8A]" />
+              </div>
+            </div>
+          </div>
+
+
                     </div>
+                </motion.div>
 
-                    {/* Alert Banner */}
-                    <div className="flex items-center gap-2 px-4 py-2 mb-2 text-sm bg-white/10 backdrop-blur-sm rounded-full w-fit">
-                        <span className="flex h-2 w-2 ">
-                            <span className="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-white opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                        </span>
-                        <p className="text-white/90 text-xs md:text-sm">
-                            <span className="font-semibold text-white">New:</span> Check out our latest products
-                        </p>
-                    </div>
+                {/* Soft Gradient at Bottom */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1 }}
+                    className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+                >
+                    <div className="w-full h-full bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                </motion.div>
+            </section>
 
-                    {/* Hero Title */}
-                    <h1 className="max-w-2xl mb-4 text-4xl font-bold tracking-tight leading-none md:text-5xl xl:text-6xl text-white">
-                        Welcome to <span className="text-white/90 font-extrabold">TradeHut</span>
-                    </h1>
+            {/* Our Services Section */}
+            <section className="py-16 bg-gradient-to-b from-slate-950 to-slate-900">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-12"
+                    >
+                        <h2 className="text-3xl font-bold text-white mb-4">Comprehensive Technology Solutions</h2>
+                        <p className="text-gray-400">From device repairs to IT infrastructure, we provide end-to-end technology services</p>
+                    </motion.div>
 
-                    {/* Hero Description */}
-                    <p className="max-w-2xl mb-6 text-white/80 lg:mb-8 md:text-lg lg:text-xl font-light">
-                        Your trusted destination for reliable phone and laptop repairs, sales, professional IT support, and web development services. We deliver exceptional solutions tailored to your
-                        needs.
-                    </p>
-
-                    {/* CTA Button */}
-                    <div className="flex flex-nowrap md:flex-wrap gap-4 mt-8">
-                        <button
-                            onClick={() => setIsContactModalOpen(true)}
-                            className="btn btn-outline items-center px-4 md:px-8 py-2 text-sm md:text-base font-semibold text-white bg-transparent backdrop-blur-sm rounded-full hover:bg-[#dc711a]/30 transition-all"
-                        >
-                            Contact Us
-                            <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                                />
-                            </svg>
-                        </button>
-                        <a
-                            href="#store"
-                            className="inline-flex items-center px-4 md:px-8 py-2 text-sm md:text-base font-semibold text-[#dc711a] bg-white rounded-full hover:bg-white/90 transition-all"
-                        >
-                            <IconShoppingBag className="mr-2" /> Store
-                            {/* <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                            </svg> */}
-                        </a>
-                    </div>
-
-                    {/* Social Links */}
-                    <div className="flex gap-4 mt-8">
-                        {socialLinks.map((social, index) => (
-                            <a
-                                key={index}
-                                href={social.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
-                                aria-label={social.label}
-                            >
-                                <FontAwesomeIcon icon={social.icon} className="w-5 h-5" />
-                            </a>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[
+                            {
+                                title: 'Device Repair',
+                                description: 'Expert repair services for smartphones, laptops, and tablets',
+                                icon: <IconDeviceMobile className="w-8 h-8" />,
+                                stats: '5000+ Repairs',
+                                link: '/services/device-repair'
+                            },
+                            {
+                                title: 'IT Solutions',
+                                description: 'Complete IT infrastructure and support for businesses',
+                                icon: <IconServer className="w-8 h-8" />,
+                                stats: '200+ Clients',
+                                link: '/services/it-solutions'
+                            },
+                            {
+                                title: 'Software Development',
+                                description: 'Web, mobile & desktop applications',
+                                icon: <Code className="w-8 h-8" />,
+                                stats: '300+ Projects',
+                                link: '/services/software-development'
+                            },
+                            {
+                                title: 'Tech Support',
+                                description: '24/7 technical support and professional IT services',
+                                icon: <Headphones className="w-8 h-8" />,
+                                stats: '24/7 Available',
+                                link: '/services/tech-support'
+                            }
+                        ].map((service, index) => (
+                            <Link key={index} to={service.link} className="block">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
+                                    whileHover={{ scale: 1.05, y: -5 }}
+                                    className="flex flex-col p-6 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 hover:border-[#e5500e]/30 transition-all duration-300 group cursor-pointer h-full"
+                                >
+                                    <div className="text-white/60 group-hover:text-[#e5500e] transition-colors mb-4">
+                                        {service.icon}
+                                    </div>
+                                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#e5500e] transition-colors">{service.title}</h3>
+                                    <p className="text-sm text-gray-400 mb-4 flex-grow">{service.description}</p>
+                                    <div className="text-xs text-[#e5500e] font-medium">{service.stats}</div>
+                                </motion.div>
+                            </Link>
                         ))}
                     </div>
                 </div>
+            </section>
 
-                {/* Hero Image */}
-                <div className="hidden lg:mt-0 lg:col-span-5 lg:flex hero-content">
-                    <img src="/assets/images/arts/phone.png" alt="TradeHut Services" className="w-full h-auto object-contain drop-shadow-2xl animate-float" />
-                </div>
-            </div>
 
-            {/* Brands Section */}
-            <div className="px-4 py-5 mx-auto max-w-screen-xl text-center brands-section">
-                <h4 className="font-semibold text-xl mb-3 text-white">We Deal in Brands Like</h4>
-                <div className="w-24 h-1 mx-auto bg-white/20 mb-8"></div>
-
-                <div className="flex flex-wrap justify-center gap-6">
-                    {brands.map((brand, index) => (
-                        <div key={index} className="shadow-sm p-2 bg-white/10 backdrop-blur-sm rounded-lg hover:bg-white/20 transition-all duration-300 w-32 h-16 flex items-center justify-center">
-                            <img
-                                src={brand.image}
-                                alt={`${brand.name} logo`}
-                                title={`${brand.name} Logo`}
-                                className="max-w-[80px] max-h-[80px] object-contain brightness-0 invert hover:brightness-100 hover:invert-0 transition-all duration-300"
-                            />
-                        </div>
-                    ))}
-                </div>
-            </div>
-
+            {/* Add the modal */}
             <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
-        </section>
+        </>
     );
 }

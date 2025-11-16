@@ -54,7 +54,7 @@ const services: ServiceItem[] = [
         reversed: true,
     },
     {
-        title: 'Web Development',
+        title: 'Software Development',
         description: 'Custom websites and applications tailored to your business needs',
         icon: 'fas fa-code',
         image: '/assets/images/services/webdev.png',
@@ -109,7 +109,7 @@ const serviceCTAs: Record<string, ServiceCTA> = {
             link: '#status',
         },
     },
-    'Web Development': {
+    'Software Development': {
         title: 'Ready to build your online presence?',
         description: 'Get a custom website that perfectly represents your brand and drives results.',
         primaryButton: {
@@ -174,7 +174,7 @@ const Services: React.FC = () => {
             case 'Sales of Electronic Devices':
                 console.log(buttonType === 'primary' ? 'Shop Now' : 'View Catalog');
                 break;
-            case 'Web Development':
+            case 'Software Development':
                 if (buttonType === 'primary') {
                     setIsGetAppOpen(true);
                 } else {
@@ -213,7 +213,7 @@ const Services: React.FC = () => {
                             <span className="absolute bottom-1 left-0 w-full h-2 bg-orange-200 -z-0"></span>
                         </span>
                     </h1>
-                    <p className="text-gray-600 text-lg max-w-2xl mx-auto">From device repairs to web development, we provide end-to-end technology services with exceptional quality.</p>
+                    <p className="text-gray-600 text-lg max-w-2xl mx-auto">From device repairs to software development, we provide end-to-end technology services with exceptional quality.</p>
                 </motion.div>
 
                 {/* Refined Services List */}

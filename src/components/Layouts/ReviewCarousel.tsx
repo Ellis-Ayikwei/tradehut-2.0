@@ -22,7 +22,7 @@ const reviews: Review[] = [
         company: 'TechStart Ghana',
         image: '/src/assets/images/testimonials/sarah.jpg',
         rating: 5,
-        review: "TradeHut's web development service exceeded our expectations. They delivered a stunning website that perfectly captures our brand essence.",
+        review: "TradeHut's software development service exceeded our expectations. They delivered a stunning application that perfectly captures our brand essence.",
         service: 'web',
     },
     {
