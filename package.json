@@ -6,7 +6,8 @@
     "scripts": {
         "dev": "vite --host ",
         "build": "vite build",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "get-location-id": "node scripts/getLocationId.js"
     },
     "dependencies": {
         "@emailjs/browser": "^4.4.1",
@@ -30,7 +31,9 @@
         "@types/react": "^18.0.21",
         "@types/react-dom": "^18.0.6",
         "axios": "^1.7.9",
+        "dotenv": "^17.2.3",
         "framer-motion": "^12.0.1",
+        "googleapis": "^166.0.0",
         "lucide-react": "^0.460.0",
         "motion": "^12.0.1",
         "react": "^18.2.0",
