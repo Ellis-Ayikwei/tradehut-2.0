@@ -23,8 +23,8 @@ const initialFormState: ContactForm = {
 };
 
 const contactInfo = {
-    phone: '+233 24 123 4567',
-    whatsapp: '+233 24 123 4567',
+    phone: '+233 24 813 8722',
+    whatsapp: '+233 24 813 8722',
     location: 'Accra Mall, Spintex Road, Accra, Ghana',
     workingHours: 'Mon - Sat: 9:00 AM - 6:00 PM',
     socialMedia: {
