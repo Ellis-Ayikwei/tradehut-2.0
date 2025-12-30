@@ -214,9 +214,9 @@ const Footer: React.FC = () => {
 
                         {/* Contact Info */}
                         <div className="space-y-3">
-                            <a href="tel:+1234567890" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors">
+                            <a href="tel:+233248138722" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors">
                                 <IconPhone className="w-5 h-5 text-blue-400" />
-                                <span>+1 (234) 567-890</span>
+                                <span>+233 24 813 8722</span>
                             </a>
                             <a href="mailto:info@TradeHut.com" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors">
                                 <IconMail className="w-5 h-5 text-purple-400" />
@@ -224,7 +224,7 @@ const Footer: React.FC = () => {
                             </a>
                             <div className="flex items-start gap-3 text-gray-400">
                                 <IconMapPin className="w-5 h-5 text-green-400 mt-0.5" />
-                                <span>123 Tech Street, Silicon Valley, CA 94025</span>
+                                <span>123/4, La-Accra, Ghana</span>
                             </div>
                         </div>
                     </motion.div>
