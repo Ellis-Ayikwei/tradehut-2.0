@@ -35,7 +35,6 @@ const softwareServices = [
         title: 'Custom Web Applications',
         description: 'Tailored web solutions built with modern technologies',
         services: ['React/Vue/Angular Apps', 'Progressive Web Apps', 'SaaS Applications', 'Dashboard Development', 'API Integration'],
-        gradient: 'from-blue-500 to-cyan-500',
         technologies: ['React', 'Vue.js', 'Node.js', 'MongoDB']
     },
     {
@@ -43,7 +42,6 @@ const softwareServices = [
         title: 'Mobile App Development',
         description: 'Native and cross-platform mobile applications',
         services: ['iOS Development', 'Android Development', 'React Native', 'Flutter Apps', 'App Store Deployment'],
-        gradient: 'from-purple-500 to-pink-500',
         technologies: ['React Native', 'Flutter', 'Swift', 'Kotlin']
     },
     {
@@ -51,7 +49,6 @@ const softwareServices = [
         title: 'E-Commerce Solutions',
         description: 'Complete online store setup with payment integration',
         services: ['Online Store Setup', 'Payment Gateway Integration', 'Inventory Management', 'Shopping Cart', 'Order Tracking'],
-        gradient: 'from-green-500 to-emerald-500',
         technologies: ['WooCommerce', 'Shopify', 'Stripe', 'PayPal']
     },
     {
@@ -59,7 +56,6 @@ const softwareServices = [
         title: 'Responsive Web Design',
         description: 'Beautiful, mobile-first websites that work on all devices',
         services: ['Mobile-First Design', 'Cross-Browser Compatible', 'SEO Optimization', 'Fast Loading', 'Accessibility'],
-        gradient: 'from-orange-500 to-red-500',
         technologies: ['HTML5', 'CSS3', 'JavaScript', 'Bootstrap']
     },
     {
@@ -67,7 +63,6 @@ const softwareServices = [
         title: 'API Development',
         description: 'Robust backend solutions and API integrations',
         services: ['RESTful APIs', 'GraphQL', 'Third-party Integration', 'Database Design', 'Authentication'],
-        gradient: 'from-indigo-500 to-purple-500',
         technologies: ['Node.js', 'Express', 'PostgreSQL', 'JWT']
     },
     {
@@ -75,7 +70,6 @@ const softwareServices = [
         title: 'Desktop Applications',
         description: 'Cross-platform desktop software solutions',
         services: ['Electron Apps', 'Windows Applications', 'macOS Applications', 'Linux Applications', 'System Integration'],
-        gradient: 'from-teal-500 to-cyan-500',
         technologies: ['Electron', 'Python', 'C#', 'Java']
     }
 ];
@@ -189,11 +183,11 @@ const SoftwareDevelopment: React.FC = () => {
     return (
         <>
             {/* Hero Section */}
-            <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-green-950 to-emerald-950">
+            <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-black">
                 {/* Background Effects */}
                 <div className="absolute inset-0">
-                    <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-green-500/20 rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl"></div>
+                    <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-brand/10 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-slate-500/10 rounded-full blur-3xl"></div>
                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
                 </div>
 
@@ -203,20 +197,20 @@ const SoftwareDevelopment: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-600/20 to-emerald-600/20 rounded-full border border-green-500/20 mb-6">
-                            <Code className="w-4 h-4 text-green-400" />
-                            <span className="text-sm text-green-300 font-medium">Modern Software Development</span>
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-brand-light to-brand-dark rounded-full border border-white/10 mb-6">
+                            <Code className="w-4 h-4 text-white" />
+                            <span className="text-sm text-white font-medium">Modern Software Development</span>
                         </div>
-                        
+
                         <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6">
                             Build Your Digital
-                            <span className="block bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+                            <span className="block bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent">
                                 Presence Today
                             </span>
                         </h1>
-                        
+
                         <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                            Custom software solutions - web, mobile, and desktop applications that drive results. 
+                            Custom software solutions - web, mobile, and desktop applications that drive results.
                             From concept to deployment, we bring your vision to life.
                         </p>
 
@@ -225,7 +219,7 @@ const SoftwareDevelopment: React.FC = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                                className="px-8 py-4 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl hover:bg-brand-hover transition-all duration-300"
                             >
                                 View Services
                             </motion.button>
@@ -277,7 +271,7 @@ const SoftwareDevelopment: React.FC = () => {
                                 transition={{ delay: index * 0.1 }}
                                 className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300"
                             >
-                                <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl flex items-center justify-center text-white mb-4">
+                                <div className="w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark rounded-xl flex items-center justify-center text-white mb-4">
                                     {feature.icon}
                                 </div>
                                 <h3 className="text-lg font-semibold text-white mb-2">
@@ -319,14 +313,14 @@ const SoftwareDevelopment: React.FC = () => {
                                 onClick={() => handleServiceClick(service)}
                                 className="group cursor-pointer"
                             >
-                                <div className="relative h-full bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 overflow-hidden hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                                <div className="relative h-full bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 overflow-hidden hover:bg-white/10 hover:border-brand/30 transition-all duration-300">
                                     {/* Icon */}
-                                    <div className={`w-20 h-20 bg-gradient-to-r ${service.gradient} rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform`}>
+                                    <div className="w-20 h-20 bg-gradient-to-br from-brand-light to-brand-dark rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
                                         {service.icon}
                                     </div>
 
                                     {/* Content */}
-                                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors">
+                                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-brand transition-colors">
                                         {service.title}
                                     </h3>
                                     <p className="text-gray-400 mb-6">
@@ -358,13 +352,10 @@ const SoftwareDevelopment: React.FC = () => {
                                     </div>
 
                                     {/* CTA */}
-                                    <div className="flex items-center gap-2 text-green-400 group-hover:text-green-300 transition-colors">
+                                    <div className="flex items-center gap-2 text-brand group-hover:text-brand-light transition-colors">
                                         <span className="font-medium">Learn More</span>
                                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </div>
-
-                                    {/* Hover Effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-r from-green-600/5 to-emerald-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                                 </div>
                             </motion.div>
                         ))}
@@ -401,7 +392,7 @@ const SoftwareDevelopment: React.FC = () => {
                             >
                                 <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 h-full">
                                     <div className="flex items-center gap-4 mb-4">
-                                        <div className="w-12 h-12 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl flex items-center justify-center text-white font-bold">
+                                        <div className="w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark rounded-xl flex items-center justify-center text-white font-bold">
                                             {index + 1}
                                         </div>
                                         <h3 className="text-xl font-semibold text-white">
@@ -414,7 +405,7 @@ const SoftwareDevelopment: React.FC = () => {
                                     <ul className="space-y-2">
                                         {process.activities.map((activity, idx) => (
                                             <li key={idx} className="flex items-center gap-2 text-sm text-gray-300">
-                                                <div className="w-1.5 h-1.5 bg-green-400 rounded-full"></div>
+                                                <div className="w-1.5 h-1.5 bg-brand rounded-full"></div>
                                                 {activity}
                                             </li>
                                         ))}
@@ -433,7 +424,7 @@ const SoftwareDevelopment: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="bg-gradient-to-r from-green-600/20 to-emerald-600/20 backdrop-blur-sm rounded-3xl p-12 border border-white/10"
+                        className="bg-brand/5 backdrop-blur-sm rounded-3xl p-12 border border-white/10"
                     >
                         <h2 className="text-3xl font-bold text-white mb-4">
                             Ready to Build Something Amazing?
@@ -446,7 +437,7 @@ const SoftwareDevelopment: React.FC = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setIsModalOpen(true)}
-                                className="px-8 py-4 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                                className="px-8 py-4 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl hover:bg-brand-hover transition-all duration-300"
                             >
                                 Start Your Project
                             </motion.button>

@@ -32,29 +32,25 @@ const itServices = [
         icon: <IconNetwork className="w-8 h-8" />,
         title: 'Network Infrastructure',
         description: 'Design, setup, and management of robust network solutions',
-        services: ['Network Design & Setup', 'Router Configuration', 'Switch Management', 'WiFi Solutions', 'VPN Setup'],
-        gradient: 'from-blue-500 to-cyan-500'
+        services: ['Network Design & Setup', 'Router Configuration', 'Switch Management', 'WiFi Solutions', 'VPN Setup']
     },
     {
         icon: <IconCloud className="w-8 h-8" />,
         title: 'Cloud Solutions',
         description: 'Migration, deployment, and management of cloud services',
-        services: ['Cloud Migration', 'AWS/Azure Setup', 'Cloud Backup', 'SaaS Implementation', 'Cloud Security'],
-        gradient: 'from-purple-500 to-pink-500'
+        services: ['Cloud Migration', 'AWS/Azure Setup', 'Cloud Backup', 'SaaS Implementation', 'Cloud Security']
     },
     {
         icon: <IconShieldLock className="w-8 h-8" />,
         title: 'Cybersecurity',
         description: 'Comprehensive security solutions to protect your business',
-        services: ['Security Audits', 'Firewall Setup', 'Antivirus Solutions', 'Data Encryption', 'Security Training'],
-        gradient: 'from-green-500 to-emerald-500'
+        services: ['Security Audits', 'Firewall Setup', 'Antivirus Solutions', 'Data Encryption', 'Security Training']
     },
     {
         icon: <IconServer2 className="w-8 h-8" />,
         title: 'Server Management',
         description: 'Setup, maintenance, and optimization of server infrastructure',
-        services: ['Server Setup', 'Performance Optimization', 'Backup Solutions', 'Disaster Recovery', '24/7 Monitoring'],
-        gradient: 'from-orange-500 to-red-500'
+        services: ['Server Setup', 'Performance Optimization', 'Backup Solutions', 'Disaster Recovery', '24/7 Monitoring']
     }
 ];
 
@@ -143,11 +139,11 @@ const ITSolutions: React.FC = () => {
     return (
         <>
             {/* Hero Section */}
-            <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-purple-950 to-blue-950">
+            <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-black">
                 {/* Background Effects */}
                 <div className="absolute inset-0">
-                    <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"></div>
+                    <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-brand/10 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-slate-500/10 rounded-full blur-3xl"></div>
                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
                 </div>
 
@@ -157,20 +153,20 @@ const ITSolutions: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-full border border-purple-500/20 mb-6">
-                            <Server className="w-4 h-4 text-purple-400" />
-                            <span className="text-sm text-purple-300 font-medium">Enterprise IT Solutions</span>
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-brand-light to-brand-dark rounded-full border border-white/10 mb-6">
+                            <Server className="w-4 h-4 text-white" />
+                            <span className="text-sm text-white font-medium">Enterprise IT Solutions</span>
                         </div>
-                        
+
                         <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6">
                             Complete IT
-                            <span className="block bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                            <span className="block bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent">
                                 Infrastructure Solutions
                             </span>
                         </h1>
-                        
+
                         <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                            Transform your business with enterprise-grade IT solutions. 
+                            Transform your business with enterprise-grade IT solutions.
                             From network setup to cloud migration, we handle everything.
                         </p>
 
@@ -179,7 +175,7 @@ const ITSolutions: React.FC = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                                className="px-8 py-4 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl hover:bg-brand-hover transition-all duration-300"
                             >
                                 Explore Solutions
                             </motion.button>
@@ -222,7 +218,7 @@ const ITSolutions: React.FC = () => {
                                 transition={{ delay: index * 0.1 }}
                                 className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300"
                             >
-                                <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl flex items-center justify-center text-white mb-4">
+                                <div className="w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark rounded-xl flex items-center justify-center text-white mb-4">
                                     {benefit.icon}
                                 </div>
                                 <h3 className="text-xl font-semibold text-white mb-2">
@@ -264,14 +260,14 @@ const ITSolutions: React.FC = () => {
                                 onClick={() => handleServiceClick(service)}
                                 className="group cursor-pointer"
                             >
-                                <div className="relative h-full bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 overflow-hidden hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                                <div className="relative h-full bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 overflow-hidden hover:bg-white/10 hover:border-brand/30 transition-all duration-300">
                                     {/* Icon */}
-                                    <div className={`w-20 h-20 bg-gradient-to-r ${service.gradient} rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform`}>
+                                    <div className="w-20 h-20 bg-gradient-to-br from-brand-light to-brand-dark rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
                                         {service.icon}
                                     </div>
 
                                     {/* Content */}
-                                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors">
+                                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-brand transition-colors">
                                         {service.title}
                                     </h3>
                                     <p className="text-gray-400 mb-6">
@@ -294,13 +290,10 @@ const ITSolutions: React.FC = () => {
                                     </div>
 
                                     {/* CTA */}
-                                    <div className="flex items-center gap-2 text-purple-400 group-hover:text-purple-300 transition-colors">
+                                    <div className="flex items-center gap-2 text-brand group-hover:text-brand-light transition-colors">
                                         <span className="font-medium">Learn More</span>
                                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </div>
-
-                                    {/* Hover Effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-r from-purple-600/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                                 </div>
                             </motion.div>
                         ))}
@@ -355,9 +348,9 @@ const ITSolutions: React.FC = () => {
                                 className="relative"
                             >
                                 <div className="text-center">
-                                    <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl text-white mb-4 relative">
+                                    <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-brand-light to-brand-dark rounded-2xl text-white mb-4 relative">
                                         {process.icon}
-                                        <span className="absolute -top-2 -right-2 w-8 h-8 bg-slate-900 rounded-full flex items-center justify-center text-xs font-bold text-purple-400 border-2 border-purple-400">
+                                        <span className="absolute -top-2 -right-2 w-8 h-8 bg-slate-900 rounded-full flex items-center justify-center text-xs font-bold text-brand border-2 border-brand">
                                             {process.step}
                                         </span>
                                     </div>
@@ -381,7 +374,7 @@ const ITSolutions: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="bg-gradient-to-r from-purple-600/20 to-blue-600/20 backdrop-blur-sm rounded-3xl p-12 border border-white/10"
+                        className="bg-brand/5 backdrop-blur-sm rounded-3xl p-12 border border-white/10"
                     >
                         <h2 className="text-3xl font-bold text-white mb-4">
                             Ready to Transform Your IT Infrastructure?
@@ -394,7 +387,7 @@ const ITSolutions: React.FC = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setIsModalOpen(true)}
-                                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                                className="px-8 py-4 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl hover:bg-brand-hover transition-all duration-300"
                             >
                                 Schedule Consultation
                             </motion.button>

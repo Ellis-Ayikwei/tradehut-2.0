@@ -249,7 +249,7 @@ const ModernServices: React.FC = () => {
                                     <motion.button
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
-                                        className="w-full mt-4 px-6 py-3 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 hover:bg-[#d44a0d]"
+                                        className="w-full mt-4 px-6 py-3 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2 hover:bg-brand-hover"
                                     >
                                         <span>View Details</span>
                                         <ArrowRight className="w-4 h-4" />
@@ -278,7 +278,7 @@ const ModernServices: React.FC = () => {
                 >
                     <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-6 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl border border-white/10 backdrop-blur-sm">
                         <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 bg-[#e5500e] rounded-xl flex items-center justify-center">
+                            <div className="w-12 h-12 bg-brand rounded-xl flex items-center justify-center">
                                 <IconRocket className="w-6 h-6 text-white" />
                             </div>
                             <div className="text-left">
@@ -289,7 +289,7 @@ const ModernServices: React.FC = () => {
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="px-6 py-3 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#d44a0d]"
+                            className="px-6 py-3 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-brand-hover"
                         >
                             <span className="flex items-center gap-2">
                                 Get Free Consultation

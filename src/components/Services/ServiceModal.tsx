@@ -156,7 +156,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                     </button>
                                     
                                     <div className="flex items-center gap-4">
-                                        <div className="w-16 h-16 bg-[#e5500e] rounded-2xl flex items-center justify-center text-white">
+                                        <div className="w-16 h-16 bg-gradient-to-br from-brand-light to-brand-dark rounded-2xl flex items-center justify-center text-white">
                                             {service.icon}
                                         </div>
                                         <div>
@@ -190,7 +190,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                 onClick={() => setActiveTab(tab.id)}
                                                 className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all whitespace-nowrap ${
                                                     activeTab === tab.id
-                                                        ? 'bg-[#e5500e] text-white hover:bg-[#d44a0d]'
+                                                        ? 'bg-brand text-white hover:bg-brand-hover'
                                                         : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
                                                 }`}
                                             >
@@ -226,21 +226,21 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                             {/* Service Info Cards */}
                                             <div className="grid md:grid-cols-3 gap-4">
                                                 <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                                                    <div className="w-12 h-12 bg-[#e5500e] rounded-xl flex items-center justify-center mb-3">
+                                                    <div className="w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark rounded-xl flex items-center justify-center mb-3">
                                                         <Clock className="w-6 h-6 text-white" />
                                                     </div>
                                                     <h4 className="text-white font-medium mb-1">Duration</h4>
                                                     <p className="text-gray-400 text-sm">{service.duration}</p>
                                                 </div>
                                                 <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                                                    <div className="w-12 h-12 bg-[#e5500e] rounded-xl flex items-center justify-center mb-3">
+                                                    <div className="w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark rounded-xl flex items-center justify-center mb-3">
                                                         <Shield className="w-6 h-6 text-white" />
                                                     </div>
                                                     <h4 className="text-white font-medium mb-1">Warranty</h4>
                                                     <p className="text-gray-400 text-sm">{service.warranty}</p>
                                                 </div>
                                                 <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                                                    <div className="w-12 h-12 bg-[#e5500e] rounded-xl flex items-center justify-center mb-3">
+                                                    <div className="w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark rounded-xl flex items-center justify-center mb-3">
                                                         <Award className="w-6 h-6 text-white" />
                                                     </div>
                                                     <h4 className="text-white font-medium mb-1">Quality</h4>
@@ -306,7 +306,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                             <div className="space-y-4">
                                                 {service.process.map((step, index) => (
                                                     <div key={index} className="flex gap-4">
-                                                        <div className="flex-shrink-0 w-10 h-10 bg-[#e5500e] rounded-full flex items-center justify-center text-white font-bold">
+                                                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-brand-light to-brand-dark rounded-full flex items-center justify-center text-white font-bold">
                                                             {index + 1}
                                                         </div>
                                                         <div className="flex-1">
@@ -350,7 +350,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         required
                                                         value={formData.name}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                         placeholder="John Doe"
                                                     />
                                                 </div>
@@ -362,7 +362,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         required
                                                         value={formData.email}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                         placeholder="john@example.com"
                                                     />
                                                 </div>
@@ -374,8 +374,8 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         required
                                                         value={formData.phone}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
-                                                        placeholder="+1 234 567 890"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
+                                                        placeholder="+233 24 123 4567"
                                                     />
                                                 </div>
                                             </div>
@@ -392,7 +392,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         required
                                                         value={formData.deviceType}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-blue-500"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-brand"
                                                     >
                                                         <option value="">Select device type</option>
                                                         <option value="smartphone">Smartphone</option>
@@ -410,7 +410,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         required
                                                         value={formData.deviceBrand}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                         placeholder="Apple, Samsung, etc."
                                                     />
                                                 </div>
@@ -422,7 +422,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         required
                                                         value={formData.deviceModel}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                         placeholder="iPhone 15 Pro, Galaxy S24, etc."
                                                     />
                                                 </div>
@@ -438,7 +438,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                 value={formData.issueDescription}
                                                 onChange={handleInputChange}
                                                 rows={4}
-                                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                 placeholder="Please describe the issue you're experiencing..."
                                             />
                                         </div>
@@ -455,7 +455,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         required
                                                         value={formData.preferredDate}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-blue-500"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-brand"
                                                     />
                                                 </div>
                                                 <div>
@@ -465,7 +465,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         required
                                                         value={formData.preferredTime}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-blue-500"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-brand"
                                                     >
                                                         <option value="">Select time</option>
                                                         <option value="morning">Morning (9AM - 12PM)</option>
@@ -487,7 +487,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                             </button>
                                             <button
                                                 type="submit"
-                                                className="px-6 py-3 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#d44a0d] flex items-center gap-2"
+                                                className="px-6 py-3 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-brand-hover flex items-center gap-2"
                                             >
                                                 <span>Book Service</span>
                                                 <ArrowRight className="w-4 h-4" />

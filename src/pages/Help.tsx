@@ -160,7 +160,7 @@ const Help: React.FC = () => {
                         <p className="text-gray-400 mb-4">Still need help?</p>
                         <Link
                             to="/contact"
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-[#e5500e] text-white rounded-xl font-medium hover:bg-[#d44a0d] transition-all"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-brand text-white rounded-xl font-medium hover:bg-brand-hover transition-all"
                         >
                             <span>Contact Support</span>
                         </Link>

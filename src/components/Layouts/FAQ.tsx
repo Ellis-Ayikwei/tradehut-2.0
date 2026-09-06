@@ -20,6 +20,7 @@ import {
     IconInfoCircle,
     IconMessage2
 } from '@tabler/icons-react';
+import ContactModal from './ContactModal';
 
 const faqCategories = [
     { id: 'general', name: 'General', icon: <IconInfoCircle className="w-5 h-5" /> },
@@ -91,6 +92,7 @@ const FAQ: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState('general');
     const [openItems, setOpenItems] = useState<number[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
     const toggleItem = (id: number) => {
         setOpenItems(prev => 
@@ -108,11 +110,12 @@ const FAQ: React.FC = () => {
     });
 
     return (
+        <>
         <section className="py-24 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0">
-                <div className="absolute top-1/4 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute top-1/4 right-0 w-96 h-96 bg-brand/10 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-slate-500/10 rounded-full blur-3xl"></div>
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
             </div>
 
@@ -128,15 +131,15 @@ const FAQ: React.FC = () => {
                         initial={{ scale: 0 }}
                         whileInView={{ scale: 1 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-full border border-blue-500/20 mb-4"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-brand/10 rounded-full border border-brand/20 mb-4"
                     >
-                        <HelpCircle className="w-4 h-4 text-blue-400" />
-                        <span className="text-sm text-blue-300 font-medium">Got Questions?</span>
+                        <HelpCircle className="w-4 h-4 text-brand" />
+                        <span className="text-sm text-brand-light font-medium">Got Questions?</span>
                     </motion.div>
-                    
+
                     <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
                         Frequently Asked
-                        <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                        <span className="block bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent">
                             Questions
                         </span>
                     </h2>
@@ -159,7 +162,7 @@ const FAQ: React.FC = () => {
                             placeholder="Search for answers..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full px-6 py-4 pl-14 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+                            className="w-full px-6 py-4 pl-14 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-brand transition-all duration-300"
                         />
                         <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                     </div>
@@ -178,7 +181,7 @@ const FAQ: React.FC = () => {
                         onClick={() => setSelectedCategory('all')}
                         className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
                             selectedCategory === 'all'
-                                ? 'bg-[#e5500e] text-white shadow-lg'
+                                ? 'bg-brand text-white shadow-lg'
                                 : 'bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white'
                         }`}
                     >
@@ -193,7 +196,7 @@ const FAQ: React.FC = () => {
                             onClick={() => setSelectedCategory(category.id)}
                             className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
                                 selectedCategory === category.id
-                                    ? 'bg-[#e5500e] text-white shadow-lg'
+                                    ? 'bg-brand text-white shadow-lg'
                                     : 'bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white'
                             }`}
                         >
@@ -231,10 +234,10 @@ const FAQ: React.FC = () => {
                                         className="w-full px-6 py-5 flex items-center justify-between text-left"
                                     >
                                         <div className="flex items-center gap-4">
-                                            <div className="text-blue-400">
+                                            <div className="text-brand">
                                                 {faq.icon}
                                             </div>
-                                            <h3 className="text-lg font-medium text-white group-hover:text-blue-400 transition-colors">
+                                            <h3 className="text-lg font-medium text-white group-hover:text-brand transition-colors">
                                                 {faq.question}
                                             </h3>
                                         </div>
@@ -277,30 +280,36 @@ const FAQ: React.FC = () => {
                     viewport={{ once: true }}
                     className="mt-16 text-center"
                 >
-                    <div className="inline-flex flex-col items-center p-8 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl border border-white/10 backdrop-blur-sm">
-                        <IconMessage2 className="w-12 h-12 text-blue-400 mb-4" />
+                    <div className="inline-flex flex-col items-center p-8 bg-brand/5 rounded-3xl border border-white/10 backdrop-blur-sm">
+                        <IconMessage2 className="w-12 h-12 text-brand mb-4" />
                         <h3 className="text-2xl font-bold text-white mb-2">Still have questions?</h3>
                         <p className="text-gray-400 mb-6">Can't find the answer you're looking for? Our team is here to help.</p>
                         <div className="flex flex-wrap gap-4 justify-center">
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-6 py-3 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#d44a0d]"
+                                onClick={() => setIsContactModalOpen(true)}
+                                className="px-6 py-3 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-brand-hover"
                             >
                                 Contact Support
                             </motion.button>
-                            <motion.button
+                            <motion.a
+                                href="https://wa.me/233248138722"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 className="px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 text-white rounded-xl font-medium hover:bg-white/10 transition-all duration-300"
                             >
                                 Live Chat
-                            </motion.button>
+                            </motion.a>
                         </div>
                     </div>
                 </motion.div>
             </div>
         </section>
+        <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
+        </>
     );
 };
 

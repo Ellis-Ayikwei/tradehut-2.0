@@ -97,7 +97,7 @@ const Track: React.FC = () => {
                                 type="submit"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-8 py-4 bg-[#e5500e] text-white rounded-xl font-medium hover:bg-[#d44a0d] transition-all"
+                                className="px-8 py-4 bg-brand text-white rounded-xl font-medium hover:bg-brand-hover transition-all"
                             >
                                 Track
                             </motion.button>

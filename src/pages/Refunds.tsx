@@ -90,7 +90,7 @@ const Refunds: React.FC = () => {
                         <div>
                             <h2 className="text-2xl font-bold text-white mb-4">Contact Us</h2>
                             <p className="text-gray-300 leading-relaxed">
-                                For refund inquiries, please contact us at refunds@tradehut.com or call +1 (234) 567-890
+                                For refund inquiries, please contact us at refunds@tradehut.com or call +233 24 813 8722
                             </p>
                         </div>
                     </motion.div>

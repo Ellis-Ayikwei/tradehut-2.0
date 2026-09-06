@@ -68,10 +68,10 @@ const ModernNavbar: React.FC = () => {
             icon: <Wrench className="w-4 h-4" />,
             children: [
                 {
-                    name: 'Device Repair',
-                    path: '/services/device-repair',
-                    icon: <IconDeviceMobile className="w-5 h-5" />,
-                    description: 'Professional repair for all devices'
+                    name: 'Software Development & AI',
+                    path: '/services/software-development',
+                    icon: <IconCode className="w-5 h-5" />,
+                    description: 'Web, mobile, desktop & AI-powered apps'
                 },
                 {
                     name: 'IT Solutions',
@@ -80,16 +80,16 @@ const ModernNavbar: React.FC = () => {
                     description: 'Complete IT infrastructure support'
                 },
                 {
-                    name: 'Software Development',
-                    path: '/services/software-development',
-                    icon: <IconCode className="w-5 h-5" />,
-                    description: 'Web, mobile & desktop apps'
-                },
-                {
                     name: 'Tech Support',
                     path: '/services/tech-support',
                     icon: <IconHeadset className="w-5 h-5" />,
                     description: '24/7 technical assistance'
+                },
+                {
+                    name: 'Device Repair',
+                    path: '/services/device-repair',
+                    icon: <IconDeviceMobile className="w-5 h-5" />,
+                    description: 'Professional repair for all devices'
                 }
             ]
         },
@@ -177,8 +177,8 @@ const ModernNavbar: React.FC = () => {
                             to={item.path}
                             className={`flex items-center gap-2 px-2 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
                                 isActive
-                                    ? 'text-white bg-black shadow-lg'
-                                    : 'text-gray-700 hover:text-black hover:bg-gray-100/80'
+                                    ? 'text-white bg-white/10'
+                                    : 'text-gray-300 hover:text-white hover:bg-white/5'
                             }`}
                             onClick={() => isMobile && setIsMobileMenuOpen(false)}
                         >
@@ -191,8 +191,8 @@ const ModernNavbar: React.FC = () => {
                             onClick={handleClick}
                             className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${
                                 isActive
-                                    ? 'text-white bg-black shadow-lg'
-                                    : 'text-gray-700 hover:text-black hover:bg-gray-100/80'
+                                    ? 'text-white bg-white/10'
+                                    : 'text-gray-300 hover:text-white hover:bg-white/5'
                             }`}
                         >
                             {item.icon}
@@ -211,7 +211,7 @@ const ModernNavbar: React.FC = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
                                 transition={{ duration: 0.2 }}
-                                className="absolute top-full left-0 mt-2 w-72 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200/50 overflow-hidden z-50"
+                                className="absolute top-full left-0 mt-2 w-72 bg-slate-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10 overflow-hidden z-50"
                             >
                                 <div className="p-2">
                                     {item.children?.map((child) => (
@@ -219,17 +219,17 @@ const ModernNavbar: React.FC = () => {
                                             key={child.path}
                                             to={child.path}
                                             onClick={() => setActiveDropdown(null)}
-                                            className="w-full flex items-start gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 transition-all duration-200 group"
+                                            className="w-full flex items-start gap-3 px-4 py-3 rounded-xl hover:bg-white/5 transition-all duration-200 group"
                                         >
-                                            <div className="text-gray-600 group-hover:text-black transition-colors">
+                                            <div className="text-brand-light group-hover:text-brand transition-colors">
                                                 {child.icon}
                                             </div>
                                             <div className="text-left">
-                                                <div className="font-medium text-gray-900 group-hover:text-black transition-colors">
+                                                <div className="font-medium text-white transition-colors">
                                                     {child.name}
                                                 </div>
                                                 {child.description && (
-                                                    <div className="text-xs text-gray-500 mt-0.5">
+                                                    <div className="text-xs text-gray-400 mt-0.5">
                                                         {child.description}
                                                     </div>
                                                 )}
@@ -259,22 +259,20 @@ const ModernNavbar: React.FC = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <nav className={`relative rounded-2xl transition-all duration-500 ${
                         isScrolled
-                            ? 'bg-white backdrop-blur-xl shadow-xl border border-gray-200 opacity-80'
-                            : 'bg-white backdrop-blur-md shadow-lg border border-gray-200'
+                            ? 'bg-slate-900/80 backdrop-blur-xl shadow-xl border border-white/10'
+                            : 'bg-slate-900/60 backdrop-blur-md shadow-lg border border-white/10'
                     }`}>
                         <div className="px-6 py-2">
                             {/* Desktop Navigation */}
                             <div className="hidden lg:flex items-center justify-between">
                                 {/* Logo */}
                                 <Link to="/" className="flex items-center gap-2 group">
-                                    <div className="bg-black p-1 rounded-xl transition-all duration-300 group-hover:scale-105">
-                                        <motion.img
-                                            src="/assets/images/hero/tradehutfullText.png"
-                                            alt="TradeHut Logo"
-                                            className="h-8 object-contain"
-                                            whileHover={{ scale: 1.05 }}
-                                        />
-                                    </div>
+                                    <motion.img
+                                        src="/assets/images/hero/tradehutfullText.png"
+                                        alt="TradeHut Logo"
+                                        className="h-8 object-contain transition-transform duration-300 group-hover:scale-105"
+                                        whileHover={{ scale: 1.05 }}
+                                    />
                                 </Link>
 
                                 {/* Center Navigation */}
@@ -290,11 +288,10 @@ const ModernNavbar: React.FC = () => {
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
                                         onClick={() => setIsContactModalOpen(true)}
-                                        className="flex items-center gap-2 px-6 py-2.5 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:bg-[#d44a0d] transition-colors"
+                                        className="flex items-center gap-2 px-6 py-2.5 bg-brand text-white rounded-xl font-medium shadow-lg hover:bg-brand-hover transition-colors"
                                     >
                                         <Phone className="w-4 h-4" />
                                         <span>Get in Touch</span>
-                                        {/* <Zap className="w-4 h-4" /> */}
                                     </motion.button>
                                 </div>
                             </div>
@@ -303,13 +300,11 @@ const ModernNavbar: React.FC = () => {
                             <div className="lg:hidden flex items-center justify-between">
                                 {/* Logo */}
                                 <Link to="/" className="flex items-center gap-2">
-                                    <div className="bg-black p-2 rounded-xl">
-                                        <motion.img
-                                            src="/assets/images/hero/tradehut logo.png"
-                                            alt="TradeHut Logo"
-                                            className="h-6 object-contain"
-                                        />
-                                    </div>
+                                    <motion.img
+                                        src="/assets/images/hero/tradehut logo.png"
+                                        alt="TradeHut Logo"
+                                        className="h-8 object-contain"
+                                    />
                                 </Link>
 
                                 {/* Mobile Menu Button */}
@@ -317,12 +312,12 @@ const ModernNavbar: React.FC = () => {
                                     whileHover={{ scale: 1.1 }}
                                     whileTap={{ scale: 0.9 }}
                                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                                    className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition-colors"
+                                    className="p-2 rounded-xl bg-white/5 hover:bg-white/10 transition-colors"
                                 >
                                     {isMobileMenuOpen ? (
-                                        <X className="w-6 h-6 text-gray-700" />
+                                        <X className="w-6 h-6 text-white" />
                                     ) : (
-                                        <Menu className="w-6 h-6 text-gray-700" />
+                                        <Menu className="w-6 h-6 text-white" />
                                     )}
                                 </motion.button>
                             </div>
@@ -348,7 +343,7 @@ const ModernNavbar: React.FC = () => {
                                                                     key={child.path}
                                                                     to={child.path}
                                                                     onClick={() => setIsMobileMenuOpen(false)}
-                                                                    className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg transition-colors"
+                                                                    className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
                                                                 >
                                                                     {child.icon}
                                                                     <span>{child.name}</span>

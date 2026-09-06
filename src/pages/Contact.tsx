@@ -108,7 +108,7 @@ const Contact: React.FC = () => {
                                 <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
                                 
                                 <div className="space-y-4">
-                                    <a href="tel:+1234567890" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors">
+                                    <a href="tel:+233248138722" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors">
                                         <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">
                                             <Phone className="w-6 h-6 text-blue-400" />
                                         </div>
@@ -134,7 +134,7 @@ const Contact: React.FC = () => {
                                         </div>
                                         <div>
                                             <p className="text-sm text-gray-400">Address</p>
-                                            <p className="font-medium">123 Tech Street<br />Silicon Valley, CA 94025</p>
+                                            <p className="font-medium">Accra Mall, Spintex Road<br />Accra, Ghana</p>
                                         </div>
                                     </div>
                                 </div>
@@ -202,7 +202,7 @@ const Contact: React.FC = () => {
                                     disabled={isSubmitting}
                                     whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
                                     whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
-                                    className="w-full px-6 py-4 bg-[#e5500e] text-white rounded-xl font-medium hover:bg-[#d44a0d] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full px-6 py-4 bg-brand text-white rounded-xl font-medium hover:bg-brand-hover transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {isSubmitting ? (
                                         <span className="flex items-center gap-2">
