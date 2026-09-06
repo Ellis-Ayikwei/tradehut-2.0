@@ -156,7 +156,7 @@ const ToolsAndSoftware: React.FC = () => {
                                     <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
 
                                     <div className="relative h-full flex flex-col items-center justify-center gap-3">
-                                        <div className="w-16 h-16 bg-white/15 backdrop-blur-sm rounded-2xl flex items-center justify-center text-white border border-white/20 group-hover:scale-110 transition-transform duration-300">
+                                        <div className="w-16 h-16 bg-gradient-to-br from-white to-gray-200 rounded-2xl flex items-center justify-center text-slate-800 shadow-lg group-hover:scale-110 transition-transform duration-300">
                                             <Code className="w-8 h-8" />
                                         </div>
                                         <span className="text-white font-semibold text-lg drop-shadow-sm">{tool.name}</span>

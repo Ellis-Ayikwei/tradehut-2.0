@@ -345,8 +345,8 @@ export default function Hero() {
             <div className="hidden sm:block absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 animate-float-medium">
               {/* Glow effect for shield */}
               <div className="absolute inset-0 bg-blue-500/30 rounded-full blur-xl"></div>
-              <div className="relative bg-slate-900 rounded-full shadow-xl border border-white/10 flex items-center justify-center w-full h-full">
-                <Shield className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-blue-400" />
+              <div className="relative bg-gradient-to-br from-slate-600 to-slate-900 rounded-full shadow-xl border border-white/10 flex items-center justify-center w-full h-full">
+                <Shield className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-white" />
               </div>
             </div>
           </div>

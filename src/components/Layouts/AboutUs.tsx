@@ -134,7 +134,7 @@ const AboutUs: React.FC = () => {
                                 className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-brand/30 transition-colors duration-300"
                             >
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-12 h-12 bg-brand rounded-xl flex items-center justify-center">
+                                    <div className="w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark rounded-xl flex items-center justify-center">
                                         <Target className="w-6 h-6 text-white" />
                                     </div>
                                     <h4 className="text-xl font-semibold text-white">Our Mission</h4>
@@ -150,7 +150,7 @@ const AboutUs: React.FC = () => {
                                 className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-brand/30 transition-colors duration-300"
                             >
                                 <div className="flex items-center gap-3 mb-4">
-                                    <div className="w-12 h-12 bg-brand rounded-xl flex items-center justify-center">
+                                    <div className="w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark rounded-xl flex items-center justify-center">
                                         <Eye className="w-6 h-6 text-white" />
                                     </div>
                                     <h4 className="text-xl font-semibold text-white">Our Vision</h4>
@@ -249,7 +249,7 @@ const AboutUs: React.FC = () => {
                                 className="group"
                             >
                                 <div className="relative h-full bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 hover:border-brand/30 transition-all duration-300">
-                                    <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-brand mb-4 mx-auto group-hover:scale-110 group-hover:border-brand/30 transition-all">
+                                    <div className="w-16 h-16 bg-gradient-to-br from-brand-light to-brand-dark rounded-2xl flex items-center justify-center text-white mb-4 mx-auto group-hover:scale-110 transition-all">
                                         {value.icon}
                                     </div>
                                     <h4 className="text-xl font-semibold text-white mb-2">{value.title}</h4>

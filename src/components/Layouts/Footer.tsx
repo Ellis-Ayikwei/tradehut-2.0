@@ -283,7 +283,7 @@ const Footer: React.FC = () => {
                                     aria-label={social.label}
                                     whileHover={{ scale: 1.1, y: -2 }}
                                     whileTap={{ scale: 0.95 }}
-                                    className="w-10 h-10 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+                                    className="w-10 h-10 bg-gradient-to-br from-slate-700 to-slate-900 rounded-xl flex items-center justify-center text-gray-300 hover:text-white hover:from-brand-light hover:to-brand-dark transition-all duration-300"
                                 >
                                     {social.icon}
                                 </motion.a>
