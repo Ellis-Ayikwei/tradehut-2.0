@@ -31,32 +31,28 @@ const values = [
     {
         icon: <IconBulb className="w-8 h-8" />,
         title: 'Innovation',
-        description: 'Pushing boundaries with cutting-edge technology solutions',
-        color: 'bg-orange-500'
+        description: 'Pushing boundaries with cutting-edge technology solutions'
     },
     {
         icon: <IconShieldCheck className="w-8 h-8" />,
         title: 'Trust',
-        description: 'Building lasting relationships through transparency and reliability',
-        color: 'bg-blue-500'
+        description: 'Building lasting relationships through transparency and reliability'
     },
     {
         icon: <Handshake className="w-8 h-8" />,
         title: 'Partnership',
-        description: 'Growing together with our clients as technology partners',
-        color: 'bg-purple-500'
+        description: 'Growing together with our clients as technology partners'
     },
     {
         icon: <IconAward className="w-8 h-8" />,
         title: 'Excellence',
-        description: 'Delivering world-class quality in every project we undertake',
-        color: 'bg-green-500'
+        description: 'Delivering world-class quality in every project we undertake'
     }
 ];
 
 const achievements = [
-    { number: '10+', label: 'Years of Excellence', icon: <Award className="w-6 h-6" /> },
-    { number: '5000+', label: 'Happy Customers', icon: <Users className="w-6 h-6" /> },
+    { number: '7+', label: 'Years of Excellence', icon: <Award className="w-6 h-6" /> },
+    { number: '100+', label: 'Happy Customers', icon: <Users className="w-6 h-6" /> },
     { number: '98%', label: 'Client Satisfaction', icon: <Star className="w-6 h-6" /> },
     { number: '24/7', label: 'Support Available', icon: <Shield className="w-6 h-6" /> }
 ];
@@ -70,8 +66,8 @@ const AboutUs: React.FC = () => {
         <section className="py-24 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand/10 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-slate-500/10 rounded-full blur-3xl"></div>
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
             </div>
 
@@ -88,15 +84,15 @@ const AboutUs: React.FC = () => {
                         initial={{ scale: 0 }}
                         animate={headerInView ? { scale: 1 } : {}}
                         transition={{ delay: 0.2, type: "spring" }}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-full border border-blue-500/20 mb-4"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-brand/10 rounded-full border border-brand/20 mb-4"
                     >
-                        <IconSparkles className="w-4 h-4 text-blue-400" />
-                        <span className="text-sm text-blue-300 font-medium">About TradeHut</span>
+                        <IconSparkles className="w-4 h-4 text-brand" />
+                        <span className="text-sm text-brand-light font-medium">About TradeHut</span>
                     </motion.div>
-                    
+
                     <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
                         Transforming Ideas Into
-                        <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                        <span className="block bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent">
                             Digital Reality
                         </span>
                     </h2>
@@ -136,7 +132,7 @@ const AboutUs: React.FC = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <motion.div
                                 whileHover={{ scale: 1.02 }}
-                                className="bg-gradient-to-br from-blue-600/10 to-purple-600/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
+                                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-brand/30 transition-colors duration-300"
                             >
                                 <div className="flex items-center gap-3 mb-4">
                                     <div className="w-12 h-12 bg-brand rounded-xl flex items-center justify-center">
@@ -145,14 +141,14 @@ const AboutUs: React.FC = () => {
                                     <h4 className="text-xl font-semibold text-white">Our Mission</h4>
                                 </div>
                                 <p className="text-gray-300 text-sm">
-                                    To empower businesses and individuals with innovative technology solutions 
+                                    To empower businesses and individuals with innovative technology solutions
                                     that drive growth, efficiency, and success in the digital age.
                                 </p>
                             </motion.div>
 
                             <motion.div
                                 whileHover={{ scale: 1.02 }}
-                                className="bg-gradient-to-br from-purple-600/10 to-pink-600/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10"
+                                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:border-brand/30 transition-colors duration-300"
                             >
                                 <div className="flex items-center gap-3 mb-4">
                                     <div className="w-12 h-12 bg-brand rounded-xl flex items-center justify-center">
@@ -253,15 +249,12 @@ const AboutUs: React.FC = () => {
                                 whileHover={{ y: -5 }}
                                 className="group"
                             >
-                                <div className="relative h-full bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300">
-                                    <div className={`w-16 h-16 ${value.color} rounded-2xl flex items-center justify-center text-white mb-4 mx-auto group-hover:scale-110 transition-transform`}>
+                                <div className="relative h-full bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 hover:border-brand/30 transition-all duration-300">
+                                    <div className="w-16 h-16 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center text-brand mb-4 mx-auto group-hover:scale-110 group-hover:border-brand/30 transition-all">
                                         {value.icon}
                                     </div>
                                     <h4 className="text-xl font-semibold text-white mb-2">{value.title}</h4>
                                     <p className="text-gray-400 text-sm">{value.description}</p>
-                                    
-                                    {/* Hover Effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                 </div>
                             </motion.div>
                         ))}
@@ -275,11 +268,11 @@ const AboutUs: React.FC = () => {
                     viewport={{ once: true }}
                     className="text-center mt-20"
                 >
-                    <div className="inline-flex flex-col items-center p-8 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-3xl border border-white/10 backdrop-blur-sm">
-                        <IconRocket className="w-12 h-12 text-blue-400 mb-4" />
+                    <div className="inline-flex flex-col items-center p-8 bg-brand/5 rounded-3xl border border-white/10 backdrop-blur-sm">
+                        <IconRocket className="w-12 h-12 text-brand mb-4" />
                         <h3 className="text-2xl font-bold text-white mb-2">Ready to Start Your Journey?</h3>
                         <p className="text-gray-400 mb-6 max-w-md">
-                            Join thousands of satisfied customers who have transformed their business with TradeHut
+                            Join our growing list of satisfied customers who have transformed their business with TradeHut
                         </p>
                         <div className="flex flex-wrap gap-4 justify-center">
                             <motion.button

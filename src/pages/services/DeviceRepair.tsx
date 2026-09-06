@@ -201,7 +201,7 @@ const DeviceRepair: React.FC = () => {
                         {[
                             { icon: <Clock className="w-6 h-6" />, value: '2-4 hrs', label: 'Average Repair Time' },
                             { icon: <Shield className="w-6 h-6" />, value: '90 Days', label: 'Warranty Period' },
-                            { icon: <CheckCircle className="w-6 h-6" />, value: '5000+', label: 'Devices Repaired' },
+                            { icon: <CheckCircle className="w-6 h-6" />, value: '100+', label: 'Devices Repaired' },
                             { icon: <Zap className="w-6 h-6" />, value: '98%', label: 'Success Rate' }
                         ].map((stat, index) => (
                             <motion.div

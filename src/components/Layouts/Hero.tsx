@@ -146,7 +146,7 @@ export default function Hero() {
                             className="text-center w-full max-w-xs sm:max-w-lg md:max-w-2xl px-3 sm:px-4"
                         >
                             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-2 leading-relaxed font-medium">
-                                Software Engineering, AI &amp; Device Repair — Under One Roof.
+                                Software Engineering, AI &amp; Device Repair, Under One Roof.
                             </p>
                             <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 mb-6 leading-relaxed">
                                 From custom software and AI-powered automation to expert device repairs,
@@ -382,11 +382,11 @@ export default function Hero() {
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {[
                             {
-                                title: 'Device Repair',
-                                description: 'Expert repair services for smartphones, laptops, and tablets',
-                                icon: <IconDeviceMobile className="w-8 h-8" />,
-                                stats: '5000+ Repairs',
-                                link: '/services/device-repair'
+                                title: 'Software Development & AI',
+                                description: 'Web, mobile, desktop & AI-powered applications',
+                                icon: <Code className="w-8 h-8" />,
+                                stats: '300+ Projects',
+                                link: '/services/software-development'
                             },
                             {
                                 title: 'IT Solutions',
@@ -396,18 +396,18 @@ export default function Hero() {
                                 link: '/services/it-solutions'
                             },
                             {
-                                title: 'Software Development',
-                                description: 'Web, mobile, desktop & AI-powered applications',
-                                icon: <Code className="w-8 h-8" />,
-                                stats: '300+ Projects',
-                                link: '/services/software-development'
-                            },
-                            {
                                 title: 'Tech Support',
                                 description: '24/7 technical support and professional IT services',
                                 icon: <Headphones className="w-8 h-8" />,
                                 stats: '24/7 Available',
                                 link: '/services/tech-support'
+                            },
+                            {
+                                title: 'Device Repair',
+                                description: 'Expert repair services for smartphones, laptops, and tablets',
+                                icon: <IconDeviceMobile className="w-8 h-8" />,
+                                stats: '100+ Repairs',
+                                link: '/services/device-repair'
                             }
                         ].map((service, index) => (
                             <Link key={index} to={service.link} className="block">

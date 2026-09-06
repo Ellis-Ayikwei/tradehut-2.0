@@ -94,8 +94,8 @@ const ToolsAndSoftware: React.FC = () => {
         <section className="py-24 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0">
-                <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute top-1/4 right-0 w-96 h-96 bg-brand/10 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-slate-500/10 rounded-full blur-3xl"></div>
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
             </div>
 
@@ -111,15 +111,15 @@ const ToolsAndSoftware: React.FC = () => {
                         initial={{ scale: 0 }}
                         whileInView={{ scale: 1 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-full border border-blue-500/20 mb-4"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-brand/10 rounded-full border border-brand/20 mb-4"
                     >
-                        <Code className="w-4 h-4 text-blue-400" />
-                        <span className="text-sm text-blue-300 font-medium">Our Creations</span>
+                        <Code className="w-4 h-4 text-brand" />
+                        <span className="text-sm text-brand-light font-medium">Our Creations</span>
                     </motion.div>
-                    
+
                     <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
                         Tools & Software
-                        <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                        <span className="block bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent">
                             We've Built
                         </span>
                     </h2>
@@ -167,7 +167,7 @@ const ToolsAndSoftware: React.FC = () => {
                                 <div className="text-xs text-gray-400 mb-2">{tool.category}</div>
 
                                 {/* Title */}
-                                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-brand transition-colors">
                                     {tool.name}
                                 </h3>
 
@@ -207,7 +207,7 @@ const ToolsAndSoftware: React.FC = () => {
                                         href={tool.iframeUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 transition-colors group/link"
+                                        className="flex items-center gap-2 text-sm text-brand hover:text-brand-light transition-colors group/link"
                                     >
                                         <span>View Live</span>
                                         <ExternalLink className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />

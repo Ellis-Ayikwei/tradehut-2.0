@@ -68,10 +68,10 @@ const ModernNavbar: React.FC = () => {
             icon: <Wrench className="w-4 h-4" />,
             children: [
                 {
-                    name: 'Device Repair',
-                    path: '/services/device-repair',
-                    icon: <IconDeviceMobile className="w-5 h-5" />,
-                    description: 'Professional repair for all devices'
+                    name: 'Software Development & AI',
+                    path: '/services/software-development',
+                    icon: <IconCode className="w-5 h-5" />,
+                    description: 'Web, mobile, desktop & AI-powered apps'
                 },
                 {
                     name: 'IT Solutions',
@@ -80,16 +80,16 @@ const ModernNavbar: React.FC = () => {
                     description: 'Complete IT infrastructure support'
                 },
                 {
-                    name: 'Software Development',
-                    path: '/services/software-development',
-                    icon: <IconCode className="w-5 h-5" />,
-                    description: 'Web, mobile & desktop apps'
-                },
-                {
                     name: 'Tech Support',
                     path: '/services/tech-support',
                     icon: <IconHeadset className="w-5 h-5" />,
                     description: '24/7 technical assistance'
+                },
+                {
+                    name: 'Device Repair',
+                    path: '/services/device-repair',
+                    icon: <IconDeviceMobile className="w-5 h-5" />,
+                    description: 'Professional repair for all devices'
                 }
             ]
         },

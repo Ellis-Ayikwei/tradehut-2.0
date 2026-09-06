@@ -350,7 +350,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         required
                                                         value={formData.name}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                         placeholder="John Doe"
                                                     />
                                                 </div>
@@ -362,7 +362,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         required
                                                         value={formData.email}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                         placeholder="john@example.com"
                                                     />
                                                 </div>
@@ -374,7 +374,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         required
                                                         value={formData.phone}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                         placeholder="+1 234 567 890"
                                                     />
                                                 </div>
@@ -392,7 +392,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         required
                                                         value={formData.deviceType}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-blue-500"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-brand"
                                                     >
                                                         <option value="">Select device type</option>
                                                         <option value="smartphone">Smartphone</option>
@@ -410,7 +410,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         required
                                                         value={formData.deviceBrand}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                         placeholder="Apple, Samsung, etc."
                                                     />
                                                 </div>
@@ -422,7 +422,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         required
                                                         value={formData.deviceModel}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                         placeholder="iPhone 15 Pro, Galaxy S24, etc."
                                                     />
                                                 </div>
@@ -438,7 +438,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                 value={formData.issueDescription}
                                                 onChange={handleInputChange}
                                                 rows={4}
-                                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500"
+                                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                 placeholder="Please describe the issue you're experiencing..."
                                             />
                                         </div>
@@ -455,7 +455,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         required
                                                         value={formData.preferredDate}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-blue-500"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-brand"
                                                     />
                                                 </div>
                                                 <div>
@@ -465,7 +465,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         required
                                                         value={formData.preferredTime}
                                                         onChange={handleInputChange}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-blue-500"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-brand"
                                                     >
                                                         <option value="">Select time</option>
                                                         <option value="morning">Morning (9AM - 12PM)</option>

@@ -71,10 +71,10 @@ const Footer: React.FC = () => {
             { name: 'Press Kit', path: '/press' }
         ],
         services: [
-            { name: 'Device Repair', path: '/services/device-repair' },
+            { name: 'Software Development & AI', path: '/services/software-development' },
             { name: 'IT Solutions', path: '/services/it-solutions' },
-            { name: 'Software Development', path: '/services/software-development' },
-            { name: 'Tech Support', path: '/services/tech-support' }
+            { name: 'Tech Support', path: '/services/tech-support' },
+            { name: 'Device Repair', path: '/services/device-repair' }
         ],
         support: [
             { name: 'Help Center', path: '/help' },
@@ -102,8 +102,8 @@ const Footer: React.FC = () => {
         <footer className="relative bg-gradient-to-b from-slate-900 to-black pt-20 pb-8 overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0">
-                <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
-                <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 left-0 w-96 h-96 bg-brand/10 rounded-full blur-3xl"></div>
+                <div className="absolute top-0 right-0 w-96 h-96 bg-slate-500/10 rounded-full blur-3xl"></div>
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
             </div>
 
@@ -115,8 +115,8 @@ const Footer: React.FC = () => {
                     viewport={{ once: true }}
                     className="mb-16"
                 >
-                    <div className="relative bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-white/10 overflow-hidden">
-                        <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-600/10 animate-pulse"></div>
+                    <div className="relative bg-gradient-to-r from-brand/20 to-brand/5 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-white/10 overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-r from-brand/10 to-transparent animate-pulse"></div>
                         
                         <div className="relative z-10 grid lg:grid-cols-2 gap-8 items-center">
                             <div>
@@ -136,7 +136,7 @@ const Footer: React.FC = () => {
                                         onChange={(e) => setEmail(e.target.value)}
                                         placeholder="Enter your email"
                                         required
-                                        className="w-full px-6 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors"
+                                        className="w-full px-6 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:border-brand transition-colors"
                                     />
                                     <Mail className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                                 </div>
@@ -176,11 +176,11 @@ const Footer: React.FC = () => {
                                 <span>No spam, ever</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <Clock className="w-4 h-4 text-blue-400" />
+                                <Clock className="w-4 h-4 text-brand" />
                                 <span>Weekly updates</span>
                             </div>
                             <div className="flex items-center gap-2">
-                                <Award className="w-4 h-4 text-purple-400" />
+                                <Award className="w-4 h-4 text-gray-300" />
                                 <span>Exclusive offers</span>
                             </div>
                         </div>
@@ -215,15 +215,15 @@ const Footer: React.FC = () => {
                         {/* Contact Info */}
                         <div className="space-y-3">
                             <a href="tel:+233248138722" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors">
-                                <IconPhone className="w-5 h-5 text-blue-400" />
+                                <IconPhone className="w-5 h-5 text-brand" />
                                 <span>+233 24 813 8722</span>
                             </a>
                             <a href="mailto:info@TradeHut.com" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors">
-                                <IconMail className="w-5 h-5 text-purple-400" />
+                                <IconMail className="w-5 h-5 text-gray-300" />
                                 <span>info@TradeHut.com</span>
                             </a>
                             <div className="flex items-start gap-3 text-gray-400">
-                                <IconMapPin className="w-5 h-5 text-green-400 mt-0.5" />
+                                <IconMapPin className="w-5 h-5 text-gray-300 mt-0.5" />
                                 <span>123/4, La-Accra, Ghana</span>
                             </div>
                         </div>

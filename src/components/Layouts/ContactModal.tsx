@@ -138,9 +138,9 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
                                 <a
                                     href={`tel:${contactInfo.phone}`}
-                                    className="flex items-center p-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-blue-500/30 transition-all duration-300 group"
+                                    className="flex items-center p-4 bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 hover:border-brand/30 transition-all duration-300 group"
                                 >
-                                    <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-blue-500/20 border border-blue-500/30 rounded-xl text-blue-400 group-hover:scale-105 transition-transform">
+                                    <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-brand/20 border border-brand/30 rounded-xl text-brand group-hover:scale-105 transition-transform">
                                         <Phone className="w-6 h-6" />
                                     </div>
                                     <div className="ml-4">
