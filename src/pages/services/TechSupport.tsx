@@ -63,7 +63,7 @@ const supportChannels = [
         icon: <Phone className="w-6 h-6" />,
         title: 'Phone Support',
         description: 'Direct line to our experts',
-        contact: '+1 (234) 567-890'
+        contact: '+233 24 813 8722'
     },
     {
         icon: <MessageCircle className="w-6 h-6" />,
@@ -81,7 +81,7 @@ const supportChannels = [
         icon: <Mail className="w-6 h-6" />,
         title: 'Email Support',
         description: 'Detailed assistance via email',
-        contact: 'support@techhub.com'
+        contact: 'support@tradehut.com'
     }
 ];
 
@@ -402,7 +402,7 @@ const TechSupport: React.FC = () => {
                                 whileTap={{ scale: 0.95 }}
                                 className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-xl font-medium hover:bg-white/20 transition-all duration-300"
                             >
-                                Call: +1 234 567 890
+                                Call: +233 24 813 8722
                             </motion.button>
                         </div>
                     </motion.div>

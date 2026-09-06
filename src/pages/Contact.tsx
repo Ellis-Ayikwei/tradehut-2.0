@@ -108,7 +108,7 @@ const Contact: React.FC = () => {
                                 <h3 className="text-2xl font-bold text-white mb-6">Contact Information</h3>
                                 
                                 <div className="space-y-4">
-                                    <a href="tel:+1234567890" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors">
+                                    <a href="tel:+233248138722" className="flex items-center gap-4 text-gray-300 hover:text-white transition-colors">
                                         <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">
                                             <Phone className="w-6 h-6 text-blue-400" />
                                         </div>
@@ -134,7 +134,7 @@ const Contact: React.FC = () => {
                                         </div>
                                         <div>
                                             <p className="text-sm text-gray-400">Address</p>
-                                            <p className="font-medium">123 Tech Street<br />Silicon Valley, CA 94025</p>
+                                            <p className="font-medium">Accra Mall, Spintex Road<br />Accra, Ghana</p>
                                         </div>
                                     </div>
                                 </div>

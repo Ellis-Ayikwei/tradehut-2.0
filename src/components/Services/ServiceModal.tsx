@@ -375,7 +375,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ isOpen, onClose, service })
                                                         value={formData.phone}
                                                         onChange={handleInputChange}
                                                         className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
-                                                        placeholder="+1 234 567 890"
+                                                        placeholder="+233 24 123 4567"
                                                     />
                                                 </div>
                                             </div>

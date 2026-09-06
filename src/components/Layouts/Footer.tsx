@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-    Mail, 
-    Phone, 
-    MapPin, 
-    Send, 
-    Facebook, 
-    Twitter, 
-    Instagram, 
-    Linkedin,
-    Youtube,
+import {
+    Mail,
+    Phone,
+    MapPin,
+    Send,
     ArrowRight,
     Heart,
     Clock,
@@ -22,9 +17,6 @@ import {
     IconBrandFacebook,
     IconBrandTwitter,
     IconBrandInstagram,
-    IconBrandLinkedin,
-    IconBrandYoutube,
-    IconBrandGithub,
     IconMail,
     IconPhone,
     IconMapPin,
@@ -91,11 +83,9 @@ const Footer: React.FC = () => {
     };
 
     const socialLinks = [
-        { icon: <IconBrandFacebook className="w-5 h-5" />, href: '#', label: 'Facebook' },
-        { icon: <IconBrandTwitter className="w-5 h-5" />, href: '#', label: 'Twitter' },
-        { icon: <IconBrandInstagram className="w-5 h-5" />, href: '#', label: 'Instagram' },
-        { icon: <IconBrandLinkedin className="w-5 h-5" />, href: '#', label: 'LinkedIn' },
-        { icon: <IconBrandYoutube className="w-5 h-5" />, href: '#', label: 'YouTube' }
+        { icon: <IconBrandFacebook className="w-5 h-5" />, href: 'https://facebook.com/tradehutghana', label: 'Facebook' },
+        { icon: <IconBrandTwitter className="w-5 h-5" />, href: 'https://twitter.com/tradehutghana', label: 'Twitter' },
+        { icon: <IconBrandInstagram className="w-5 h-5" />, href: 'https://instagram.com/tradehutghana', label: 'Instagram' }
     ];
 
     return (
@@ -280,6 +270,8 @@ const Footer: React.FC = () => {
                                 <motion.a
                                     key={index}
                                     href={social.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     aria-label={social.label}
                                     whileHover={{ scale: 1.1, y: -2 }}
                                     whileTap={{ scale: 0.95 }}

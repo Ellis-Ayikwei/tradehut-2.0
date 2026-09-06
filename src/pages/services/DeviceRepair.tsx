@@ -370,7 +370,7 @@ const DeviceRepair: React.FC = () => {
                                 whileTap={{ scale: 0.95 }}
                                 className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-xl font-medium hover:bg-white/20 transition-all duration-300"
                             >
-                                Call Us: +1 234 567 890
+                                Call Us: +233 24 813 8722
                             </motion.button>
                         </div>
                     </motion.div>
