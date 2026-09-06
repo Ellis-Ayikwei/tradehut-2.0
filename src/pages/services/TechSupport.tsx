@@ -33,7 +33,6 @@ const supportServices = [
         title: '24/7 Remote Support',
         description: 'Round-the-clock assistance for all your tech issues',
         services: ['Remote Desktop Support', 'Live Chat Support', 'Emergency Response', 'System Monitoring', 'Troubleshooting'],
-        gradient: 'from-blue-500 to-cyan-500',
         availability: '24/7/365'
     },
     {
@@ -41,7 +40,6 @@ const supportServices = [
         title: 'On-Site Support',
         description: 'Expert technicians at your location when needed',
         services: ['Hardware Installation', 'Network Setup', 'System Configuration', 'Training Sessions', 'Maintenance Visits'],
-        gradient: 'from-purple-500 to-pink-500',
         availability: 'Business Hours + Emergency'
     },
     {
@@ -49,7 +47,6 @@ const supportServices = [
         title: 'Software Support',
         description: 'Comprehensive software troubleshooting and optimization',
         services: ['Software Installation', 'Updates & Patches', 'Virus Removal', 'Performance Optimization', 'Data Recovery'],
-        gradient: 'from-green-500 to-emerald-500',
         availability: '24/7 Remote'
     },
     {
@@ -57,7 +54,6 @@ const supportServices = [
         title: 'Managed IT Services',
         description: 'Complete IT department for your business',
         services: ['Proactive Monitoring', 'Regular Maintenance', 'Security Updates', 'Backup Management', 'IT Consulting'],
-        gradient: 'from-orange-500 to-red-500',
         availability: 'Customized SLA'
     }
 ];
@@ -141,11 +137,11 @@ const TechSupport: React.FC = () => {
     return (
         <>
             {/* Hero Section */}
-            <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-orange-950 to-red-950">
+            <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-black">
                 {/* Background Effects */}
                 <div className="absolute inset-0">
-                    <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-orange-500/20 rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-red-500/20 rounded-full blur-3xl"></div>
+                    <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-brand/10 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-slate-500/10 rounded-full blur-3xl"></div>
                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
                 </div>
 
@@ -155,20 +151,20 @@ const TechSupport: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-600/20 to-red-600/20 rounded-full border border-orange-500/20 mb-6">
-                            <Headphones className="w-4 h-4 text-orange-400" />
-                            <span className="text-sm text-orange-300 font-medium">24/7 Technical Support</span>
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-brand-light to-brand-dark rounded-full border border-white/10 mb-6">
+                            <Headphones className="w-4 h-4 text-white" />
+                            <span className="text-sm text-white font-medium">24/7 Technical Support</span>
                         </div>
-                        
+
                         <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6">
                             Expert Tech Support
-                            <span className="block bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+                            <span className="block bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent">
                                 When You Need It
                             </span>
                         </h1>
-                        
+
                         <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-                            Professional technical support available 24/7. From quick fixes to complex solutions, 
+                            Professional technical support available 24/7. From quick fixes to complex solutions,
                             our certified experts are here to help.
                         </p>
 
@@ -177,7 +173,7 @@ const TechSupport: React.FC = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="px-8 py-4 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                                className="px-8 py-4 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl hover:bg-brand-hover transition-all duration-300"
                             >
                                 Get Support Now
                             </motion.button>
@@ -221,7 +217,7 @@ const TechSupport: React.FC = () => {
                                 whileHover={{ y: -5 }}
                                 className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300 text-center"
                             >
-                                <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-orange-600 to-red-600 rounded-xl text-white mb-4">
+                                <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark rounded-xl text-white mb-4">
                                     {channel.icon}
                                 </div>
                                 <h3 className="text-lg font-semibold text-white mb-2">
@@ -230,7 +226,7 @@ const TechSupport: React.FC = () => {
                                 <p className="text-gray-400 text-sm mb-3">
                                     {channel.description}
                                 </p>
-                                <p className="text-orange-400 font-medium text-sm">
+                                <p className="text-brand font-medium text-sm">
                                     {channel.contact}
                                 </p>
                             </motion.div>
@@ -266,14 +262,14 @@ const TechSupport: React.FC = () => {
                                 onClick={() => handleServiceClick(service)}
                                 className="group cursor-pointer"
                             >
-                                <div className="relative h-full bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 overflow-hidden hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                                <div className="relative h-full bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 overflow-hidden hover:bg-white/10 hover:border-brand/30 transition-all duration-300">
                                     {/* Icon */}
-                                    <div className={`w-20 h-20 bg-gradient-to-r ${service.gradient} rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform`}>
+                                    <div className="w-20 h-20 bg-gradient-to-br from-brand-light to-brand-dark rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
                                         {service.icon}
                                     </div>
 
                                     {/* Content */}
-                                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-orange-400 transition-colors">
+                                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-brand transition-colors">
                                         {service.title}
                                     </h3>
                                     <p className="text-gray-400 mb-4">
@@ -302,13 +298,10 @@ const TechSupport: React.FC = () => {
                                     </div>
 
                                     {/* CTA */}
-                                    <div className="flex items-center gap-2 text-orange-400 group-hover:text-orange-300 transition-colors">
+                                    <div className="flex items-center gap-2 text-brand group-hover:text-brand-light transition-colors">
                                         <span className="font-medium">Learn More</span>
                                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </div>
-
-                                    {/* Hover Effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-r from-orange-600/5 to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                                 </div>
                             </motion.div>
                         ))}
@@ -362,7 +355,7 @@ const TechSupport: React.FC = () => {
                                 transition={{ delay: index * 0.2 }}
                                 className="text-center"
                             >
-                                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-orange-600 to-red-600 rounded-2xl text-white mb-6">
+                                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-brand-light to-brand-dark rounded-2xl text-white mb-6">
                                     {feature.icon}
                                 </div>
                                 <h3 className="text-2xl font-bold text-white mb-2">
@@ -371,7 +364,7 @@ const TechSupport: React.FC = () => {
                                 <p className="text-gray-400 mb-4">
                                     {feature.description}
                                 </p>
-                                <div className="text-3xl font-bold text-orange-400">
+                                <div className="text-3xl font-bold text-brand">
                                     {feature.stat}
                                 </div>
                             </motion.div>
@@ -387,7 +380,7 @@ const TechSupport: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="bg-gradient-to-r from-orange-600/20 to-red-600/20 backdrop-blur-sm rounded-3xl p-12 border border-white/10"
+                        className="bg-brand/5 backdrop-blur-sm rounded-3xl p-12 border border-white/10"
                     >
                         <h2 className="text-3xl font-bold text-white mb-4">
                             Need Technical Support Right Now?
@@ -400,7 +393,7 @@ const TechSupport: React.FC = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setIsModalOpen(true)}
-                                className="px-8 py-4 bg-gradient-to-r from-orange-600 to-red-600 text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300"
+                                className="px-8 py-4 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl hover:bg-brand-hover transition-all duration-300"
                             >
                                 Get Immediate Support
                             </motion.button>

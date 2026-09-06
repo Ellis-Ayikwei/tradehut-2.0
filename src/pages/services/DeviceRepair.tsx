@@ -32,29 +32,25 @@ const deviceTypes = [
         icon: <IconDeviceMobile className="w-8 h-8" />,
         title: 'Smartphone Repair',
         description: 'Screen replacement, battery issues, charging problems, and more',
-        services: ['Screen Replacement', 'Battery Replacement', 'Charging Port Repair', 'Camera Repair', 'Water Damage'],
-        gradient: 'from-blue-500 to-cyan-500'
+        services: ['Screen Replacement', 'Battery Replacement', 'Charging Port Repair', 'Camera Repair', 'Water Damage']
     },
     {
         icon: <IconDeviceLaptop className="w-8 h-8" />,
         title: 'Laptop Repair',
         description: 'Hardware upgrades, software issues, keyboard replacement, and more',
-        services: ['Screen Repair', 'Keyboard Replacement', 'SSD Upgrade', 'RAM Upgrade', 'Motherboard Repair'],
-        gradient: 'from-purple-500 to-pink-500'
+        services: ['Screen Repair', 'Keyboard Replacement', 'SSD Upgrade', 'RAM Upgrade', 'Motherboard Repair']
     },
     {
         icon: <IconDeviceTablet className="w-8 h-8" />,
         title: 'Tablet Repair',
         description: 'Screen repair, battery replacement, software troubleshooting',
-        services: ['Screen Replacement', 'Battery Service', 'Charging Issues', 'Software Fix', 'Button Repair'],
-        gradient: 'from-green-500 to-emerald-500'
+        services: ['Screen Replacement', 'Battery Service', 'Charging Issues', 'Software Fix', 'Button Repair']
     },
     {
         icon: <IconDeviceDesktop className="w-8 h-8" />,
         title: 'Desktop Repair',
         description: 'Component upgrades, virus removal, performance optimization',
-        services: ['Hardware Upgrade', 'Virus Removal', 'OS Installation', 'Data Recovery', 'Performance Boost'],
-        gradient: 'from-orange-500 to-red-500'
+        services: ['Hardware Upgrade', 'Virus Removal', 'OS Installation', 'Data Recovery', 'Performance Boost']
     }
 ];
 
@@ -142,11 +138,11 @@ const DeviceRepair: React.FC = () => {
     return (
         <>
             {/* Hero Section */}
-            <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950">
+            <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-black">
                 {/* Background Effects */}
                 <div className="absolute inset-0">
-                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
+                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand/10 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-slate-500/10 rounded-full blur-3xl"></div>
                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
                 </div>
 
@@ -156,14 +152,14 @@ const DeviceRepair: React.FC = () => {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-full border border-blue-500/20 mb-6">
-                            <Wrench className="w-4 h-4 text-blue-400" />
-                            <span className="text-sm text-blue-300 font-medium">Professional Device Repair</span>
+                        <div className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-brand-light to-brand-dark rounded-full border border-white/10 mb-6">
+                            <Wrench className="w-4 h-4 text-white" />
+                            <span className="text-sm text-white font-medium">Professional Device Repair</span>
                         </div>
-                        
+
                         <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6">
                             Expert Device
-                            <span className="block bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                            <span className="block bg-gradient-to-r from-brand to-brand-light bg-clip-text text-transparent">
                                 Repair Services
                             </span>
                         </h1>
@@ -212,7 +208,7 @@ const DeviceRepair: React.FC = () => {
                                 transition={{ delay: index * 0.1 }}
                                 className="text-center"
                             >
-                                <div className="inline-flex items-center justify-center w-12 h-12 bg-brand rounded-xl text-white mb-3">
+                                <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark rounded-xl text-white mb-3">
                                     {stat.icon}
                                 </div>
                                 <div className="text-2xl font-bold text-white">{stat.value}</div>
@@ -250,14 +246,14 @@ const DeviceRepair: React.FC = () => {
                                 onClick={() => handleServiceClick(device)}
                                 className="group cursor-pointer"
                             >
-                                <div className="relative h-full bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 overflow-hidden hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                                <div className="relative h-full bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/10 overflow-hidden hover:bg-white/10 hover:border-brand/30 transition-all duration-300">
                                     {/* Icon */}
-                                    <div className={`w-20 h-20 bg-gradient-to-r ${device.gradient} rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform`}>
+                                    <div className="w-20 h-20 bg-gradient-to-br from-brand-light to-brand-dark rounded-2xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
                                         {device.icon}
                                     </div>
 
                                     {/* Content */}
-                                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
+                                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-brand transition-colors">
                                         {device.title}
                                     </h3>
                                     <p className="text-gray-400 mb-6">
@@ -280,13 +276,10 @@ const DeviceRepair: React.FC = () => {
                                     </div>
 
                                     {/* CTA */}
-                                    <div className="flex items-center gap-2 text-blue-400 group-hover:text-blue-300 transition-colors">
+                                    <div className="flex items-center gap-2 text-brand group-hover:text-brand-light transition-colors">
                                         <span className="font-medium">Learn More</span>
                                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </div>
-
-                                    {/* Hover Effect */}
-                                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                                 </div>
                             </motion.div>
                         ))}
@@ -323,7 +316,7 @@ const DeviceRepair: React.FC = () => {
                             >
                                 <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300">
                                     <div className="flex items-start gap-4">
-                                        <div className="flex-shrink-0 w-12 h-12 bg-brand rounded-xl flex items-center justify-center text-white">
+                                        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark rounded-xl flex items-center justify-center text-white">
                                             {process.icon}
                                         </div>
                                         <div className="flex-1">
@@ -339,7 +332,7 @@ const DeviceRepair: React.FC = () => {
                                 
                                 {/* Connection Line */}
                                 {index < repairProcess.length - 1 && (
-                                    <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600"></div>
+                                    <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-0.5 bg-gradient-to-r from-brand-light to-brand-dark"></div>
                                 )}
                             </motion.div>
                         ))}
@@ -354,7 +347,7 @@ const DeviceRepair: React.FC = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 backdrop-blur-sm rounded-3xl p-12 border border-white/10"
+                        className="bg-brand/5 backdrop-blur-sm rounded-3xl p-12 border border-white/10"
                     >
                         <h2 className="text-3xl font-bold text-white mb-4">
                             Ready to Fix Your Device?

@@ -96,22 +96,22 @@ export default function Hero() {
                                     animate={{ scale: 1 }}
                                     whileHover={{ scale: 1.05 }}
                                     transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
-                                    className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-brand/20 backdrop-blur-sm rounded-full border border-brand/30 text-brand text-xs sm:text-sm font-medium hover:bg-brand/30 transition-all duration-300 cursor-pointer"
+                                    className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-gradient-to-br from-brand-light to-brand-dark rounded-full border border-white/10 text-white text-xs sm:text-sm font-medium hover:from-brand hover:to-brand-dark transition-all duration-300 cursor-pointer"
                                 >
                                     {/* Blinking Green Dot */}
                                     <motion.span
                                         animate={{ opacity: [1, 0.3, 1] }}
-                                        transition={{ 
-                                            duration: 1.5, 
+                                        transition={{
+                                            duration: 1.5,
                                             repeat: Infinity,
                                             ease: "easeInOut"
                                         }}
                                         className="relative flex items-center justify-center"
                                     >
-                                        <span className="absolute w-2 h-2 bg-green-500 rounded-full"></span>
+                                        <span className="absolute w-2 h-2 bg-green-400 rounded-full"></span>
                                     </motion.span>
                                     <span>Whats New: ScrubiMail </span>
-                                    <span className="ml-2 px-3 py-1 flex items-center gap-2 bg-brand text-white rounded-full text-xs font-medium">Check it out
+                                    <span className="ml-2 px-3 py-1 flex items-center gap-2 bg-white text-brand-dark rounded-full text-xs font-medium">Check it out
                                         <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                     </span>
                                 </motion.span>

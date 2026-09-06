@@ -313,7 +313,7 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                     </button>
                                     
                                     <div className="flex items-center gap-4">
-                                        <div className="w-16 h-16 bg-brand rounded-2xl flex items-center justify-center text-white">
+                                        <div className="w-16 h-16 bg-gradient-to-br from-brand-light to-brand-dark rounded-2xl flex items-center justify-center text-white">
                                             {service.icon}
                                         </div>
                                         <div>
@@ -383,21 +383,21 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                             {/* Service Info Cards */}
                                             <div className="grid md:grid-cols-3 gap-4">
                                                 <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                                                    <div className="w-12 h-12 bg-brand rounded-xl flex items-center justify-center mb-3">
+                                                    <div className="w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark rounded-xl flex items-center justify-center mb-3">
                                                         <Clock className="w-6 h-6 text-white" />
                                                     </div>
                                                     <h4 className="text-white font-medium mb-1">Duration</h4>
                                                     <p className="text-gray-400 text-sm">{service.duration}</p>
                                                 </div>
                                                 <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                                                    <div className="w-12 h-12 bg-brand rounded-xl flex items-center justify-center mb-3">
+                                                    <div className="w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark rounded-xl flex items-center justify-center mb-3">
                                                         <Shield className="w-6 h-6 text-white" />
                                                     </div>
                                                     <h4 className="text-white font-medium mb-1">Warranty</h4>
                                                     <p className="text-gray-400 text-sm">{service.warranty}</p>
                                                 </div>
                                                 <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                                                    <div className="w-12 h-12 bg-brand rounded-xl flex items-center justify-center mb-3">
+                                                    <div className="w-12 h-12 bg-gradient-to-br from-brand-light to-brand-dark rounded-xl flex items-center justify-center mb-3">
                                                         <Award className="w-6 h-6 text-white" />
                                                     </div>
                                                     <h4 className="text-white font-medium mb-1">Quality</h4>
@@ -490,7 +490,7 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                             <div className="space-y-4">
                                                 {service.process.map((step, index) => (
                                                     <div key={index} className="flex gap-4">
-                                                        <div className="flex-shrink-0 w-10 h-10 bg-brand rounded-full flex items-center justify-center text-white font-bold">
+                                                        <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-brand-light to-brand-dark rounded-full flex items-center justify-center text-white font-bold">
                                                             {index + 1}
                                                         </div>
                                                         <div className="flex-1">

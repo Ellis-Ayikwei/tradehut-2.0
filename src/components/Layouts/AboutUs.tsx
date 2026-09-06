@@ -83,10 +83,10 @@ const AboutUs: React.FC = () => {
                         initial={{ scale: 0 }}
                         animate={headerInView ? { scale: 1 } : {}}
                         transition={{ delay: 0.2, type: "spring" }}
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-brand/10 rounded-full border border-brand/20 mb-4"
+                        className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-br from-brand-light to-brand-dark rounded-full border border-white/10 mb-4"
                     >
-                        <Briefcase className="w-4 h-4 text-brand" />
-                        <span className="text-sm text-brand-light font-medium">About TradeHut</span>
+                        <Briefcase className="w-4 h-4 text-white" />
+                        <span className="text-sm text-white font-medium">About TradeHut</span>
                     </motion.div>
 
                     <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
