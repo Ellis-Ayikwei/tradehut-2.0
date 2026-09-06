@@ -20,6 +20,7 @@ import {
     IconInfoCircle,
     IconMessage2
 } from '@tabler/icons-react';
+import ContactModal from './ContactModal';
 
 const faqCategories = [
     { id: 'general', name: 'General', icon: <IconInfoCircle className="w-5 h-5" /> },
@@ -91,6 +92,7 @@ const FAQ: React.FC = () => {
     const [selectedCategory, setSelectedCategory] = useState('general');
     const [openItems, setOpenItems] = useState<number[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
     const toggleItem = (id: number) => {
         setOpenItems(prev => 
@@ -108,6 +110,7 @@ const FAQ: React.FC = () => {
     });
 
     return (
+        <>
         <section className="py-24 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0">
@@ -285,22 +288,28 @@ const FAQ: React.FC = () => {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
+                                onClick={() => setIsContactModalOpen(true)}
                                 className="px-6 py-3 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-brand-hover"
                             >
                                 Contact Support
                             </motion.button>
-                            <motion.button
+                            <motion.a
+                                href="https://wa.me/233248138722"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 className="px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 text-white rounded-xl font-medium hover:bg-white/10 transition-all duration-300"
                             >
                                 Live Chat
-                            </motion.button>
+                            </motion.a>
                         </div>
                     </div>
                 </motion.div>
             </div>
         </section>
+        <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
+        </>
     );
 };
 

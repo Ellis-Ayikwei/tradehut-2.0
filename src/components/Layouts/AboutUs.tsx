@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { 
-    Target, 
-    Eye, 
+import {
+    Target,
+    Eye,
     Heart,
     Award,
     Users,
@@ -25,6 +25,7 @@ import {
     IconUsers,
     IconShieldCheck
 } from '@tabler/icons-react';
+import ContactModal from './ContactModal';
 
 const values = [
     {
@@ -57,11 +58,13 @@ const achievements = [
 ];
 
 const AboutUs: React.FC = () => {
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
     const { ref: headerRef, inView: headerInView } = useInView({ threshold: 0.1, triggerOnce: true });
     const { ref: contentRef, inView: contentInView } = useInView({ threshold: 0.1, triggerOnce: true });
     const { ref: valuesRef, inView: valuesInView } = useInView({ threshold: 0.1, triggerOnce: true });
 
     return (
+        <>
         <section className="py-24 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute inset-0">
@@ -166,6 +169,7 @@ const AboutUs: React.FC = () => {
                         <motion.button
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
+                            onClick={() => document.getElementById('core-values')?.scrollIntoView({ behavior: 'smooth' })}
                             className="inline-flex items-center gap-2 px-6 py-3 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-brand-hover"
                         >
                             <span>Learn More About Us</span>
@@ -227,11 +231,12 @@ const AboutUs: React.FC = () => {
 
                 {/* Core Values */}
                 <motion.div
+                    id="core-values"
                     ref={valuesRef}
                     initial={{ opacity: 0, y: 50 }}
                     animate={valuesInView ? { opacity: 1, y: 0 } : {}}
                     transition={{ duration: 0.6 }}
-                    className="text-center mb-12"
+                    className="text-center mb-12 scroll-mt-24"
                 >
                     <h3 className="text-3xl font-bold text-white mb-4">Our Core Values</h3>
                     <p className="text-gray-400 max-w-2xl mx-auto mb-12">
@@ -277,6 +282,7 @@ const AboutUs: React.FC = () => {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
+                                onClick={() => setIsContactModalOpen(true)}
                                 className="px-6 py-3 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-brand-hover"
                             >
                                 Get Started Today
@@ -284,6 +290,7 @@ const AboutUs: React.FC = () => {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
+                                onClick={() => setIsContactModalOpen(true)}
                                 className="px-6 py-3 bg-white/5 backdrop-blur-sm border border-white/10 text-white rounded-xl font-medium hover:bg-white/10 transition-all duration-300"
                             >
                                 Schedule a Call
@@ -293,6 +300,8 @@ const AboutUs: React.FC = () => {
                 </motion.div>
             </div>
         </section>
+        <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
+        </>
     );
 };
 

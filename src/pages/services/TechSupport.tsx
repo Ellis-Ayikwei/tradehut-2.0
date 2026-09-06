@@ -397,13 +397,14 @@ const TechSupport: React.FC = () => {
                             >
                                 Get Immediate Support
                             </motion.button>
-                            <motion.button
+                            <motion.a
+                                href="tel:+233248138722"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-xl font-medium hover:bg-white/20 transition-all duration-300"
                             >
                                 Call: +233 24 813 8722
-                            </motion.button>
+                            </motion.a>
                         </div>
                     </motion.div>
                 </div>
