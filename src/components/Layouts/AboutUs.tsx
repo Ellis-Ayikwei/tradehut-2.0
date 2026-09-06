@@ -23,8 +23,7 @@ import {
     IconAward,
     IconChartLine,
     IconUsers,
-    IconShieldCheck,
-    IconSparkles
+    IconShieldCheck
 } from '@tabler/icons-react';
 
 const values = [
@@ -86,7 +85,7 @@ const AboutUs: React.FC = () => {
                         transition={{ delay: 0.2, type: "spring" }}
                         className="inline-flex items-center gap-2 px-4 py-2 bg-brand/10 rounded-full border border-brand/20 mb-4"
                     >
-                        <IconSparkles className="w-4 h-4 text-brand" />
+                        <Briefcase className="w-4 h-4 text-brand" />
                         <span className="text-sm text-brand-light font-medium">About TradeHut</span>
                     </motion.div>
 
