@@ -3,18 +3,15 @@
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { 
-    ArrowRight, 
-    Play,
+import {
+    ArrowRight,
     Database,
     Cloud,
     Network,
     Cpu,
     Shield,
     Code,
-    Headphones,
-    Sparkles,
-    CheckCircle2
+    Headphones
 } from 'lucide-react';
 import {
     IconBrandApple,
@@ -33,7 +30,6 @@ import {
 } from '@tabler/icons-react';
 import Marquee from 'react-fast-marquee';
 import ContactModal from './ContactModal';
-import ModernNavbar from './ModernNavbar';
 
 const trustedBrands = [
     { name: 'Apple', icon: <IconBrandApple className="w-8 h-8" /> },
@@ -74,37 +70,8 @@ export default function Hero() {
 
     return (
         <>
-           
-            
             {/* Ultra Modern Hero Section */}
             <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black py-8 sm:py-12 lg:py-0">
-                {/* Minimalist Beam Arch */}
-                {/* <div className="absolute inset-0 overflow-hidden">
-                    <svg className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="none">
-                        <defs>
-                            <radialGradient id="archGradient" cx="50%" cy="0%" r="30%">
-                                <stop offset="0%" stopColor="#e5500e" stopOpacity="0.9" />
-                                <stop offset="20%" stopColor="#e5500e" stopOpacity="0.4" />
-                                <stop offset="40%" stopColor="#e5500e" stopOpacity="0.1" />
-                                <stop offset="100%" stopColor="#e5500e" stopOpacity="0" />
-                            </radialGradient>
-                            <filter id="glow">
-                                <feGaussianBlur stdDeviation="40" result="coloredBlur"/>
-                                <feMerge>
-                                    <feMergeNode in="coloredBlur"/>
-                                    <feMergeNode in="SourceGraphic"/>
-                                </feMerge>
-                            </filter>
-                        </defs>
-                        <path
-                            d="M 0,400 Q 600,-150 1200,400 L 1200,800 L 0,800 Z"
-                            fill="url(#archGradient)"
-                            opacity="1"
-                            filter="url(#glow)"
-                        />
-                    </svg>
-                </div> */}
-
                 {/* Minimalist Grid Pattern */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
 
@@ -179,39 +146,55 @@ export default function Hero() {
                             className="text-center w-full max-w-xs sm:max-w-lg md:max-w-2xl px-3 sm:px-4"
                         >
                             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-2 leading-relaxed font-medium">
-                                Your Complete Technology Ecosystem, Perfected.
+                                Software Engineering, AI &amp; Device Repair — Under One Roof.
                             </p>
-                            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 mb-3 sm:mb-4 leading-relaxed">
-                                Repairs, software, cloud, automation, and everything in between. 
-                                Your one-stop solution for all technology needs—from device fixes to enterprise solutions.
+                            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 mb-6 leading-relaxed">
+                                From custom software and AI-powered automation to expert device repairs,
+                                we're Ghana's complete technology partner for individuals and businesses.
                             </p>
 
-                            {/* CTA Buttons - Apple-like Dark Gradients */}
-                            {/* <div className="flex flex-wrap justify-center gap-4">
+                            {/* CTA Buttons */}
+                            <div className="flex flex-wrap justify-center gap-4">
                                 <motion.button
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                     onClick={() => setIsContactModalOpen(true)}
-                                    className="group relative px-8 py-3.5 bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white rounded-lg font-medium shadow-lg border border-gray-700/50 hover:border-gray-600/50 transition-all duration-300 overflow-hidden"
+                                    className="group relative px-8 py-3.5 bg-brand text-white rounded-xl font-medium shadow-lg hover:bg-brand-hover transition-all duration-300 overflow-hidden"
                                 >
                                     <span className="relative z-10 flex items-center gap-2">
-                                        Get Started
+                                        Get a Free Quote
                                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </span>
-                                    <div className="absolute inset-0 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 </motion.button>
 
                                 <motion.button
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className="group px-8 py-3.5 bg-gradient-to-r from-black via-gray-900 to-black text-white rounded-lg font-medium border border-gray-800/50 hover:border-gray-700/50 hover:bg-gradient-to-r hover:from-gray-900 hover:via-gray-800 hover:to-gray-900 transition-all duration-300"
+                                    onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+                                    className="group px-8 py-3.5 bg-white/5 backdrop-blur-sm border border-white/10 text-white rounded-xl font-medium hover:bg-white/10 hover:border-white/20 transition-all duration-300"
                                 >
                                     <span className="flex items-center gap-2">
-                                        <Play className="w-4 h-4" />
-                                        Watch Demo
+                                        Explore Services
+                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                     </span>
                                 </motion.button>
-                            </div> */}
+                            </div>
+
+                            {/* Trusted Device Brands */}
+                            <div className="flex flex-col items-center gap-3 mt-8">
+                                <span className="text-xs uppercase tracking-widest text-gray-500 font-medium">We Repair &amp; Support</span>
+                                <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+                                    {trustedBrands.map((brand) => (
+                                        <div
+                                            key={brand.name}
+                                            title={brand.name}
+                                            className="text-gray-500 hover:text-white transition-colors duration-300"
+                                        >
+                                            {brand.icon}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         </motion.div>
 
                         {/* Tech Stack Marquee - Full Width with Fade */}
@@ -345,25 +328,25 @@ export default function Hero() {
             {/* Floating elements around laptop - hidden on mobile */}
             <div className="hidden sm:block absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 animate-float-slow">
               {/* Glow effect for analytics card */}
-              <div className="absolute inset-0 bg-[#1E3A8A]/30 rounded-2xl sm:rounded-3xl blur-xl"></div>
-              <div className="relative bg-white dark:bg-[#0d1117] rounded-2xl sm:rounded-3xl shadow-xl border border-gray-200 dark:border-[#30363d] p-3 sm:p-4 lg:p-6 transition-colors duration-300">
+              <div className="absolute inset-0 bg-blue-500/30 rounded-2xl sm:rounded-3xl blur-xl"></div>
+              <div className="relative bg-slate-900 rounded-2xl sm:rounded-3xl shadow-xl border border-white/10 p-3 sm:p-4 lg:p-6">
                 <div className="w-full h-full flex flex-col justify-between">
                   <div className="flex items-center justify-between">
-                    <div className="w-1 h-4 sm:h-6 bg-[#10B981] rounded-full"></div>
-                    <div className="w-1 h-3 sm:h-4 bg-[#1E3A8A] rounded-full"></div>
-                    <div className="w-1 h-5 sm:h-8 bg-[#10B981] rounded-full"></div>
-                    <div className="w-1 h-2 sm:h-3 bg-[#EF4444] rounded-full"></div>
+                    <div className="w-1 h-4 sm:h-6 bg-emerald-400 rounded-full"></div>
+                    <div className="w-1 h-3 sm:h-4 bg-blue-400 rounded-full"></div>
+                    <div className="w-1 h-5 sm:h-8 bg-emerald-400 rounded-full"></div>
+                    <div className="w-1 h-2 sm:h-3 bg-red-400 rounded-full"></div>
                   </div>
-                  <div className="text-xs text-gray-500 dark:text-[#7d8590] text-center transition-colors duration-300">Analytics</div>
+                  <div className="text-xs text-gray-400 text-center">Analytics</div>
                 </div>
               </div>
             </div>
 
             <div className="hidden sm:block absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 animate-float-medium">
               {/* Glow effect for shield */}
-              <div className="absolute inset-0 bg-[#1E3A8A]/30 rounded-full blur-xl"></div>
-              <div className="relative bg-white dark:bg-[#0d1117] rounded-full shadow-xl border border-gray-200 dark:border-[#30363d] flex items-center justify-center w-full h-full transition-colors duration-300">
-                <Shield className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-[#1E3A8A]" />
+              <div className="absolute inset-0 bg-blue-500/30 rounded-full blur-xl"></div>
+              <div className="relative bg-slate-900 rounded-full shadow-xl border border-white/10 flex items-center justify-center w-full h-full">
+                <Shield className="w-5 h-5 sm:w-6 sm:h-6 lg:w-8 lg:h-8 text-blue-400" />
               </div>
             </div>
           </div>
@@ -384,7 +367,7 @@ export default function Hero() {
             </section>
 
             {/* Our Services Section */}
-            <section className="py-16 bg-gradient-to-b from-slate-950 to-slate-900">
+            <section id="services" className="py-16 bg-gradient-to-b from-slate-950 to-slate-900 scroll-mt-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -393,7 +376,7 @@ export default function Hero() {
                         className="text-center mb-12"
                     >
                         <h2 className="text-3xl font-bold text-white mb-4">Comprehensive Technology Solutions</h2>
-                        <p className="text-gray-400">From device repairs to IT infrastructure, we provide end-to-end technology services</p>
+                        <p className="text-gray-400">From AI-powered software to device repairs, we provide end-to-end technology services</p>
                     </motion.div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -414,7 +397,7 @@ export default function Hero() {
                             },
                             {
                                 title: 'Software Development',
-                                description: 'Web, mobile & desktop applications',
+                                description: 'Web, mobile, desktop & AI-powered applications',
                                 icon: <Code className="w-8 h-8" />,
                                 stats: '300+ Projects',
                                 link: '/services/software-development'
