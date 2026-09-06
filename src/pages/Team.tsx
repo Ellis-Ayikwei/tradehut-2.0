@@ -116,7 +116,7 @@ const Team: React.FC = () => {
                                     </div>
                                     
                                     <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
-                                    <p className="text-sm text-[#e5500e] mb-3">{member.role}</p>
+                                    <p className="text-sm text-brand mb-3">{member.role}</p>
                                     <p className="text-sm text-gray-400 mb-4">{member.bio}</p>
                                     
                                     <div className="flex items-center gap-3 pt-4 border-t border-white/10">

@@ -87,7 +87,7 @@ const Press: React.FC = () => {
                             <ImageIcon className="w-8 h-8 text-blue-400 mb-4" />
                             <h3 className="text-xl font-bold text-white mb-2">{pressKit.logo.title}</h3>
                             <p className="text-gray-400 text-sm mb-4">{pressKit.logo.description}</p>
-                            <button className="w-full px-4 py-2 bg-[#e5500e] text-white rounded-lg hover:bg-[#d44a0d] transition-all flex items-center justify-center gap-2">
+                            <button className="w-full px-4 py-2 bg-brand text-white rounded-lg hover:bg-brand-hover transition-all flex items-center justify-center gap-2">
                                 <Download className="w-4 h-4" />
                                 <span>Download</span>
                             </button>
@@ -102,7 +102,7 @@ const Press: React.FC = () => {
                             <FileText className="w-8 h-8 text-purple-400 mb-4" />
                             <h3 className="text-xl font-bold text-white mb-2">{pressKit.brand.title}</h3>
                             <p className="text-gray-400 text-sm mb-4">{pressKit.brand.description}</p>
-                            <button className="w-full px-4 py-2 bg-[#e5500e] text-white rounded-lg hover:bg-[#d44a0d] transition-all flex items-center justify-center gap-2">
+                            <button className="w-full px-4 py-2 bg-brand text-white rounded-lg hover:bg-brand-hover transition-all flex items-center justify-center gap-2">
                                 <Download className="w-4 h-4" />
                                 <span>Download</span>
                             </button>
@@ -117,7 +117,7 @@ const Press: React.FC = () => {
                             <ImageIcon className="w-8 h-8 text-green-400 mb-4" />
                             <h3 className="text-xl font-bold text-white mb-2">{pressKit.images.title}</h3>
                             <p className="text-gray-400 text-sm mb-4">{pressKit.images.description}</p>
-                            <button className="w-full px-4 py-2 bg-[#e5500e] text-white rounded-lg hover:bg-[#d44a0d] transition-all flex items-center justify-center gap-2">
+                            <button className="w-full px-4 py-2 bg-brand text-white rounded-lg hover:bg-brand-hover transition-all flex items-center justify-center gap-2">
                                 <Download className="w-4 h-4" />
                                 <span>Download</span>
                             </button>

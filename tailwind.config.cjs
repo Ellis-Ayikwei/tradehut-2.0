@@ -8,6 +8,12 @@ module.exports = {
         },
         extend: {
             colors: {
+                brand: {
+                    DEFAULT: '#e5500e',
+                    hover: '#d44a0d',
+                    light: '#ff7a3d',
+                    dark: '#b23e0b',
+                },
                 primary: {
                     DEFAULT: '#4361ee',
                     light: '#eaf1ff',

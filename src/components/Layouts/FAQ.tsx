@@ -178,7 +178,7 @@ const FAQ: React.FC = () => {
                         onClick={() => setSelectedCategory('all')}
                         className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
                             selectedCategory === 'all'
-                                ? 'bg-[#e5500e] text-white shadow-lg'
+                                ? 'bg-brand text-white shadow-lg'
                                 : 'bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white'
                         }`}
                     >
@@ -193,7 +193,7 @@ const FAQ: React.FC = () => {
                             onClick={() => setSelectedCategory(category.id)}
                             className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
                                 selectedCategory === category.id
-                                    ? 'bg-[#e5500e] text-white shadow-lg'
+                                    ? 'bg-brand text-white shadow-lg'
                                     : 'bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white'
                             }`}
                         >
@@ -285,7 +285,7 @@ const FAQ: React.FC = () => {
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="px-6 py-3 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#d44a0d]"
+                                className="px-6 py-3 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-brand-hover"
                             >
                                 Contact Support
                             </motion.button>

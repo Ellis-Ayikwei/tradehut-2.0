@@ -313,7 +313,7 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                     </button>
                                     
                                     <div className="flex items-center gap-4">
-                                        <div className="w-16 h-16 bg-[#e5500e] rounded-2xl flex items-center justify-center text-white">
+                                        <div className="w-16 h-16 bg-brand rounded-2xl flex items-center justify-center text-white">
                                             {service.icon}
                                         </div>
                                         <div>
@@ -347,7 +347,7 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                                 onClick={() => setActiveTab(tab.id)}
                                                 className={`flex items-center gap-2 px-4 py-2 rounded-xl font-medium transition-all whitespace-nowrap ${
                                                     activeTab === tab.id
-                                                        ? 'bg-[#e5500e] text-white hover:bg-[#d44a0d]'
+                                                        ? 'bg-brand text-white hover:bg-brand-hover'
                                                         : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
                                                 }`}
                                             >
@@ -383,21 +383,21 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                             {/* Service Info Cards */}
                                             <div className="grid md:grid-cols-3 gap-4">
                                                 <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                                                    <div className="w-12 h-12 bg-[#e5500e] rounded-xl flex items-center justify-center mb-3">
+                                                    <div className="w-12 h-12 bg-brand rounded-xl flex items-center justify-center mb-3">
                                                         <Clock className="w-6 h-6 text-white" />
                                                     </div>
                                                     <h4 className="text-white font-medium mb-1">Duration</h4>
                                                     <p className="text-gray-400 text-sm">{service.duration}</p>
                                                 </div>
                                                 <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                                                    <div className="w-12 h-12 bg-[#e5500e] rounded-xl flex items-center justify-center mb-3">
+                                                    <div className="w-12 h-12 bg-brand rounded-xl flex items-center justify-center mb-3">
                                                         <Shield className="w-6 h-6 text-white" />
                                                     </div>
                                                     <h4 className="text-white font-medium mb-1">Warranty</h4>
                                                     <p className="text-gray-400 text-sm">{service.warranty}</p>
                                                 </div>
                                                 <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                                                    <div className="w-12 h-12 bg-[#e5500e] rounded-xl flex items-center justify-center mb-3">
+                                                    <div className="w-12 h-12 bg-brand rounded-xl flex items-center justify-center mb-3">
                                                         <Award className="w-6 h-6 text-white" />
                                                     </div>
                                                     <h4 className="text-white font-medium mb-1">Quality</h4>
@@ -439,20 +439,20 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                                         onClick={() => setSelectedPackage(pkg.name)}
                                                         className={`relative cursor-pointer bg-white/5 backdrop-blur-sm rounded-2xl p-6 border transition-all duration-300 ${
                                                             selectedPackage === pkg.name
-                                                                ? 'border-[#e5500e] bg-[#e5500e]/10'
+                                                                ? 'border-brand bg-brand/10'
                                                                 : 'border-white/10 hover:border-white/20 hover:bg-white/10'
-                                                        } ${pkg.popular ? 'ring-2 ring-[#e5500e]/50' : ''}`}
+                                                        } ${pkg.popular ? 'ring-2 ring-brand/50' : ''}`}
                                                     >
                                                         {pkg.popular && (
                                                             <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                                                                <span className="px-3 py-1 bg-[#e5500e] text-white text-xs font-semibold rounded-full">
+                                                                <span className="px-3 py-1 bg-brand text-white text-xs font-semibold rounded-full">
                                                                     Popular
                                                                 </span>
                                                             </div>
                                                         )}
                                                         <div className="text-center mb-4">
                                                             <h4 className="text-xl font-bold text-white mb-2">{pkg.name}</h4>
-                                                            <div className="text-3xl font-bold text-[#e5500e] mb-1">{pkg.price}</div>
+                                                            <div className="text-3xl font-bold text-brand mb-1">{pkg.price}</div>
                                                         </div>
                                                         <ul className="space-y-3">
                                                             {pkg.features.map((feature, idx) => (
@@ -469,7 +469,7 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                                 <motion.div
                                                     initial={{ opacity: 0, y: 10 }}
                                                     animate={{ opacity: 1, y: 0 }}
-                                                    className="mt-6 p-4 bg-[#e5500e]/10 border border-[#e5500e]/30 rounded-xl"
+                                                    className="mt-6 p-4 bg-brand/10 border border-brand/30 rounded-xl"
                                                 >
                                                     <p className="text-white text-sm">
                                                         <strong>Selected:</strong> {selectedPackage} package
@@ -490,7 +490,7 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                             <div className="space-y-4">
                                                 {service.process.map((step, index) => (
                                                     <div key={index} className="flex gap-4">
-                                                        <div className="flex-shrink-0 w-10 h-10 bg-[#e5500e] rounded-full flex items-center justify-center text-white font-bold">
+                                                        <div className="flex-shrink-0 w-10 h-10 bg-brand rounded-full flex items-center justify-center text-white font-bold">
                                                             {index + 1}
                                                         </div>
                                                         <div className="flex-1">
@@ -534,7 +534,7 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                                                 required
                                                                 value={formData.name}
                                                                 onChange={handleInputChange}
-                                                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#e5500e]"
+                                                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                                 placeholder="John Doe"
                                                             />
                                                         </div>
@@ -546,7 +546,7 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                                                 required
                                                                 value={formData.email}
                                                                 onChange={handleInputChange}
-                                                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#e5500e]"
+                                                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                                 placeholder="john@example.com"
                                                             />
                                                         </div>
@@ -558,7 +558,7 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                                                 required
                                                                 value={formData.phone}
                                                                 onChange={handleInputChange}
-                                                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#e5500e]"
+                                                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                                 placeholder="+233 XX XXX XXXX"
                                                             />
                                                         </div>
@@ -569,7 +569,7 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                                                 name="company"
                                                                 value={formData.company}
                                                                 onChange={handleInputChange}
-                                                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#e5500e]"
+                                                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                                 placeholder="Your Company"
                                                             />
                                                         </div>
@@ -626,7 +626,7 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                                                 name="preferredStartDate"
                                                                 value={formData.preferredStartDate}
                                                                 onChange={handleInputChange}
-                                                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-[#e5500e]"
+                                                                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:border-brand"
                                                             />
                                                         </div>
                                                     </div>
@@ -641,7 +641,7 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                                         value={formData.projectDescription}
                                                         onChange={handleInputChange}
                                                         rows={4}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#e5500e]"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                         placeholder="Please describe your project in detail..."
                                                     />
                                                 </div>
@@ -654,14 +654,14 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                                         value={formData.additionalRequirements}
                                                         onChange={handleInputChange}
                                                         rows={3}
-                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#e5500e]"
+                                                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand"
                                                         placeholder="Any specific features, integrations, or requirements..."
                                                     />
                                                 </div>
 
                                                 {/* Selected Package Display */}
                                                 {selectedPackage && (
-                                                    <div className="p-4 bg-[#e5500e]/10 border border-[#e5500e]/30 rounded-xl">
+                                                    <div className="p-4 bg-brand/10 border border-brand/30 rounded-xl">
                                                         <p className="text-white text-sm">
                                                             <strong>Selected Package:</strong> {selectedPackage}
                                                         </p>
@@ -679,7 +679,7 @@ const SoftwareDevelopmentModal: React.FC<SoftwareDevelopmentModalProps> = ({ isO
                                                     </button>
                                                     <button
                                                         type="submit"
-                                                        className="px-6 py-3 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#d44a0d] flex items-center gap-2"
+                                                        className="px-6 py-3 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-brand-hover flex items-center gap-2"
                                                     >
                                                         <span>Request Quote</span>
                                                         <ArrowRight className="w-4 h-4" />

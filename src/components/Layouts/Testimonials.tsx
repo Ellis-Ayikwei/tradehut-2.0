@@ -104,7 +104,7 @@ export default function Testimonials() {
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: index * 0.1, duration: 0.5 }}
                             whileHover={{ y: -5 }}
-                            className="relative bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 hover:bg-white/10 hover:border-[#e5500e]/30 transition-all duration-300 group"
+                            className="relative bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 hover:bg-white/10 hover:border-brand/30 transition-all duration-300 group"
                         >
                             {/* Quote Icon */}
                             <div className="absolute top-4 right-4 opacity-20 group-hover:opacity-40 transition-opacity">
@@ -114,7 +114,7 @@ export default function Testimonials() {
                             {/* Rating */}
                             <div className="flex items-center gap-1 mb-4">
                                 {[...Array(testimonial.rating)].map((_, i) => (
-                                    <Star key={i} className="w-4 h-4 fill-[#e5500e] text-[#e5500e]" />
+                                    <Star key={i} className="w-4 h-4 fill-brand text-brand" />
                                 ))}
                             </div>
 
@@ -124,13 +124,13 @@ export default function Testimonials() {
                             </p>
 
                             {/* Service Badge */}
-                            <div className="inline-block px-3 py-1 bg-[#e5500e]/20 border border-[#e5500e]/30 rounded-full mb-4">
-                                <span className="text-xs text-[#e5500e] font-medium">{testimonial.service}</span>
+                            <div className="inline-block px-3 py-1 bg-brand/20 border border-brand/30 rounded-full mb-4">
+                                <span className="text-xs text-brand font-medium">{testimonial.service}</span>
                             </div>
 
                             {/* Author Info */}
                             <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#e5500e]/30 to-[#e5500e]/10 border border-[#e5500e]/30 flex items-center justify-center text-white font-bold text-sm">
+                                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand/30 to-brand/10 border border-brand/30 flex items-center justify-center text-white font-bold text-sm">
                                     {testimonial.image}
                                 </div>
                                 <div>

@@ -112,7 +112,7 @@ const Careers: React.FC = () => {
                                         <ul className="space-y-2">
                                             {job.requirements.map((req, idx) => (
                                                 <li key={idx} className="flex items-start gap-2 text-sm text-gray-400">
-                                                    <span className="text-[#e5500e] mt-1">•</span>
+                                                    <span className="text-brand mt-1">•</span>
                                                     <span>{req}</span>
                                                 </li>
                                             ))}
@@ -121,7 +121,7 @@ const Careers: React.FC = () => {
                                     <motion.button
                                         whileHover={{ scale: 1.05 }}
                                         whileTap={{ scale: 0.95 }}
-                                        className="px-6 py-3 bg-[#e5500e] text-white rounded-xl font-medium hover:bg-[#d44a0d] transition-all duration-300 flex items-center gap-2 whitespace-nowrap"
+                                        className="px-6 py-3 bg-brand text-white rounded-xl font-medium hover:bg-brand-hover transition-all duration-300 flex items-center gap-2 whitespace-nowrap"
                                     >
                                         <span>Apply Now</span>
                                         <ArrowRight className="w-4 h-4" />

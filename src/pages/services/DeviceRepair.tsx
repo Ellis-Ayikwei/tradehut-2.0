@@ -178,7 +178,7 @@ const DeviceRepair: React.FC = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                                className="px-8 py-4 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#d44a0d]"
+                                className="px-8 py-4 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-brand-hover"
                             >
                                 View Services
                             </motion.button>
@@ -212,7 +212,7 @@ const DeviceRepair: React.FC = () => {
                                 transition={{ delay: index * 0.1 }}
                                 className="text-center"
                             >
-                                <div className="inline-flex items-center justify-center w-12 h-12 bg-[#e5500e] rounded-xl text-white mb-3">
+                                <div className="inline-flex items-center justify-center w-12 h-12 bg-brand rounded-xl text-white mb-3">
                                     {stat.icon}
                                 </div>
                                 <div className="text-2xl font-bold text-white">{stat.value}</div>
@@ -323,7 +323,7 @@ const DeviceRepair: React.FC = () => {
                             >
                                 <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all duration-300">
                                     <div className="flex items-start gap-4">
-                                        <div className="flex-shrink-0 w-12 h-12 bg-[#e5500e] rounded-xl flex items-center justify-center text-white">
+                                        <div className="flex-shrink-0 w-12 h-12 bg-brand rounded-xl flex items-center justify-center text-white">
                                             {process.icon}
                                         </div>
                                         <div className="flex-1">
@@ -368,7 +368,7 @@ const DeviceRepair: React.FC = () => {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 onClick={() => setIsModalOpen(true)}
-                                className="px-8 py-4 bg-[#e5500e] text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#d44a0d]"
+                                className="px-8 py-4 bg-brand text-white rounded-xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-brand-hover"
                             >
                                 Book Repair Now
                             </motion.button>

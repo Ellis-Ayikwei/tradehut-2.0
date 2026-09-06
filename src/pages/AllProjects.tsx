@@ -249,7 +249,7 @@ const AllProjects: React.FC = () => {
                                         onClick={() => setSelectedCategory(category)}
                                         className={`px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
                                             selectedCategory === category
-                                                ? 'bg-[#e5500e] text-white shadow-lg'
+                                                ? 'bg-brand text-white shadow-lg'
                                                 : 'bg-white/5 text-gray-400 border border-white/10 hover:bg-white/10 hover:text-white'
                                         }`}
                                     >

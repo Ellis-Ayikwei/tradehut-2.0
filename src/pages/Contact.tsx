@@ -202,7 +202,7 @@ const Contact: React.FC = () => {
                                     disabled={isSubmitting}
                                     whileHover={{ scale: isSubmitting ? 1 : 1.05 }}
                                     whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
-                                    className="w-full px-6 py-4 bg-[#e5500e] text-white rounded-xl font-medium hover:bg-[#d44a0d] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full px-6 py-4 bg-brand text-white rounded-xl font-medium hover:bg-brand-hover transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
                                     {isSubmitting ? (
                                         <span className="flex items-center gap-2">
