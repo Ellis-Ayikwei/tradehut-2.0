@@ -185,13 +185,25 @@ const AboutUs: React.FC = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="relative"
                     >
-                        {/* Decorative Image/Visual */}
-                        <div className="relative h-full min-h-[400px] bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-3xl overflow-hidden">
-                            <div className="absolute inset-0 bg-[url('/api/placeholder/600/400')] bg-cover bg-center opacity-50"></div>
-                            
+                        {/* Founder Photo */}
+                        <div className="relative h-full min-h-[400px] rounded-3xl overflow-hidden border border-white/10">
+                            <img
+                                src="/assets/images/team/ellis.jpg"
+                                alt="Ellis Ayikwei, Founder of TradeHut"
+                                className="absolute inset-0 w-full h-full object-cover object-top"
+                            />
+                            {/* Legibility gradient */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/10"></div>
+
+                            {/* Founder Badge */}
+                            <div className="absolute top-4 left-4 px-4 py-2 bg-black/40 backdrop-blur-md rounded-xl border border-white/10">
+                                <div className="text-white font-semibold text-sm">Ellis Ayikwei</div>
+                                <div className="text-gray-300 text-xs">Founder &amp; Lead Engineer</div>
+                            </div>
+
                             {/* Floating Stats */}
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div className="grid grid-cols-2 gap-4 p-8">
+                            <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6">
+                                <div className="grid grid-cols-2 gap-3 sm:gap-4">
                                     {achievements.map((stat, index) => (
                                         <motion.div
                                             key={index}
@@ -199,36 +211,20 @@ const AboutUs: React.FC = () => {
                                             animate={contentInView ? { opacity: 1, scale: 1 } : {}}
                                             transition={{ delay: 0.4 + index * 0.1, type: "spring" }}
                                             whileHover={{ scale: 1.05 }}
-                                            className="bg-white/10 backdrop-blur-md rounded-2xl p-6 text-center border border-white/20"
+                                            className="bg-white/10 backdrop-blur-md rounded-2xl p-4 text-center border border-white/20"
                                         >
-                                            <div className="text-blue-400 mb-2 flex justify-center">
+                                            <div className="text-brand-light mb-1 flex justify-center">
                                                 {stat.icon}
                                             </div>
-                                            <div className="text-3xl font-bold text-white mb-1">
+                                            <div className="text-2xl font-bold text-white mb-0.5">
                                                 {stat.number}
                                             </div>
-                                            <div className="text-sm text-gray-300">
+                                            <div className="text-xs text-gray-300">
                                                 {stat.label}
                                             </div>
                                         </motion.div>
                                     ))}
                                 </div>
-                            </div>
-
-                            {/* Decorative Elements */}
-                            <div className="absolute top-4 right-4">
-                                <motion.div
-                                    animate={{ rotate: 360 }}
-                                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                                    className="w-20 h-20 border-4 border-blue-500/20 rounded-full"
-                                />
-                            </div>
-                            <div className="absolute bottom-4 left-4">
-                                <motion.div
-                                    animate={{ scale: [1, 1.2, 1] }}
-                                    transition={{ duration: 3, repeat: Infinity }}
-                                    className="w-16 h-16 bg-purple-500/20 rounded-full blur-xl"
-                                />
                             </div>
                         </div>
                     </motion.div>
