@@ -179,22 +179,6 @@ export default function Hero() {
                                     </span>
                                 </motion.button>
                             </div>
-
-                            {/* Trusted Device Brands */}
-                            <div className="flex flex-col items-center gap-3 mt-8">
-                                <span className="text-xs uppercase tracking-widest text-gray-500 font-medium">We Repair &amp; Support</span>
-                                <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-                                    {trustedBrands.map((brand) => (
-                                        <div
-                                            key={brand.name}
-                                            title={brand.name}
-                                            className="text-gray-500 hover:text-white transition-colors duration-300"
-                                        >
-                                            {brand.icon}
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
                         </motion.div>
 
                         {/* Tech Stack Marquee - Full Width with Fade */}
@@ -234,6 +218,22 @@ export default function Hero() {
                                 })}
                             </Marquee>
                         </motion.div>
+
+                        {/* Trusted Device Brands */}
+                        <div className="flex flex-col items-center gap-3 mt-3 sm:mt-4 mb-3 sm:mb-4">
+                            <span className="text-xs uppercase tracking-widest text-gray-500 font-medium">We Repair &amp; Support</span>
+                            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+                                {trustedBrands.map((brand) => (
+                                    <div
+                                        key={brand.name}
+                                        title={brand.name}
+                                        className="text-gray-500 hover:text-white transition-colors duration-300"
+                                    >
+                                        {brand.icon}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
 
       {/* Laptop Image - Main Feature */}
       <div className="relative w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl xl:max-w-4xl mx-auto mt-3 sm:mt-4 md:mt-6 lg:mt-8 px-1 sm:px-2 md:px-4 lg:px-0">
